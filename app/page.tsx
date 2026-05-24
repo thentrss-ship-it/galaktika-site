@@ -88,7 +88,7 @@ export default function GalaktikaVapeSite() {
             ГАЛАКТИКА
           </h1>
 
-          <p className="text-zinc-400 text-xl max-w-2xl mx-auto mb-10">
+          <p className="text-zinc-300 text-base md:text-lg leading-relaxed text-xl max-w-2xl mx-auto mb-10">
             Оптовые поставки POD-систем, расходников и оригинальных устройств
             для вейп-шопов, сетей и оптовиков.
           </p>
@@ -114,7 +114,7 @@ export default function GalaktikaVapeSite() {
 
       {/* BRANDS */}
       <section className="px-6 py-16 max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-10">
+        <h2 className="text-3xl md:text-5xl font-black tracking-tight text-center mb-10">
           Бренды в наличии
         </h2>
 
