@@ -82,12 +82,12 @@ export default function GalaktikaVapeSite() {
     </div>
 
     {/* BUTTONS */}
-    <div className="flex gap-3">
+    <div className="flex gap-2 md:gap-3">
 
       <a
         href="https://t.me/Galaxy_Stan"
         target="_blank"
-        className="group px-6 py-3 rounded-2xl border border-cyan-500/20 bg-cyan-500/10 text-cyan-300 transition-all duration-300 hover:bg-cyan-500/20 hover:shadow-[0_0_25px_rgba(34,211,238,0.35)]"
+        className="hidden sm:flex group px-6 py-3 rounded-2xl border border-cyan-500/20 bg-cyan-500/10 text-cyan-300 transition-all duration-300 hover:bg-cyan-500/20 hover:shadow-[0_0_25px_rgba(34,211,238,0.35)]"
       >
         <span className="flex items-center gap-2">
           Telegram
@@ -97,7 +97,7 @@ export default function GalaktikaVapeSite() {
       <a
         href="https://t.me/Galaxy_Stan"
         target="_blank"
-        className="group relative overflow-hidden px-6 py-3 rounded-2xl bg-gradient-to-r from-fuchsia-600 to-cyan-500 font-bold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_35px_rgba(217,70,239,0.5)]"
+        className="hidden sm:flex group px-6 py-3 rounded-2xl border border-cyan-500/20 bg-cyan-500/10 text-cyan-300 transition-all duration-300 hover:bg-cyan-500/20 hover:shadow-[0_0_25px_rgba(34,211,238,0.35)]"
       >
         <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
 
