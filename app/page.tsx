@@ -234,7 +234,7 @@ export default function GalaktikaVapeSite() {
     </h2>
 
     <p className="text-zinc-400 text-lg max-w-2xl mx-auto leading-relaxed">
-      Работаем с vape-магазинами, сетями и оптовыми клиентами по всей России.
+      Работаем с вейп-шопами, сетями и оптовыми клиентами по всей России.
     </p>
   </div>
 
