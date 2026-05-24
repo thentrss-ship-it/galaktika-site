@@ -169,9 +169,11 @@ export default function GalaktikaVapeSite() {
               key={brand.name}
               className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl px-4 py-6 text-center transition-all duration-500 hover:-translate-y-2 hover:border-fuchsia-500/40 hover:shadow-[0_0_40px_rgba(217,70,239,0.2)]"
             >
-              <div
-                className={`h-1 w-16 mx-auto mb-4 rounded-full bg-gradient-to-r ${brand.accent}`}
-              />
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-fuchsia-500/5 to-cyan-500/5" />
+
+<div
+  className={`relative h-1 w-16 mx-auto mb-4 rounded-full bg-gradient-to-r ${brand.accent}`}
+/>
 
               <div className="text-sm md:text-lg font-black tracking-[0.16em] whitespace-nowrap">
                 {brand.logo}
