@@ -149,7 +149,7 @@ export default function GalaktikaVapeSite() {
           {brands.map((brand) => (
             <div
               key={brand.name}
-              cclassName="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl px-4 py-6 text-center overflow-hidden"
+              className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl px-4 py-6 text-center overflow-hidden"
             >
               <div
                 className={`h-1 w-16 mx-auto mb-4 rounded-full bg-gradient-to-r ${brand.accent}`}
