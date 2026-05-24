@@ -45,7 +45,7 @@ export default function GalaktikaVapeSite() {
   ];
 
   return (
-    <div className="relative min-h-screen bg-black text-white overflow-hidden">
+  <div className="relative min-h-screen bg-black text-white overflow-hidden">
       {/* SMOKE */}
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
         <div className="absolute -left-32 top-24 h-72 w-72 rounded-full bg-fuchsia-500/10 blur-3xl animate-pulse" />
