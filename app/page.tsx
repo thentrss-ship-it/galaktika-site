@@ -380,6 +380,80 @@ export default function GalaktikaVapeSite() {
 
   </div>
 </section>
+
+{/* HOW WE WORK */}
+<section className="px-6 py-24 max-w-7xl mx-auto">
+  <div className="text-center mb-16">
+    <div className="inline-flex px-5 py-2 rounded-full border border-fuchsia-500/20 bg-fuchsia-500/10 text-fuchsia-300 text-sm tracking-[0.2em] uppercase mb-6">
+      HOW WE WORK
+    </div>
+
+    <h2 className="text-5xl md:text-6xl font-black mb-6">
+      Как мы работаем
+    </h2>
+
+    <p className="text-zinc-400 text-lg max-w-2xl mx-auto leading-relaxed">
+      Без сложных схем и долгих ожиданий —
+      быстро даем наличие, фиксируем заказ и отправляем по РФ.
+    </p>
+  </div>
+
+  <div className="grid md:grid-cols-4 gap-6">
+
+    {[
+      {
+        number: '01',
+        title: 'Пишите нам',
+        text: 'Связываетесь через Telegram и получаете актуальный прайс.'
+      },
+
+      {
+        number: '02',
+        title: 'Получаете наличие',
+        text: 'Отправляем остатки, новинки и актуальные позиции.'
+      },
+
+      {
+        number: '03',
+        title: 'Подтверждаем заказ',
+        text: 'Резервируем товар и согласовываем удобную оплату.'
+      },
+
+      {
+        number: '04',
+        title: 'Отгружаем',
+        text: 'Быстро отправляем заказ со склада в Москве.'
+      },
+
+    ].map((step) => (
+
+      <div
+        key={step.number}
+        className="group relative overflow-hidden rounded-[32px] border border-white/10 bg-white/5 backdrop-blur-2xl p-8 hover:border-fuchsia-500/30 transition-all duration-500"
+      >
+
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-fuchsia-500/10 to-cyan-500/10" />
+
+        <div className="relative">
+
+          <div className="text-6xl font-black mb-8 bg-gradient-to-r from-fuchsia-400 to-cyan-300 bg-clip-text text-transparent">
+            {step.number}
+          </div>
+
+          <h3 className="text-2xl font-black mb-4">
+            {step.title}
+          </h3>
+
+          <p className="text-zinc-400 leading-relaxed">
+            {step.text}
+          </p>
+
+        </div>
+      </div>
+
+    ))}
+  </div>
+</section>
       
       {/* TRUST */}
 <section className="px-6 py-24 max-w-7xl mx-auto">
