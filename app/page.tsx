@@ -1,4 +1,21 @@
+'use client'
+
+import { useState, useEffect } from 'react'
 export default function GalaktikaVapeSite() {
+const [isAdult, setIsAdult] = useState(false)
+
+useEffect(() => {
+  const accepted = localStorage.getItem('adult-confirmed')
+
+  if (accepted === 'true') {
+    setIsAdult(true)
+  }
+}, [])
+
+const confirmAdult = () => {
+  localStorage.setItem('adult-confirmed', 'true')
+  setIsAdult(true)
+}
   const brands = [
     {
       name: 'Vaporesso',
@@ -45,7 +62,36 @@ export default function GalaktikaVapeSite() {
   ];
 
   return (
+<>
+  {!isAdult && (
+    <div className="fixed inset-0 z-[999] bg-black/95 backdrop-blur-xl flex items-center justify-center px-6">
+      <div className="max-w-md w-full rounded-[36px] border border-fuchsia-500/20 bg-zinc-950 p-10 text-center shadow-[0_0_60px_rgba(217,70,239,0.25)]">
+
+        <div className="text-7xl font-black mb-6 bg-gradient-to-r from-fuchsia-400 to-cyan-300 bg-clip-text text-transparent">
+          18+
+        </div>
+
+        <h2 className="text-3xl font-black mb-6">
+          Подтвердите возраст
+        </h2>
+
+        <p className="text-zinc-400 leading-relaxed mb-10">
+          Сайт содержит информацию о никотиносодержащей продукции
+          и предназначен только для совершеннолетних.
+        </p>
+
+        <button
+          onClick={confirmAdult}
+          className="w-full py-5 rounded-2xl bg-gradient-to-r from-fuchsia-600 to-cyan-500 font-black text-lg hover:scale-[1.02] transition-all duration-300"
+        >
+          Мне есть 18 лет
+        </button>
+      </div>
+    </div>
+  )}
+
   <div className="relative min-h-screen bg-black text-white overflow-hidden">
+    <div className="relative min-h-screen bg-black text-white overflow-hidden">
       {/* SMOKE */}
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
         <div className="absolute -left-32 top-24 h-72 w-72 rounded-full bg-fuchsia-500/10 blur-3xl animate-pulse" />
@@ -721,5 +767,6 @@ export default function GalaktikaVapeSite() {
   </div>
 </footer>
     </div>
-  );
+</>
+);
 }
