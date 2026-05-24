@@ -316,32 +316,86 @@ export default function GalaktikaVapeSite() {
 </section>
 
       {/* STOCK */}
-      <section className="px-6 py-20 max-w-6xl mx-auto">
-        <h2 className="text-5xl font-black text-center mb-4 bg-gradient-to-r from-fuchsia-400 to-cyan-300 text-transparent bg-clip-text">
-          Склад и реальные поставки
-        </h2>
+<section className="px-6 py-24 max-w-7xl mx-auto">
+  <div className="text-center mb-14">
+    <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-cyan-500/20 bg-cyan-500/10 text-cyan-300 text-sm tracking-[0.2em] uppercase mb-6">
+      REAL STOCK
+    </div>
 
-        <p className="text-zinc-400 text-center mb-12">
-          Работаем напрямую с поставками и поддерживаем постоянное наличие.
-        </p>
+    <h2 className="text-5xl md:text-6xl font-black mb-6 leading-tight">
+      Склад и реальные
+      <span className="bg-gradient-to-r from-fuchsia-400 to-cyan-300 bg-clip-text text-transparent">
+        {' '}поставки
+      </span>
+    </h2>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          <img
-            src="/warehouse-1.jpg"
-            className="rounded-[28px] h-[280px] object-cover"
-          />
+    <p className="text-zinc-400 text-lg max-w-2xl mx-auto leading-relaxed">
+      Поддерживаем наличие популярных позиций и быстро отгружаем заказы со склада в Москве.
+    </p>
+  </div>
 
-          <img
-            src="/warehouse-2.jpg"
-            className="rounded-[28px] h-[280px] object-cover"
-          />
+  <div className="grid md:grid-cols-3 gap-6">
+    <div className="group relative overflow-hidden rounded-[32px] border border-fuchsia-500/20 bg-white/5 shadow-[0_0_40px_rgba(217,70,239,0.12)]">
+      <img
+        src="/warehouse-1.jpg"
+        alt="Склад Галактика"
+        className="h-[360px] w-full object-cover transition duration-700 group-hover:scale-110"
+      />
 
-          <img
-            src="/warehouse-3.jpg"
-            className="rounded-[28px] h-[280px] object-cover"
-          />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+      <div className="absolute bottom-0 left-0 right-0 p-6">
+        <div className="text-sm text-fuchsia-300 tracking-[0.2em] uppercase mb-2">
+          Москва
         </div>
-      </section>
+
+        <div className="text-2xl font-black">
+          Склад в наличии
+        </div>
+      </div>
+    </div>
+
+    <div className="group relative overflow-hidden rounded-[32px] border border-cyan-500/20 bg-white/5 shadow-[0_0_40px_rgba(34,211,238,0.12)] md:translate-y-10">
+      <img
+        src="/warehouse-2.jpg"
+        alt="Поставка устройств"
+        className="h-[360px] w-full object-cover transition duration-700 group-hover:scale-110"
+      />
+
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+      <div className="absolute bottom-0 left-0 right-0 p-6">
+        <div className="text-sm text-cyan-300 tracking-[0.2em] uppercase mb-2">
+          Поставки
+        </div>
+
+        <div className="text-2xl font-black">
+          Регулярное пополнение
+        </div>
+      </div>
+    </div>
+
+    <div className="group relative overflow-hidden rounded-[32px] border border-fuchsia-500/20 bg-white/5 shadow-[0_0_40px_rgba(217,70,239,0.12)]">
+      <img
+        src="/warehouse-3.jpg"
+        alt="Оптовые поставки"
+        className="h-[360px] w-full object-cover transition duration-700 group-hover:scale-110"
+      />
+
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+      <div className="absolute bottom-0 left-0 right-0 p-6">
+        <div className="text-sm text-fuchsia-300 tracking-[0.2em] uppercase mb-2">
+          Опт
+        </div>
+
+        <div className="text-2xl font-black">
+          Отгрузки по РФ
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* FLOATING BUTTON */}
       <a
