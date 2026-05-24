@@ -65,14 +65,14 @@ export default function GalaktikaVapeSite() {
 
         <img
           src="/logo-galaktika.png"
-          alt="GALAKTIKA"
+          alt="ГАЛАКТИКА"
           className="relative h-11 w-11 object-contain"
         />
       </div>
 
       <div>
         <div className="text-lg font-black tracking-[0.25em] bg-gradient-to-r from-fuchsia-400 to-cyan-300 bg-clip-text text-transparent">
-          GALAKTIKA
+          ГАЛАКТИКА
         </div>
 
         <div className="text-xs text-white/40 tracking-[0.2em]">
@@ -713,7 +713,7 @@ export default function GalaktikaVapeSite() {
 {/* FOOTER */}
 <footer className="border-t border-white/5 px-6 py-10 text-center">
   <div className="text-zinc-500 text-sm tracking-[0.2em] uppercase mb-3">
-    GALAKTIKA VAPEBAR LLC
+    ГАЛАКТИКА VAPEBAR LLC
   </div>
 
   <div className="text-zinc-700 text-sm">
