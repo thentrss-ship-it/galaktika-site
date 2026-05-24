@@ -109,62 +109,52 @@ export default function GalaktikaVapeSite() {
     </div>
   </div>
 </header>
-      <section className="relative px-6 pt-44 pb-28 text-center">
-        <div className="max-w-5xl mx-auto">
-          <h1 className="text-6xl md:text-7xl font-black mb-6 bg-gradient-to-r from-fuchsia-400 to-cyan-300 text-transparent bg-clip-text">
-            ГАЛАКТИКА
-          <h1 className="text-6xl md:text-8xl font-black tracking-tight mb-8 leading-none">
-  <span className="bg-gradient-to-r from-fuchsia-400 via-violet-300 to-cyan-300 bg-clip-text text-transparent">
-    ГАЛАКТИКА
-  </span>
-</h1>
+      <section className="relative px-6 pt-44 pb-28 text-center overflow-hidden">
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(217,70,239,0.16),transparent_45%)]" />
 
-<p className="text-zinc-300 text-lg md:text-2xl leading-relaxed max-w-3xl mx-auto mb-12">
-  Оптовые поставки оригинальных POD-систем,
-  испарителей и картриджей
-  для вейп-шопов, сетей и дистрибьюторов.
-</p>
+  <div className="relative max-w-6xl mx-auto">
+    <h1 className="text-6xl md:text-8xl font-black tracking-tight mb-8 leading-none">
+      <span className="bg-gradient-to-r from-fuchsia-400 via-violet-300 to-cyan-300 bg-clip-text text-transparent">
+        ГАЛАКТИКА
+      </span>
+    </h1>
 
-<div className="flex gap-4 justify-center flex-wrap mb-16">
-  <a
-    href="https://t.me/Galaxy_Stan"
-    target="_blank"
-    className="group relative overflow-hidden px-10 py-5 rounded-2xl bg-gradient-to-r from-fuchsia-600 to-cyan-500 font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_45px_rgba(217,70,239,0.6)]"
-  >
-    <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+    <p className="text-zinc-300 text-lg md:text-2xl leading-relaxed max-w-3xl mx-auto mb-12">
+      Оптовые поставки оригинальных POD-систем, испарителей и картриджей
+      для вейп-шопов, сетей и дистрибьюторов.
+    </p>
 
-    <span className="relative">
-      Telegram
-    </span>
-  </a>
+    <div className="flex gap-4 justify-center flex-wrap mb-16">
+      <a
+        href="https://t.me/Galaxy_Stan"
+        target="_blank"
+        className="group relative overflow-hidden px-10 py-5 rounded-2xl bg-gradient-to-r from-fuchsia-600 to-cyan-500 font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_45px_rgba(217,70,239,0.6)]"
+      >
+        <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+        <span className="relative">Telegram</span>
+      </a>
 
-  <a
-    href="#catalog"
-    className="px-10 py-5 rounded-2xl border border-fuchsia-500/20 bg-white/5 backdrop-blur-xl text-lg hover:border-fuchsia-500/40 transition-all duration-300"
-  >
-    Каталог
-  </a>
-</div>
+      <a
+        href="#catalog"
+        className="px-10 py-5 rounded-2xl border border-fuchsia-500/20 bg-white/5 backdrop-blur-xl text-lg hover:border-fuchsia-500/40 transition-all duration-300"
+      >
+        Каталог
+      </a>
+    </div>
 
-{/* HERO DEVICE */}
-<div className="relative max-w-6xl mx-auto">
+    <div className="relative max-w-6xl mx-auto">
+      <div className="absolute inset-0 bg-fuchsia-500/20 blur-[120px] rounded-full" />
+      <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-cyan-500/10 blur-[120px] rounded-full" />
 
-  {/* GLOW */}
-  <div className="absolute inset-0 bg-fuchsia-500/20 blur-[120px] rounded-full" />
-
-  {/* SMOKE */}
-  <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-cyan-500/10 blur-[120px] rounded-full" />
-
-  {/* DEVICE IMAGE */}
-  <div className="relative flex justify-center">
-    <img
-      src="/hero-device.png"
-      alt="Vape Device"
-      className="w-full max-w-5xl object-contain drop-shadow-[0_0_50px_rgba(168,85,247,0.45)]"
-    />
+      <div className="relative flex justify-center">
+        <img
+          src="/hero-device.png"
+          alt="Vape Device"
+          className="w-full max-w-5xl object-contain drop-shadow-[0_0_50px_rgba(168,85,247,0.45)]"
+        />
+      </div>
+    </div>
   </div>
-
-</div>
 </section>
 
       {/* BRANDS */}
