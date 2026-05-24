@@ -220,22 +220,100 @@ export default function GalaktikaVapeSite() {
       </section>
 
       {/* TRUST */}
-      <section className="px-6 py-16 max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-12">
-          Почему нам доверяют
-        </h2>
+<section className="px-6 py-24 max-w-7xl mx-auto">
+  <div className="text-center mb-16">
+    <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-fuchsia-500/20 bg-fuchsia-500/10 text-fuchsia-300 text-sm tracking-[0.2em] uppercase mb-6">
+      WHY US
+    </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {advantages.map((item) => (
-            <div
-              key={item}
-              className="rounded-3xl border border-cyan-500/20 bg-white/5 p-6 backdrop-blur-xl"
-            >
-              ✦ {item}
-            </div>
-          ))}
+    <h2 className="text-5xl md:text-6xl font-black mb-6 leading-tight">
+      Почему нам
+      <span className="bg-gradient-to-r from-fuchsia-400 to-cyan-300 bg-clip-text text-transparent">
+        {' '}доверяют
+      </span>
+    </h2>
+
+    <p className="text-zinc-400 text-lg max-w-2xl mx-auto leading-relaxed">
+      Работаем с vape-магазинами, сетями и оптовыми клиентами по всей России.
+    </p>
+  </div>
+
+  <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+
+    <div className="group relative overflow-hidden rounded-[32px] border border-fuchsia-500/15 bg-white/5 backdrop-blur-2xl p-8 hover:border-fuchsia-500/40 transition-all duration-500 hover:-translate-y-2">
+      <div className="absolute inset-0 bg-fuchsia-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+
+      <div className="relative">
+        <div className="text-5xl font-black mb-4 bg-gradient-to-r from-fuchsia-400 to-cyan-300 bg-clip-text text-transparent">
+          5+
         </div>
-      </section>
+
+        <div className="text-xl font-bold mb-3">
+          Лет на рынке
+        </div>
+
+        <p className="text-zinc-400 leading-relaxed">
+          Работаем в vape-индустрии и знаем рынок изнутри.
+        </p>
+      </div>
+    </div>
+
+    <div className="group relative overflow-hidden rounded-[32px] border border-cyan-500/15 bg-white/5 backdrop-blur-2xl p-8 hover:border-cyan-500/40 transition-all duration-500 hover:-translate-y-2">
+      <div className="absolute inset-0 bg-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+
+      <div className="relative">
+        <div className="text-5xl font-black mb-4 bg-gradient-to-r from-cyan-300 to-fuchsia-300 bg-clip-text text-transparent">
+          1000+
+        </div>
+
+        <div className="text-xl font-bold mb-3">
+          Клиентов
+        </div>
+
+        <p className="text-zinc-400 leading-relaxed">
+          Работаем с вейп-шопами, сетями и оптовыми закупщиками.
+        </p>
+      </div>
+    </div>
+
+    <div className="group relative overflow-hidden rounded-[32px] border border-fuchsia-500/15 bg-white/5 backdrop-blur-2xl p-8 hover:border-fuchsia-500/40 transition-all duration-500 hover:-translate-y-2">
+      <div className="absolute inset-0 bg-fuchsia-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+
+      <div className="relative">
+        <div className="text-5xl font-black mb-4 bg-gradient-to-r from-fuchsia-400 to-cyan-300 bg-clip-text text-transparent">
+          РФ
+        </div>
+
+        <div className="text-xl font-bold mb-3">
+          Отгрузки по России
+        </div>
+
+        <p className="text-zinc-400 leading-relaxed">
+          Быстрая логистика и отправки в разные регионы.
+        </p>
+      </div>
+    </div>
+
+    <div className="group relative overflow-hidden rounded-[32px] border border-cyan-500/15 bg-white/5 backdrop-blur-2xl p-8 hover:border-cyan-500/40 transition-all duration-500 hover:-translate-y-2">
+      <div className="absolute inset-0 bg-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+
+      <div className="relative">
+        <div className="text-5xl font-black mb-4 bg-gradient-to-r from-cyan-300 to-fuchsia-300 bg-clip-text text-transparent">
+          100%
+        </div>
+
+        <div className="text-xl font-bold mb-3">
+          Оригинальная продукция
+        </div>
+
+        <p className="text-zinc-400 leading-relaxed">
+          Только оригинальные устройства и расходники.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
 
       {/* STOCK */}
       <section className="px-6 py-20 max-w-6xl mx-auto">
