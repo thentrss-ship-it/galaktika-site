@@ -651,10 +651,70 @@ export default function GalaktikaVapeSite() {
         </div>
       </a>
 
-      {/* FOOTER */}
-      <footer className="border-t border-zinc-900 px-6 py-8 text-center text-zinc-500 text-sm">
-        © 2026 ГАЛАКТИКА — POD SYSTEM STORE
-      </footer>
+    {/* FINAL CTA */}
+<section className="px-6 py-24">
+  <div className="relative max-w-7xl mx-auto overflow-hidden rounded-[40px] border border-fuchsia-500/20 bg-gradient-to-br from-fuchsia-950/30 via-black to-cyan-950/20 p-10 md:p-16">
+
+    {/* GLOW */}
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-fuchsia-500/10 blur-[120px]" />
+
+    <div className="relative text-center">
+
+      <div className="inline-flex px-5 py-2 rounded-full border border-fuchsia-500/20 bg-fuchsia-500/10 text-fuchsia-300 text-sm tracking-[0.2em] uppercase mb-8">
+        CONTACT
+      </div>
+
+      <h2 className="text-5xl md:text-7xl font-black leading-tight mb-8">
+        Запросите
+        <span className="bg-gradient-to-r from-fuchsia-400 to-cyan-300 bg-clip-text text-transparent">
+          {' '}оптовый прайс
+        </span>
+      </h2>
+
+      <p className="text-zinc-400 text-xl leading-relaxed max-w-3xl mx-auto mb-12">
+        Отправим актуальное наличие, оптовые цены
+        и поможем подобрать позиции под ваш магазин.
+      </p>
+
+      <div className="flex flex-wrap justify-center gap-4 mb-14">
+
+        <div className="px-6 py-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl">
+          Минимальный заказ — 20.000₽
+        </div>
+
+        <div className="px-6 py-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl">
+          Склад в Москве
+        </div>
+
+        <div className="px-6 py-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl">
+          Нал / безнал / USDT
+        </div>
+
+      </div>
+
+      <a
+        href="https://t.me/Galaxy_Stan"
+        target="_blank"
+        className="group relative inline-flex overflow-hidden px-10 py-5 rounded-2xl bg-gradient-to-r from-fuchsia-600 to-cyan-500 font-black text-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_45px_rgba(217,70,239,0.45)]"
+      >
+        <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+
+        <span className="relative">
+          @Galaxy_Stan
+        </span>
+      </a>
+
     </div>
-  );
-}
+  </div>
+</section>
+
+{/* FOOTER */}
+<footer className="border-t border-white/5 px-6 py-10 text-center">
+  <div className="text-zinc-500 text-sm tracking-[0.2em] uppercase mb-3">
+    GALAKTIKA VAPEBAR LLC
+  </div>
+
+  <div className="text-zinc-700 text-sm">
+    © 2026 Premium Vape Distributor
+  </div>
+</footer>
