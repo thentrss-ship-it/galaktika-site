@@ -718,3 +718,6 @@ export default function GalaktikaVapeSite() {
     © 2026 Premium Vape Distributor
   </div>
 </footer>
+    </div>
+  );
+}
