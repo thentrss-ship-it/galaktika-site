@@ -90,7 +90,7 @@ const confirmAdult = () => {
     </div>
   )}
 
-  <div className="relative min-h-screen bg-black text-white overflow-hidden">
+
     <div className="relative min-h-screen bg-black text-white overflow-hidden">
       {/* SMOKE */}
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
