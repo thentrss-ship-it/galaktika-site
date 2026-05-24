@@ -265,6 +265,122 @@ export default function GalaktikaVapeSite() {
   </div>
 </section>
 
+      {/* PROMO */}
+<section className="px-6 py-24 max-w-7xl mx-auto">
+  <div className="grid lg:grid-cols-2 gap-8">
+
+    {/* АКЦИИ */}
+    <div className="relative overflow-hidden rounded-[36px] border border-fuchsia-500/20 bg-gradient-to-br from-fuchsia-950/40 to-black p-10">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(217,70,239,0.18),transparent_45%)]" />
+
+      <div className="relative">
+        <div className="inline-flex px-4 py-2 rounded-full border border-fuchsia-500/20 bg-fuchsia-500/10 text-fuchsia-300 text-xs tracking-[0.2em] uppercase mb-6">
+          АКТУАЛЬНЫЕ АКЦИИ
+        </div>
+
+        <h3 className="text-4xl font-black mb-8 leading-tight">
+          Специальные условия
+          для оптовых клиентов
+        </h3>
+
+        <div className="space-y-6">
+
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
+            <div className="text-cyan-300 text-sm tracking-[0.2em] uppercase mb-3">
+              Geekvape
+            </div>
+
+            <div className="text-2xl font-black mb-3">
+              Wenax Q2
+            </div>
+
+            <p className="text-zinc-400 leading-relaxed">
+              При заказе 8 устройств каждого цвета →
+              2 устройства в подарок.
+            </p>
+          </div>
+
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
+            <div className="text-fuchsia-300 text-sm tracking-[0.2em] uppercase mb-3">
+              Smoant
+            </div>
+
+            <div className="text-2xl font-black mb-3">
+              Фирменный мерч
+            </div>
+
+            <p className="text-zinc-400 leading-relaxed">
+              К каждому заказу устройств или расходников
+              добавляем брендированный мерч.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    {/* НОВОЕ ПОСТУПЛЕНИЕ */}
+    <div className="relative overflow-hidden rounded-[36px] border border-cyan-500/20 bg-gradient-to-br from-cyan-950/30 to-black p-10">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.15),transparent_45%)]" />
+
+      <div className="relative">
+        <div className="inline-flex px-4 py-2 rounded-full border border-cyan-500/20 bg-cyan-500/10 text-cyan-300 text-xs tracking-[0.2em] uppercase mb-6">
+          NEW ARRIVALS
+        </div>
+
+        <h3 className="text-4xl font-black mb-8 leading-tight">
+          Новое поступление
+        </h3>
+
+        <div className="space-y-5">
+
+          <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-6 py-5">
+            <div>
+              <div className="text-xl font-bold">
+                Geekvape Aegis Nano 3
+              </div>
+
+              <div className="text-zinc-500 text-sm mt-1">
+                Новинка в наличии
+              </div>
+            </div>
+
+            <div className="text-cyan-300 text-sm tracking-[0.2em] uppercase">
+              New
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-6 py-5">
+            <div>
+              <div className="text-xl font-bold">
+                Geekvape Hero 5 Red & White
+              </div>
+
+              <div className="text-zinc-500 text-sm mt-1">
+                Лимитированные цвета
+              </div>
+            </div>
+
+            <div className="text-fuchsia-300 text-sm tracking-[0.2em] uppercase">
+              Hot
+            </div>
+          </div>
+
+        </div>
+
+        <a
+          href="https://t.me/Galaxy_Stan"
+          target="_blank"
+          className="inline-flex mt-10 px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-fuchsia-500 font-bold hover:scale-105 transition-all duration-300 hover:shadow-[0_0_35px_rgba(34,211,238,0.35)]"
+        >
+          Получить оптовый прайс
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+      
       {/* TRUST */}
 <section className="px-6 py-24 max-w-7xl mx-auto">
   <div className="text-center mb-16">
