@@ -182,42 +182,88 @@ export default function GalaktikaVapeSite() {
       </section>
 
       {/* PRODUCTS */}
-      <section id="catalog" className="px-6 py-16 bg-zinc-950">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12">
-            Популярные устройства
-          </h2>
+<section
+  id="catalog"
+  className="relative px-6 py-24 bg-gradient-to-b from-zinc-950 to-black overflow-hidden"
+>
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(217,70,239,0.12),transparent_40%)]" />
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {products.map((product) => (
-              <div
-                key={product.name}
-                className="group rounded-[28px] border border-fuchsia-500/20 bg-black/60 p-8 hover:-translate-y-2 transition duration-500 hover:shadow-[0_0_55px_rgba(217,70,239,0.25)]"
-              >
-                <div className="h-56 rounded-2xl overflow-hidden mb-6">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
-                  />
-                </div>
+  <div className="relative max-w-7xl mx-auto">
+    <div className="text-center mb-16">
+      <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-fuchsia-500/20 bg-fuchsia-500/10 text-fuchsia-300 text-sm tracking-[0.2em] uppercase mb-6">
+        TOP DEVICES
+      </div>
 
-                <h3 className="text-2xl font-bold mb-3">{product.name}</h3>
+      <h2 className="text-5xl md:text-6xl font-black mb-6 leading-tight">
+        Популярные
+        <span className="bg-gradient-to-r from-fuchsia-400 to-cyan-300 bg-clip-text text-transparent">
+          {' '}устройства
+        </span>
+      </h2>
 
-                <p className="text-zinc-400 mb-5">{product.desc}</p>
+      <p className="text-zinc-400 text-lg max-w-2xl mx-auto leading-relaxed">
+        Актуальные устройства, пользующиеся высоким спросом у vape-магазинов и сетей.
+      </p>
+    </div>
 
-                <a
-                  href="https://t.me/Galaxy_Stan"
-                  target="_blank"
-                  className="inline-flex rounded-2xl border border-cyan-500/30 bg-cyan-500/10 px-5 py-3 text-cyan-300 font-semibold"
-                >
-                  Уточнить наличие
-                </a>
+    <div className="grid md:grid-cols-3 gap-8">
+      {products.map((product) => (
+        <div
+          key={product.name}
+          className="group relative overflow-hidden rounded-[36px] border border-white/10 bg-white/[0.04] backdrop-blur-2xl p-6 transition-all duration-500 hover:-translate-y-3 hover:border-fuchsia-500/40 hover:shadow-[0_0_60px_rgba(217,70,239,0.2)]"
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-fuchsia-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+          <div className="relative">
+            <div className="relative h-[320px] rounded-[28px] overflow-hidden mb-8 bg-black/40">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
+
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-full h-full object-cover transition duration-700 group-hover:scale-110"
+              />
+
+              <div className="absolute top-5 left-5 z-20 px-4 py-2 rounded-full border border-fuchsia-500/20 bg-black/40 backdrop-blur-xl text-xs tracking-[0.2em] uppercase text-fuchsia-300">
+                Premium Device
               </div>
-            ))}
+            </div>
+
+            <h3 className="text-3xl font-black mb-4 leading-tight">
+              {product.name}
+            </h3>
+
+            <p className="text-zinc-400 text-lg leading-relaxed mb-8">
+              {product.desc}
+            </p>
+
+            <div className="flex gap-3 flex-wrap">
+              <a
+                href="https://t.me/Galaxy_Stan"
+                target="_blank"
+                className="group/button relative overflow-hidden px-6 py-4 rounded-2xl bg-gradient-to-r from-fuchsia-600 to-cyan-500 font-bold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_35px_rgba(217,70,239,0.45)]"
+              >
+                <div className="absolute inset-0 bg-white/10 opacity-0 group-hover/button:opacity-100 transition-opacity" />
+
+                <span className="relative">
+                  Уточнить наличие
+                </span>
+              </a>
+
+              <a
+                href="https://t.me/Galaxy_Stan"
+                target="_blank"
+                className="px-6 py-4 rounded-2xl border border-cyan-500/20 bg-cyan-500/10 text-cyan-300 font-semibold hover:bg-cyan-500/20 transition-all duration-300"
+              >
+                Оптовые цены
+              </a>
+            </div>
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* TRUST */}
 <section className="px-6 py-24 max-w-7xl mx-auto">
