@@ -114,10 +114,10 @@ export default function GalaktikaVapeSite() {
 
   <div className="relative max-w-6xl mx-auto">
     <h1 className="text-6xl md:text-8xl font-black tracking-tight mb-8 leading-none">
-      <span className="bg-gradient-to-r from-fuchsia-400 via-violet-300 to-cyan-300 bg-clip-text text-transparent">
-        ГАЛАКТИКА
-      </span>
-    </h1>
+  <span className="bg-gradient-to-r from-fuchsia-400 via-violet-300 to-cyan-300 bg-clip-text text-transparent">
+    ГАЛАКТИКА
+  </span>
+</h1>
 
     <p className="text-zinc-300 text-lg md:text-2xl leading-relaxed max-w-3xl mx-auto mb-12">
       Оптовые поставки оригинальных POD-систем, испарителей и картриджей
