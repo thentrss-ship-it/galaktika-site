@@ -52,36 +52,63 @@ export default function GalaktikaVapeSite() {
         <div className="absolute right-[-120px] top-[38%] h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl animate-pulse" />
       </div>
 
-      {/* HEADER */}
-      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <img
-            src="/logo-galaktika.png"
-            alt="GALAKTIKA"
-            className="h-10 object-contain"
-          />
+     {/* HEADER */}
+<header className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-black/40 backdrop-blur-2xl">
+  <div className="absolute inset-0 bg-gradient-to-r from-fuchsia-500/5 via-cyan-500/5 to-fuchsia-500/5" />
 
-          <div className="flex gap-3">
-            <a
-              href="https://t.me/Galaxy_Stan"
-              target="_blank"
-              className="px-5 py-3 rounded-2xl border border-cyan-500/30 bg-cyan-500/10 text-cyan-300"
-            >
-              Telegram
-            </a>
+  <div className="relative max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
-            <a
-              href="https://t.me/Galaxy_Stan"
-              target="_blank"
-              className="px-5 py-3 rounded-2xl bg-gradient-to-r from-fuchsia-600 to-cyan-500 font-bold"
-            >
-              Запросить прайс
-            </a>
-          </div>
+    {/* LOGO */}
+    <div className="flex items-center gap-3">
+      <div className="relative">
+        <div className="absolute inset-0 bg-fuchsia-500 blur-xl opacity-60 rounded-full" />
+
+        <img
+          src="/logo-galaktika.png"
+          alt="GALAKTIKA"
+          className="relative h-11 w-11 object-contain"
+        />
+      </div>
+
+      <div>
+        <div className="text-lg font-black tracking-[0.25em] bg-gradient-to-r from-fuchsia-400 to-cyan-300 bg-clip-text text-transparent">
+          GALAKTIKA
         </div>
-      </header>
 
-      {/* HERO */}
+        <div className="text-xs text-white/40 tracking-[0.2em]">
+          PREMIUM SUPPLIER
+        </div>
+      </div>
+    </div>
+
+    {/* BUTTONS */}
+    <div className="flex gap-3">
+
+      <a
+        href="https://t.me/Galaxy_Stan"
+        target="_blank"
+        className="group px-6 py-3 rounded-2xl border border-cyan-500/20 bg-cyan-500/10 text-cyan-300 transition-all duration-300 hover:bg-cyan-500/20 hover:shadow-[0_0_25px_rgba(34,211,238,0.35)]"
+      >
+        <span className="flex items-center gap-2">
+          Telegram
+        </span>
+      </a>
+
+      <a
+        href="https://t.me/Galaxy_Stan"
+        target="_blank"
+        className="group relative overflow-hidden px-6 py-3 rounded-2xl bg-gradient-to-r from-fuchsia-600 to-cyan-500 font-bold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_35px_rgba(217,70,239,0.5)]"
+      >
+        <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+
+        <span className="relative">
+          Запросить прайс
+        </span>
+      </a>
+
+    </div>
+  </div>
+</header>
       <section className="relative px-6 pt-44 pb-28 text-center">
         <div className="max-w-5xl mx-auto">
           <h1 className="text-6xl md:text-7xl font-black mb-6 bg-gradient-to-r from-fuchsia-400 to-cyan-300 text-transparent bg-clip-text">
