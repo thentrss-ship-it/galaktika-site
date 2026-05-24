@@ -145,17 +145,17 @@ export default function GalaktikaVapeSite() {
           Бренды в наличии
         </h2>
 
-        <div className="grid md:grid-cols-5 gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           {brands.map((brand) => (
             <div
               key={brand.name}
-              className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 text-center min-w-[220px] hover:border-fuchsia-500/30 transition-all duration-300"
+              cclassName="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl px-4 py-6 text-center overflow-hidden"
             >
               <div
                 className={`h-1 w-16 mx-auto mb-4 rounded-full bg-gradient-to-r ${brand.accent}`}
               />
 
-              <div className="text-[30px] font-black tracking-[0.12em] whitespace-nowrap">
+              <div className="text-sm md:text-lg font-black tracking-[0.16em] whitespace-nowrap">
                 {brand.logo}
               </div>
             </div>
