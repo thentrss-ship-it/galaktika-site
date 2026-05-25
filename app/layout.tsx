@@ -1,15 +1,11 @@
-export const metadata = {
-  title: 'ГАЛАКТИКА',
-  description: 'Оптовые поставки POD-систем',
-  icons: {
-    icon: '/favicon.png',
-  },
-}
 import "./globals.css";
 
 export const metadata = {
   title: "ГАЛАКТИКА",
   description: "Оптовые поставки POD-систем и расходников",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
