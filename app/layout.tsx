@@ -6,6 +6,27 @@ export const metadata = {
   description:
     "Vaporesso, Geekvape, Voopoo, Smoant, Rincoe. Оптовые поставки POD-систем, картриджей и расходников по РФ.",
 
+  keywords: [
+    "вейпы оптом",
+    "pod системы оптом",
+    "vaporesso оптом",
+    "geekvape оптом",
+    "voopoo оптом",
+    "smoant оптом",
+    "rincoe оптом",
+    "вейп расходники оптом",
+    "картриджи оптом",
+    "испарители оптом",
+    "вейп шоп поставщик",
+    "вейпы опт россия",
+    "одноразки оптом",
+    "xros оптом",
+    "wenax оптом",
+    "pasito оптом",
+    "vape wholesale",
+    "pod системы",
+  ],
+
   icons: {
     icon: "/favicon.png",
   },
