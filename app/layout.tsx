@@ -1,5 +1,4 @@
 import "./globals.css";
-import { Analytics } from "@vercel/analytics/react";
 
 export const metadata = {
   title: "ГАЛАКТИКА — оптовые поставки POD-систем",
@@ -34,8 +33,7 @@ export const metadata = {
 
   openGraph: {
     title: "ГАЛАКТИКА",
-    description:
-      "Оптовые поставки POD-систем и расходников по всей РФ.",
+    description: "Оптовые поставки POD-систем и расходников по всей РФ.",
     images: ["/preview.jpg"],
   },
 };
@@ -47,10 +45,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ru">
-      <body>
-        {children}
-        <Analytics />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
