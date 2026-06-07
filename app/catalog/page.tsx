@@ -116,7 +116,21 @@ export default function CatalogPage() {
               Заявка в Telegram
             </span>
           </div>
-
+<div className="mt-5 flex flex-wrap gap-3">
+  {['Все', 'Geekvape', 'Vaporesso', 'Voopoo', 'Smoant'].map((item) => (
+    <button
+      key={item}
+      onClick={() => setBrand(item)}
+      className={`rounded-full px-5 py-2 text-sm font-bold transition ${
+        brand === item
+          ? 'bg-gradient-to-r from-fuchsia-600 to-cyan-500 text-white'
+          : 'border border-white/10 bg-white/5 text-zinc-300 hover:border-fuchsia-500/40'
+      }`}
+    >
+      {item}
+    </button>
+  ))}
+</div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5">
             {filtered.map((product) => (
               <article
@@ -176,6 +190,13 @@ export default function CatalogPage() {
           </div>
         </div>
       </section>
+      <a
+  href="https://t.me/Galaxy_Stan?text=Здравствуйте! Хочу получить актуальный оптовый прайс ГАЛАКТИКА."
+  target="_blank"
+  className="fixed bottom-6 right-6 z-50 rounded-full bg-gradient-to-r from-fuchsia-600 to-cyan-500 px-6 py-4 font-black shadow-[0_0_35px_rgba(217,70,239,0.45)] transition hover:scale-105"
+>
+  💬 Получить прайс
+</a>
     </main>
   );
 }
