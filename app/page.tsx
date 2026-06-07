@@ -353,7 +353,33 @@ const confirmAdult = () => {
     </div>
   </div>
 </section>
+<section className="relative px-6 py-10">
+  <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-4">
+    <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl">
+      <div className="text-3xl mb-3">📦</div>
+      <div className="text-2xl font-black mb-2">183+ позиций</div>
+      <p className="text-sm text-zinc-400">Устройства, картриджи и испарители из актуального прайса.</p>
+    </div>
 
+    <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl">
+      <div className="text-3xl mb-3">🚚</div>
+      <div className="text-2xl font-black mb-2">Отгрузка сегодня</div>
+      <p className="text-sm text-zinc-400">Склад в Москве, быстрая сборка заказов по РФ.</p>
+    </div>
+
+    <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl">
+      <div className="text-3xl mb-3">✅</div>
+      <div className="text-2xl font-black mb-2">Оригинал</div>
+      <p className="text-sm text-zinc-400">Работаем только с оригинальной сертифицированной продукцией.</p>
+    </div>
+
+    <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl">
+      <div className="text-3xl mb-3">💬</div>
+      <div className="text-2xl font-black mb-2">Цена по запросу</div>
+      <p className="text-sm text-zinc-400">Не публикуем цены — отправляем актуальные условия лично.</p>
+    </div>
+  </div>
+</section>
       {/* BRANDS */}
       <section className="px-6 py-16 max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-5xl font-black tracking-tight text-center mb-10">
