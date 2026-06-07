@@ -3,6 +3,31 @@
 import { useState, useEffect } from 'react'
 export default function GalaktikaVapeSite() {
 const [isAdult, setIsAdult] = useState(false)
+const [isLeadOpen, setIsLeadOpen] = useState(false)
+const [leadSent, setLeadSent] = useState(false)
+const [loading, setLoading] = useState(false)
+
+const [form, setForm] = useState({
+  name: '',
+  phone: '',
+  city: '',
+  shop: '',
+  telegram: '',
+})
+
+const sendLead = async (e: React.FormEvent) => {
+  e.preventDefault()
+  setLoading(true)
+
+  await fetch('/api/lead', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(form),
+  })
+
+  setLoading(false)
+  setLeadSent(true)
+}
 
 useEffect(() => {
   const accepted = localStorage.getItem('adult-confirmed')
@@ -90,6 +115,107 @@ const confirmAdult = () => {
     </div>
   )}
 
+  {isLeadOpen && (
+    <div className="fixed inset-0 z-[998] bg-black/80 backdrop-blur-xl flex items-center justify-center px-6">
+      <div className="relative max-w-xl w-full rounded-[36px] border border-fuchsia-500/20 bg-zinc-950 p-8 shadow-[0_0_80px_rgba(217,70,239,0.3)]">
+
+        <button
+          onClick={() => {
+            setIsLeadOpen(false)
+            setLeadSent(false)
+          }}
+          className="absolute top-5 right-5 text-zinc-500 hover:text-white text-2xl"
+          aria-label="Закрыть форму"
+        >
+          ×
+        </button>
+
+        {!leadSent ? (
+          <>
+            <div className="text-sm tracking-[0.2em] uppercase text-fuchsia-300 mb-4">
+              B2B ACCESS
+            </div>
+
+            <h2 className="text-4xl font-black mb-4">
+              Получите доступ к оптовым ценам
+            </h2>
+
+            <p className="text-zinc-400 mb-8 leading-relaxed">
+              Оставьте данные — менеджер отправит актуальное наличие, цены, новинки и условия сотрудничества.
+            </p>
+
+            <form onSubmit={sendLead} className="space-y-4">
+              <input
+                required
+                placeholder="Имя *"
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                className="w-full rounded-2xl bg-white/5 border border-white/10 px-5 py-4 outline-none focus:border-fuchsia-500 transition-colors"
+              />
+
+              <input
+                required
+                placeholder="Телефон *"
+                value={form.phone}
+                onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                className="w-full rounded-2xl bg-white/5 border border-white/10 px-5 py-4 outline-none focus:border-fuchsia-500 transition-colors"
+              />
+
+              <input
+                required
+                placeholder="Город *"
+                value={form.city}
+                onChange={(e) => setForm({ ...form, city: e.target.value })}
+                className="w-full rounded-2xl bg-white/5 border border-white/10 px-5 py-4 outline-none focus:border-fuchsia-500 transition-colors"
+              />
+
+              <input
+                placeholder="Название магазина"
+                value={form.shop}
+                onChange={(e) => setForm({ ...form, shop: e.target.value })}
+                className="w-full rounded-2xl bg-white/5 border border-white/10 px-5 py-4 outline-none focus:border-fuchsia-500 transition-colors"
+              />
+
+              <input
+                placeholder="Telegram"
+                value={form.telegram}
+                onChange={(e) => setForm({ ...form, telegram: e.target.value })}
+                className="w-full rounded-2xl bg-white/5 border border-white/10 px-5 py-4 outline-none focus:border-fuchsia-500 transition-colors"
+              />
+
+              <button
+                disabled={loading}
+                className="w-full py-5 rounded-2xl bg-gradient-to-r from-fuchsia-600 to-cyan-500 font-black text-lg hover:scale-[1.02] transition-all duration-300 disabled:opacity-60 disabled:hover:scale-100"
+              >
+                {loading ? 'Отправляем...' : '🚀 Получить доступ к оптовым ценам'}
+              </button>
+            </form>
+          </>
+        ) : (
+          <div className="text-center py-10">
+            <div className="text-6xl mb-6">✅</div>
+
+            <h2 className="text-4xl font-black mb-4">
+              Заявка отправлена
+            </h2>
+
+            <p className="text-zinc-400 mb-8">
+              Менеджер уже получил заявку и скоро свяжется с вами.
+            </p>
+
+            <a
+              href="https://t.me/Galaxy_Stan"
+              target="_blank"
+              className="inline-flex px-8 py-4 rounded-2xl bg-gradient-to-r from-fuchsia-600 to-cyan-500 font-bold"
+            >
+              Написать в Telegram
+            </a>
+          </div>
+        )}
+      </div>
+    </div>
+  )}
+
 
     <div className="relative min-h-screen bg-black text-white overflow-hidden">
       {/* SMOKE */}
@@ -140,17 +266,16 @@ const confirmAdult = () => {
         </span>
       </a>
 
-      <a
-        href="https://t.me/Galaxy_Stan"
-        target="_blank"
+      <button
+        onClick={() => setIsLeadOpen(true)}
         className="group relative overflow-hidden px-4 md:px-6 py-3 rounded-2xl bg-gradient-to-r from-fuchsia-600 to-cyan-500 font-bold text-sm md:text-base transition-all duration-300 hover:scale-105 hover:shadow-[0_0_35px_rgba(217,70,239,0.5)]"
       >
         <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
 
         <span className="relative">
-          Запросить прайс
+          Получить доступ
         </span>
-      </a>
+      </button>
 
     </div>
   </div>
@@ -171,14 +296,13 @@ const confirmAdult = () => {
     </p>
 
     <div className="flex gap-4 justify-center flex-wrap mb-16">
-      <a
-        href="https://t.me/Galaxy_Stan"
-        target="_blank"
+      <button
+        onClick={() => setIsLeadOpen(true)}
         className="group relative overflow-hidden px-10 py-5 rounded-2xl bg-gradient-to-r from-fuchsia-600 to-cyan-500 font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_45px_rgba(217,70,239,0.6)]"
       >
         <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-        <span className="relative">Telegram</span>
-      </a>
+        <span className="relative">🚀 Получить оптовые условия</span>
+      </button>
 
       <a
         href="#catalog"
@@ -286,9 +410,8 @@ const confirmAdult = () => {
             </p>
 
             <div className="flex gap-3 flex-wrap">
-              <a
-                href="https://t.me/Galaxy_Stan"
-                target="_blank"
+              <button
+                onClick={() => setIsLeadOpen(true)}
                 className="group/button relative overflow-hidden px-6 py-4 rounded-2xl bg-gradient-to-r from-fuchsia-600 to-cyan-500 font-bold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_35px_rgba(217,70,239,0.45)]"
               >
                 <div className="absolute inset-0 bg-white/10 opacity-0 group-hover/button:opacity-100 transition-opacity" />
@@ -296,15 +419,14 @@ const confirmAdult = () => {
                 <span className="relative">
                   Уточнить наличие
                 </span>
-              </a>
+              </button>
 
-              <a
-                href="https://t.me/Galaxy_Stan"
-                target="_blank"
+              <button
+                onClick={() => setIsLeadOpen(true)}
                 className="px-6 py-4 rounded-2xl border border-cyan-500/20 bg-cyan-500/10 text-cyan-300 font-semibold hover:bg-cyan-500/20 transition-all duration-300"
               >
                 Оптовые цены
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -416,13 +538,12 @@ const confirmAdult = () => {
 
         </div>
 
-        <a
-          href="https://t.me/Galaxy_Stan"
-          target="_blank"
+        <button
+          onClick={() => setIsLeadOpen(true)}
           className="inline-flex mt-10 px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-fuchsia-500 font-bold hover:scale-105 transition-all duration-300 hover:shadow-[0_0_35px_rgba(34,211,238,0.35)]"
         >
-          Получить оптовый прайс
-        </a>
+          Получить оптовые условия
+        </button>
       </div>
     </div>
 
@@ -713,9 +834,9 @@ const confirmAdult = () => {
       </div>
 
       <h2 className="text-5xl md:text-7xl font-black leading-tight mb-8">
-        Запросите
+        Получите
         <span className="bg-gradient-to-r from-fuchsia-400 to-cyan-300 bg-clip-text text-transparent">
-          {' '}оптовый прайс
+          {' '}оптовые условия
         </span>
       </h2>
 
@@ -740,17 +861,16 @@ const confirmAdult = () => {
 
       </div>
 
-      <a
-        href="https://t.me/Galaxy_Stan"
-        target="_blank"
+      <button
+        onClick={() => setIsLeadOpen(true)}
         className="group relative inline-flex overflow-hidden px-10 py-5 rounded-2xl bg-gradient-to-r from-fuchsia-600 to-cyan-500 font-black text-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_45px_rgba(217,70,239,0.45)]"
       >
         <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
 
         <span className="relative">
-          @Galaxy_Stan
+          Получить доступ к оптовым ценам
         </span>
-      </a>
+      </button>
 
     </div>
   </div>
