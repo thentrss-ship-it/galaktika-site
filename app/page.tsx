@@ -301,15 +301,15 @@ const confirmAdult = () => {
         className="group relative overflow-hidden px-10 py-5 rounded-2xl bg-gradient-to-r from-fuchsia-600 to-cyan-500 font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_45px_rgba(217,70,239,0.6)]"
       >
         <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-        <span className="relative">🚀 Получить оптовые условия</span>
+        <span className="relative">🚀 Получить актуальный прайс за 1 минуту</span>
       </button>
 
       <a
-        href="#catalog"
-        className="px-10 py-5 rounded-2xl border border-fuchsia-500/20 bg-white/5 backdrop-blur-xl text-lg hover:border-fuchsia-500/40 transition-all duration-300"
-      >
-        Каталог
-      </a>
+  href="/catalog"
+  className="px-10 py-5 rounded-2xl border border-fuchsia-500/20 bg-white/5 backdrop-blur-xl text-lg hover:border-fuchsia-500/40 transition-all duration-300 hover:scale-105"
+>
+  📦 Смотреть каталог
+</a>
     </div>
 
     <div className="relative max-w-6xl mx-auto">
