@@ -1,0 +1,32 @@
+export const products = [
+  {
+    id: 1,
+    brand: "Vaporesso",
+    category: "Устройства",
+    name: "XROS 5",
+    slug: "xros-5",
+    hit: true,
+    isNew: true,
+    image: "/xros5-banner.jpg",
+  },
+  {
+    id: 2,
+    brand: "Geekvape",
+    category: "Устройства",
+    name: "Aegis Hero 5",
+    slug: "aegis-hero-5",
+    hit: true,
+    isNew: true,
+    image: "/hero5-banner.jpg",
+  },
+  {
+    id: 3,
+    brand: "Smoant",
+    category: "Устройства",
+    name: "Pasito 3",
+    slug: "pasito-3",
+    hit: true,
+    isNew: false,
+    image: "/pasito3-banner.webp",
+  },
+];
