@@ -250,6 +250,10 @@ const confirmAdult = () => {
         <div className="text-xs text-white/40 tracking-[0.2em]">
           PREMIUM SUPPLIER
         </div>
+        <div className="mt-1 flex items-center gap-2 text-[10px] tracking-[0.18em] text-emerald-400">
+  <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+  🟢 ONLINE • МОСКВА • ОРИГИНАЛ
+</div>
       </div>
     </div>
 
@@ -265,7 +269,12 @@ const confirmAdult = () => {
           Telegram
         </span>
       </a>
-
+<a
+  href="/catalog"
+  className="hidden sm:flex group px-6 py-3 rounded-2xl border border-fuchsia-500/20 bg-fuchsia-500/10 text-fuchsia-300 transition-all duration-300 hover:bg-fuchsia-500/20 hover:shadow-[0_0_25px_rgba(217,70,239,0.35)]"
+>
+  📦 Каталог
+</a>
       <button
         onClick={() => setIsLeadOpen(true)}
         className="group relative overflow-hidden px-4 md:px-6 py-3 rounded-2xl bg-gradient-to-r from-fuchsia-600 to-cyan-500 font-bold text-sm md:text-base transition-all duration-300 hover:scale-105 hover:shadow-[0_0_35px_rgba(217,70,239,0.5)]"
