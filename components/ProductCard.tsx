@@ -1,13 +1,4 @@
-type Product = {
-  id: number;
-  brand: string;
-  category: string;
-  name: string;
-  slug: string;
-  hit: boolean;
-  isNew: boolean;
-  image: string;
-};
+import type { Product } from '../data/products';
 
 export default function ProductCard({
   product,
@@ -21,7 +12,7 @@ export default function ProductCard({
       </div>
 
       <div className="mt-4 flex gap-2">
-        {product.hit && (
+        {product.isHit && (
           <span className="rounded-full bg-red-500/20 px-3 py-1 text-xs text-red-300">
             🔥 Хит
           </span>
