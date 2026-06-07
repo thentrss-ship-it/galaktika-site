@@ -1,4 +1,4 @@
-'use client';
+
 
 import type { Product } from '../../../data/products';
 import { products } from '../../../data/products';
