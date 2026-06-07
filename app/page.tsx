@@ -252,7 +252,7 @@ const confirmAdult = () => {
         </div>
         <div className="mt-1 flex items-center gap-2 text-[10px] tracking-[0.18em] text-emerald-400">
   <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
-  🟢 ONLINE • МОСКВА • ОРИГИНАЛ
+   ONLINE • МОСКВА • ОРИГИНАЛ
 </div>
       </div>
     </div>
@@ -298,7 +298,25 @@ const confirmAdult = () => {
     ГАЛАКТИКА
   </span>
 </h1>
+<div className="mb-10 flex flex-wrap justify-center gap-3 text-sm font-semibold">
 
+  <div className="rounded-full border border-white/10 bg-white/5 px-5 py-3 backdrop-blur">
+    🔥 183+ товаров
+  </div>
+
+  <div className="rounded-full border border-white/10 bg-white/5 px-5 py-3 backdrop-blur">
+    🚚 Отгрузка сегодня
+  </div>
+
+  <div className="rounded-full border border-white/10 bg-white/5 px-5 py-3 backdrop-blur">
+    ✅ Только оригинал
+  </div>
+
+  <div className="rounded-full border border-white/10 bg-white/5 px-5 py-3 backdrop-blur">
+    📍 Москва
+  </div>
+
+</div>
     <p className="text-zinc-300 text-lg md:text-2xl leading-relaxed max-w-3xl mx-auto mb-12">
       Оптовые поставки оригинальных POD-систем, испарителей и картриджей
       для вейп-шопов, сетей и дистрибьюторов.
