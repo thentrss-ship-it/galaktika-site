@@ -139,16 +139,29 @@ export default function CatalogPage() {
                 className="group relative flex min-h-[285px] flex-col overflow-hidden rounded-[28px] border border-white/10 bg-gradient-to-b from-zinc-950 to-black p-4 transition-all duration-500 hover:-translate-y-2 hover:border-cyan-400/50 hover:shadow-[0_0_45px_rgba(34,211,238,0.22)]"
               >
                 <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_top,rgba(34,211,238,0.16),transparent_45%)]" />
-                <div className="flex h-20 items-center justify-center rounded-[20px] border border-white/10 bg-gradient-to-br from-zinc-900 to-black p-3 text-center">
-                  <div>
-                    <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-cyan-300">
-                      {product.brand}
-                    </div>
-                    <div className="mt-1 text-sm font-black text-white line-clamp-1">
-                      {product.section}
-                    </div>
-                  </div>
-                </div>
+                <a
+  href={`/catalog/${product.slug}`}
+  className="relative flex h-28 items-center justify-center overflow-hidden rounded-[24px] border border-white/10 bg-gradient-to-br from-zinc-900 via-black to-zinc-950 p-4 text-center transition group-hover:border-cyan-400/40"
+>
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.18),transparent_55%)] opacity-0 transition duration-500 group-hover:opacity-100" />
+
+  <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-cyan-400/10 blur-2xl" />
+  <div className="absolute -bottom-8 -left-8 h-28 w-28 rounded-full bg-fuchsia-500/10 blur-2xl" />
+
+  <div className="relative">
+    <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-xl">
+      ✦
+    </div>
+
+    <div className="text-[10px] font-black uppercase tracking-[0.24em] text-cyan-300">
+      {product.brand}
+    </div>
+
+    <div className="mt-1 line-clamp-1 text-base font-black text-white">
+      {product.section}
+    </div>
+  </div>
+</a>
 
                 <div className="mt-3 flex flex-wrap gap-1.5">
                   {product.isHit && (
