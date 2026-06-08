@@ -94,7 +94,17 @@ const searchableText = normalizeSearch(
               placeholder="Что ищете? Например: XROS 0.6, Hero 5, GTX"
               className="rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-white outline-none transition focus:border-fuchsia-500"
             />
-
+<div className="md:col-span-3 flex flex-wrap gap-2 text-xs text-zinc-400">
+  {['картридж xros', 'xros 0.6', 'hero 5', 'gtx 0.8', 'corex 3.0'].map((item) => (
+    <button
+      key={item}
+      onClick={() => setQuery(item)}
+      className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 transition hover:border-cyan-500/40 hover:text-cyan-300"
+    >
+      {item}
+    </button>
+  ))}
+</div>
             <select
               value={brand}
               onChange={(e) => setBrand(e.target.value)}
