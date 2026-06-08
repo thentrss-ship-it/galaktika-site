@@ -10,20 +10,28 @@ export default function CatalogPage() {
   const [query, setQuery] = useState('');
   const [brand, setBrand] = useState('Все');
   const [category, setCategory] = useState('Все');
-
+const normalizeSearch = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/ё/g, 'е')
+    .replace(/,/g, '.')
+    .replace(/ом/g, 'ohm')
+    .replace(/[^a-zа-я0-9.\s]/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
   const filtered = useMemo(() => {
-    const q = query.toLowerCase().trim();
+    const q = normalizeSearch(query);
 const searchWords = q.split(/\s+/).filter(Boolean);
 
 return products.filter((product) => {
-  const searchableText = [
+const searchableText = normalizeSearch(
+  [
     product.name,
     product.brand,
     product.category,
     product.section,
-  ]
-    .join(' ')
-    .toLowerCase();
+  ].join(' ')
+);
 
   const matchesSearch =
     searchWords.length === 0 ||
