@@ -15,6 +15,72 @@ export const products: Product[] = [
     "id": 1,
     "brand": "Geekvape",
     "category": "Устройства",
+    "name": "Набор GEEKVAPE Aegis Force Kit (Canyon Orange)",
+    "slug": "geekvape-nabor-geekvape-aegis-force-kit-canyon-orange",
+    "section": "Aegis Force",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 2,
+    "brand": "Geekvape",
+    "category": "Устройства",
+    "name": "Набор GEEKVAPE Aegis Force Kit (Carbon Black)",
+    "slug": "geekvape-nabor-geekvape-aegis-force-kit-carbon-black",
+    "section": "Aegis Force",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 3,
+    "brand": "Geekvape",
+    "category": "Устройства",
+    "name": "Набор GEEKVAPE Aegis Force Kit (Chamelon Prism)",
+    "slug": "geekvape-nabor-geekvape-aegis-force-kit-chamelon-prism",
+    "section": "Aegis Force",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 4,
+    "brand": "Geekvape",
+    "category": "Устройства",
+    "name": "Набор GEEKVAPE Aegis Force Kit (Iris Purple)",
+    "slug": "geekvape-nabor-geekvape-aegis-force-kit-iris-purple",
+    "section": "Aegis Force",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 5,
+    "brand": "Geekvape",
+    "category": "Устройства",
+    "name": "Набор GEEKVAPE Aegis Force Kit (Ivory White)",
+    "slug": "geekvape-nabor-geekvape-aegis-force-kit-ivory-white",
+    "section": "Aegis Force",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 6,
+    "brand": "Geekvape",
+    "category": "Устройства",
+    "name": "Набор GEEKVAPE Aegis Force Kit (Moss Green)",
+    "slug": "geekvape-nabor-geekvape-aegis-force-kit-moss-green",
+    "section": "Aegis Force",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 7,
+    "brand": "Geekvape",
+    "category": "Устройства",
     "name": "Набор GEEKVAPE Aegis Nano 3 Kit (Arctic Blue)",
     "slug": "geekvape-nabor-geekvape-aegis-nano-3-kit-arctic-blue",
     "section": "Aegis Nano 3",
@@ -23,7 +89,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 2,
+    "id": 8,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор GEEKVAPE Aegis Nano 3 Kit (Jungle Green)",
@@ -34,7 +100,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 3,
+    "id": 9,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор GEEKVAPE Aegis Nano 3 Kit (Midnight Dark)",
@@ -45,7 +111,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 4,
+    "id": 10,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор GEEKVAPE Aegis Nano 3 Kit (Polar Silver)",
@@ -56,7 +122,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 5,
+    "id": 11,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор GEEKVAPE Aegis Nano 3 Kit (Purple Bloom)",
@@ -67,7 +133,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 6,
+    "id": 12,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор GEEKVAPE Aegis Nano 3 Kit (Sunset Red)",
@@ -78,7 +144,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 7,
+    "id": 13,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geekvape Hero 5 Kit (Blaze Red)",
@@ -89,7 +155,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 8,
+    "id": 14,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geekvape Hero 5 Kit (Frost Mint)",
@@ -100,7 +166,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 9,
+    "id": 15,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geekvape Hero 5 Kit (Iron Black)",
@@ -111,7 +177,18 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 10,
+    "id": 16,
+    "brand": "Geekvape",
+    "category": "Устройства",
+    "name": "Набор Geekvape Hero 5 Kit (Lightning Yellow)",
+    "slug": "geekvape-nabor-geekvape-hero-5-kit-lightning-yellow",
+    "section": "Hero 5",
+    "isHit": true,
+    "isNew": true,
+    "inStock": true
+  },
+  {
+    "id": 17,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geekvape Hero 5 Kit (Pure White)",
@@ -122,7 +199,29 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 11,
+    "id": 18,
+    "brand": "Geekvape",
+    "category": "Устройства",
+    "name": "Набор Geekvape Hero 5 Kit (Quantum Cyan)",
+    "slug": "geekvape-nabor-geekvape-hero-5-kit-quantum-cyan",
+    "section": "Hero 5",
+    "isHit": true,
+    "isNew": true,
+    "inStock": true
+  },
+  {
+    "id": 19,
+    "brand": "Geekvape",
+    "category": "Устройства",
+    "name": "Набор Geekvape Hero 5 Kit (Racing Blue)",
+    "slug": "geekvape-nabor-geekvape-hero-5-kit-racing-blue",
+    "section": "Hero 5",
+    "isHit": true,
+    "isNew": true,
+    "inStock": true
+  },
+  {
+    "id": 20,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geekvape Hero 5 Kit (Racing Green)",
@@ -133,7 +232,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 12,
+    "id": 21,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geekvape Hero 5 Kit (Red & White)",
@@ -144,7 +243,18 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 13,
+    "id": 22,
+    "brand": "Geekvape",
+    "category": "Устройства",
+    "name": "Набор Geekvape Hero 5 Kit (Speed Red)",
+    "slug": "geekvape-nabor-geekvape-hero-5-kit-speed-red",
+    "section": "Hero 5",
+    "isHit": true,
+    "isNew": true,
+    "inStock": true
+  },
+  {
+    "id": 23,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geekvape Hero 5 Kit (Steel Silver)",
@@ -155,7 +265,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 14,
+    "id": 24,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geekvape Hero 5 Kit (Turbo Blue)",
@@ -166,51 +276,62 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 15,
+    "id": 25,
+    "brand": "Geekvape",
+    "category": "Устройства",
+    "name": "Набор Geekvape Hero 5 Kit (Vibe Green)",
+    "slug": "geekvape-nabor-geekvape-hero-5-kit-vibe-green",
+    "section": "Hero 5",
+    "isHit": true,
+    "isNew": true,
+    "inStock": true
+  },
+  {
+    "id": 26,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geek Vape Sonder Q2 1350mAh Pod Kit (Apricot Yellow)",
     "slug": "geekvape-nabor-geek-vape-sonder-q2-1350mah-pod-kit-apricot-yellow",
     "section": "Sonder Q2",
     "isHit": false,
-    "isNew": false,
+    "isNew": true,
     "inStock": true
   },
   {
-    "id": 16,
+    "id": 27,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geek Vape Sonder Q2 1350mAh Pod Kit (Mocha Gold)",
     "slug": "geekvape-nabor-geek-vape-sonder-q2-1350mah-pod-kit-mocha-gold",
     "section": "Sonder Q2",
     "isHit": false,
-    "isNew": false,
+    "isNew": true,
     "inStock": true
   },
   {
-    "id": 17,
+    "id": 28,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geek Vape Sonder Q2 1350mAh Pod Kit (Olive Green)",
     "slug": "geekvape-nabor-geek-vape-sonder-q2-1350mah-pod-kit-olive-green",
     "section": "Sonder Q2",
     "isHit": false,
-    "isNew": false,
+    "isNew": true,
     "inStock": true
   },
   {
-    "id": 18,
+    "id": 29,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geek Vape Sonder Q2 1350mAh Pod Kit (Sakura Pink)",
     "slug": "geekvape-nabor-geek-vape-sonder-q2-1350mah-pod-kit-sakura-pink",
     "section": "Sonder Q2",
     "isHit": false,
-    "isNew": false,
+    "isNew": true,
     "inStock": true
   },
   {
-    "id": 19,
+    "id": 30,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geek Vape Wenax Q 1000mAh Pod Kit (Sunset Yellow)",
@@ -221,106 +342,106 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 20,
+    "id": 31,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geek Vape Wenax Q2 1250mAh (Fiber Black)",
     "slug": "geekvape-nabor-geek-vape-wenax-q2-1250mah-fiber-black",
     "section": "Wenax Q2",
     "isHit": true,
-    "isNew": false,
+    "isNew": true,
     "inStock": true
   },
   {
-    "id": 21,
+    "id": 32,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geek Vape Wenax Q2 1250mAh (Lilac Purple)",
     "slug": "geekvape-nabor-geek-vape-wenax-q2-1250mah-lilac-purple",
     "section": "Wenax Q2",
     "isHit": true,
-    "isNew": false,
+    "isNew": true,
     "inStock": true
   },
   {
-    "id": 22,
+    "id": 33,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geek Vape Wenax Q2 1250mAh (Mocha Mousse)",
     "slug": "geekvape-nabor-geek-vape-wenax-q2-1250mah-mocha-mousse",
     "section": "Wenax Q2",
     "isHit": true,
-    "isNew": false,
+    "isNew": true,
     "inStock": true
   },
   {
-    "id": 23,
+    "id": 34,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geek Vape Wenax Q2 1250mAh (Monet Blue)",
     "slug": "geekvape-nabor-geek-vape-wenax-q2-1250mah-monet-blue",
     "section": "Wenax Q2",
     "isHit": true,
-    "isNew": false,
+    "isNew": true,
     "inStock": true
   },
   {
-    "id": 24,
+    "id": 35,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geek Vape Wenax Q2 1250mAh (Powder Pink)",
     "slug": "geekvape-nabor-geek-vape-wenax-q2-1250mah-powder-pink",
     "section": "Wenax Q2",
     "isHit": true,
-    "isNew": false,
+    "isNew": true,
     "inStock": true
   },
   {
-    "id": 25,
+    "id": 36,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geek Vape Wenax Q2 1250mAh (Ruby Amber)",
     "slug": "geekvape-nabor-geek-vape-wenax-q2-1250mah-ruby-amber",
     "section": "Wenax Q2",
     "isHit": true,
-    "isNew": false,
+    "isNew": true,
     "inStock": true
   },
   {
-    "id": 26,
+    "id": 37,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geek Vape Wenax Q2 1250mAh (Summer Lime)",
     "slug": "geekvape-nabor-geek-vape-wenax-q2-1250mah-summer-lime",
     "section": "Wenax Q2",
     "isHit": true,
-    "isNew": false,
+    "isNew": true,
     "inStock": true
   },
   {
-    "id": 27,
+    "id": 38,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geek Vape Wenax Q2 1250mAh (Sunset Dune)",
     "slug": "geekvape-nabor-geek-vape-wenax-q2-1250mah-sunset-dune",
     "section": "Wenax Q2",
     "isHit": true,
-    "isNew": false,
+    "isNew": true,
     "inStock": true
   },
   {
-    "id": 28,
+    "id": 39,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geek Vape Wenax Q2 1250mAh (Vinca Blue)",
     "slug": "geekvape-nabor-geek-vape-wenax-q2-1250mah-vinca-blue",
     "section": "Wenax Q2",
     "isHit": true,
-    "isNew": false,
+    "isNew": true,
     "inStock": true
   },
   {
-    "id": 29,
+    "id": 40,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geek Vape Wenax Q Pro 1200 мАч (Aurora Green)",
@@ -331,7 +452,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 30,
+    "id": 41,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geek Vape Wenax Q Pro 1200 мАч (Azure Blue)",
@@ -342,7 +463,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 31,
+    "id": 42,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geek Vape Wenax Q Pro 1200 мАч (Black)",
@@ -353,7 +474,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 32,
+    "id": 43,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geek Vape Wenax Q Pro 1200 мАч (Luminous Purple)",
@@ -364,7 +485,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 33,
+    "id": 44,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geek Vape Wenax Q Pro 1200 мАч (Moonlit Silver)",
@@ -375,7 +496,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 34,
+    "id": 45,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geek Vape Wenax Q Pro 1200 мАч (Starlight Grey)",
@@ -386,7 +507,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 35,
+    "id": 46,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geek Vape Wenax Q Pro 1200 мАч (Sunburst Gold)",
@@ -397,7 +518,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 36,
+    "id": 47,
     "brand": "Geekvape",
     "category": "Устройства",
     "name": "Набор Geek Vape Wenax Q Pro 1200 мАч (Twilight Red)",
@@ -408,7 +529,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 37,
+    "id": 48,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso ARMOUR G 3000mAh 5-80W (Pink)",
@@ -419,7 +540,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 38,
+    "id": 49,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso VIBE NANO PRO 1500mAh 24W KIT (Black)",
@@ -430,7 +551,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 39,
+    "id": 50,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso VIBE NANO PRO 1500mAh 24W KIT (Cherry Pink)",
@@ -441,7 +562,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 40,
+    "id": 51,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso VIBE NANO PRO 1500mAh 24W KIT (Fresh Green)",
@@ -452,7 +573,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 41,
+    "id": 52,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso VIBE NANO PRO 1500mAh 24W KIT (Racing Red)",
@@ -463,7 +584,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 42,
+    "id": 53,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso VIBE NANO PRO 1500mAh 24W KIT (Silver)",
@@ -474,7 +595,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 43,
+    "id": 54,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso VIBE NANO PRO 1500mAh 24W KIT (Sky Blue)",
@@ -485,7 +606,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 44,
+    "id": 55,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso VIBE NANO PRO 1500mAh 24W KIT (Sparking Purple)",
@@ -496,7 +617,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 45,
+    "id": 56,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso VIBE NANO PRO 1500mAh 24W KIT (Turbo Blue)",
@@ -507,7 +628,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 46,
+    "id": 57,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso VIBE SE 2 KIT (Leather Black)",
@@ -518,7 +639,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 47,
+    "id": 58,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso VIBE SE 2 KIT (Leather Brown)",
@@ -529,7 +650,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 48,
+    "id": 59,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso VIBE SE 2 KIT (Leather Grey)",
@@ -540,7 +661,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 49,
+    "id": 60,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso VIBE SE 2 KIT (Leather Pink)",
@@ -551,7 +672,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 50,
+    "id": 61,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso VIBE SE 2 KIT (Leather White)",
@@ -562,7 +683,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 51,
+    "id": 62,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso VIBE 1100mAh 24W KIT (Berry Purple)",
@@ -573,7 +694,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 52,
+    "id": 63,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso VIBE 1100mAh 24W KIT (Black)",
@@ -584,7 +705,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 53,
+    "id": 64,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso VIBE 1100mAh 24W KIT (Cherry Pink)",
@@ -595,7 +716,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 54,
+    "id": 65,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso VIBE 1100mAh 24W KIT (Fresh Green)",
@@ -606,7 +727,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 55,
+    "id": 66,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso VIBE 1100mAh 24W KIT (Racing Red)",
@@ -617,7 +738,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 56,
+    "id": 67,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso VIBE 1100mAh 24W KIT (Silver)",
@@ -628,7 +749,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 57,
+    "id": 68,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso VIBE 1100mAh 24W KIT (Sky Blue)",
@@ -639,7 +760,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 58,
+    "id": 69,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso VIBE 1100mAh 24W KIT (Turbo Blue)",
@@ -650,7 +771,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 59,
+    "id": 70,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS 4 Pod 1000 мАч (Champagne Gold)",
@@ -661,7 +782,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 60,
+    "id": 71,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS 4 Pod 1000 мАч (Sunset Neon)",
@@ -672,7 +793,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 61,
+    "id": 72,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS 5 Kit (Blue Silk)",
@@ -683,7 +804,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 62,
+    "id": 73,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS 5 Kit (Carbon Stripes)",
@@ -694,7 +815,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 63,
+    "id": 74,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS 5 Kit (Coral Red)",
@@ -705,7 +826,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 64,
+    "id": 75,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS 5 Kit (Cosmic Black)",
@@ -716,7 +837,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 65,
+    "id": 76,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS 5 Kit (Grey Silk)",
@@ -727,7 +848,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 66,
+    "id": 77,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS 5 Kit (Jade Green)",
@@ -738,7 +859,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 67,
+    "id": 78,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS 5 Kit (Lavender Purple)",
@@ -749,7 +870,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 68,
+    "id": 79,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS 5 Kit (Opal Pink)",
@@ -760,7 +881,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 69,
+    "id": 80,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS 5 Kit (Opal White)",
@@ -771,7 +892,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 70,
+    "id": 81,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS 5 Kit (Violet Silk)",
@@ -782,7 +903,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 71,
+    "id": 82,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS 5 mini Kit (Black)",
@@ -793,7 +914,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 72,
+    "id": 83,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS 5 mini Kit (Carbon Black)",
@@ -804,7 +925,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 73,
+    "id": 84,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS 5 mini Kit (Flowing Blue)",
@@ -815,7 +936,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 74,
+    "id": 85,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS 5 mini Kit (Flowing Green)",
@@ -826,7 +947,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 75,
+    "id": 86,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS 5 mini Kit (Flowing Pink)",
@@ -837,7 +958,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 76,
+    "id": 87,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS 5 mini Kit (Pastel Crystal)",
@@ -848,7 +969,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 77,
+    "id": 88,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS 5 mini Kit (Purple)",
@@ -859,7 +980,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 78,
+    "id": 89,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS 5 mini Kit (Rose Red)",
@@ -870,7 +991,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 79,
+    "id": 90,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS 5 mini Kit (Sky Blue)",
@@ -881,7 +1002,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 80,
+    "id": 91,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS 5 mini Kit (Titanium Silver)",
@@ -892,7 +1013,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 81,
+    "id": 92,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS PRO 2 2000mAh Kit (Dawn Purple)",
@@ -903,7 +1024,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 82,
+    "id": 93,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS PRO 2 2000mAh Kit (Gem Green)",
@@ -914,7 +1035,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 83,
+    "id": 94,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS PRO 2 2000mAh Kit (Glittering Black)",
@@ -925,7 +1046,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 84,
+    "id": 95,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS PRO 2 2000mAh Kit (Glittering Gold)",
@@ -936,7 +1057,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 85,
+    "id": 96,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS PRO 2 2000mAh Kit (Glittering Silver)",
@@ -947,7 +1068,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 86,
+    "id": 97,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS PRO 2 2000mAh Kit (Moonlit Pink)",
@@ -958,7 +1079,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 87,
+    "id": 98,
     "brand": "Vaporesso",
     "category": "Устройства",
     "name": "Набор Vaporesso XROS PRO 2 2000mAh Kit (Storm Blue)",
@@ -969,7 +1090,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 88,
+    "id": 99,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo ARGUS E40 Pod 1800mAh Kit (Lake Green)",
@@ -980,7 +1101,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 89,
+    "id": 100,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo ARGUS E40 Pod 1800mAh Kit (Modern Red)",
@@ -991,7 +1112,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 90,
+    "id": 101,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo ARGUS E40 Pod 1800mAh Kit (Pearl White)",
@@ -1002,7 +1123,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 91,
+    "id": 102,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo ARGUS E40 Pod 1800mAh Kit (Space Gray)",
@@ -1013,7 +1134,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 92,
+    "id": 103,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo ARGUS E40 Pod 1800mAh Kit (Starlight Purple)",
@@ -1024,117 +1145,117 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 93,
+    "id": 104,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo DRAG 6  Kit (Black)",
     "slug": "voopoo-nabor-voopoo-drag-6-kit-black",
     "section": "DRAG 6",
     "isHit": false,
-    "isNew": false,
+    "isNew": true,
     "inStock": true
   },
   {
-    "id": 94,
+    "id": 105,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo DRAG 6  Kit (Green)",
     "slug": "voopoo-nabor-voopoo-drag-6-kit-green",
     "section": "DRAG 6",
     "isHit": false,
-    "isNew": false,
+    "isNew": true,
     "inStock": true
   },
   {
-    "id": 95,
+    "id": 106,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo DRAG 6  Kit (Silver)",
     "slug": "voopoo-nabor-voopoo-drag-6-kit-silver",
     "section": "DRAG 6",
     "isHit": false,
-    "isNew": false,
+    "isNew": true,
     "inStock": true
   },
   {
-    "id": 96,
+    "id": 107,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo DRAG S3 Pod Mod 3000mAh (Blue)",
     "slug": "voopoo-nabor-voopoo-drag-s3-pod-mod-3000mah-blue",
     "section": "DRAG S3",
     "isHit": false,
-    "isNew": true,
+    "isNew": false,
     "inStock": true
   },
   {
-    "id": 97,
+    "id": 108,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo DRAG S3 Pod Mod 3000mAh (Brown)",
     "slug": "voopoo-nabor-voopoo-drag-s3-pod-mod-3000mah-brown",
     "section": "DRAG S3",
     "isHit": false,
-    "isNew": true,
+    "isNew": false,
     "inStock": true
   },
   {
-    "id": 98,
+    "id": 109,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo DRAG S3 Pod Mod 3000mAh (Green)",
     "slug": "voopoo-nabor-voopoo-drag-s3-pod-mod-3000mah-green",
     "section": "DRAG S3",
     "isHit": false,
-    "isNew": true,
+    "isNew": false,
     "inStock": true
   },
   {
-    "id": 99,
+    "id": 110,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo DRAG S3 Pod Mod 3000mAh (Metal Gray)",
     "slug": "voopoo-nabor-voopoo-drag-s3-pod-mod-3000mah-metal-gray",
     "section": "DRAG S3",
     "isHit": false,
-    "isNew": true,
+    "isNew": false,
     "inStock": true
   },
   {
-    "id": 100,
+    "id": 111,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo DRAG S3 Pod Mod 3000mAh (Pink)",
     "slug": "voopoo-nabor-voopoo-drag-s3-pod-mod-3000mah-pink",
     "section": "DRAG S3",
     "isHit": false,
-    "isNew": true,
+    "isNew": false,
     "inStock": true
   },
   {
-    "id": 101,
+    "id": 112,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo DRAG S3 Pod Mod 3000mAh (Spray Black)",
     "slug": "voopoo-nabor-voopoo-drag-s3-pod-mod-3000mah-spray-black",
     "section": "DRAG S3",
     "isHit": false,
-    "isNew": true,
+    "isNew": false,
     "inStock": true
   },
   {
-    "id": 102,
+    "id": 113,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo DRAG S3 Pod Mod 3000mAh (White)",
     "slug": "voopoo-nabor-voopoo-drag-s3-pod-mod-3000mah-white",
     "section": "DRAG S3",
     "isHit": false,
-    "isNew": true,
+    "isNew": false,
     "inStock": true
   },
   {
-    "id": 103,
+    "id": 114,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo DRAG X3 Pod Mod 80W (Aurora Purple)",
@@ -1145,7 +1266,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 104,
+    "id": 115,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo DRAG X3 Pod Mod 80W (Champagne Golden)",
@@ -1156,7 +1277,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 105,
+    "id": 116,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo DRAG X3 Pod Mod 80W (Glow Pink)",
@@ -1167,7 +1288,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 106,
+    "id": 117,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo DRAG X3 Pod Mod 80W (Gray Metal)",
@@ -1178,7 +1299,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 107,
+    "id": 118,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo DRAG X3 Pod Mod 80W (Moss Green)",
@@ -1189,7 +1310,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 108,
+    "id": 119,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo DRAG X3 Pod Mod 80W (Sky Blue)",
@@ -1200,7 +1321,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 109,
+    "id": 120,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo DRAG X3 Pod Mod 80W (Spray Black)",
@@ -1211,84 +1332,84 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 110,
+    "id": 121,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo VMATE E2 1500mAh Pod Kit (Emerald Green)",
     "slug": "voopoo-nabor-voopoo-vmate-e2-1500mah-pod-kit-emerald-green",
     "section": "VMATE E2",
-    "isHit": true,
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
   {
-    "id": 111,
+    "id": 122,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo VMATE E2 1500mAh Pod Kit (Jet Black)",
     "slug": "voopoo-nabor-voopoo-vmate-e2-1500mah-pod-kit-jet-black",
     "section": "VMATE E2",
-    "isHit": true,
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
   {
-    "id": 112,
+    "id": 123,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo VMATE E2 1500mAh Pod Kit (Lavender Purple)",
     "slug": "voopoo-nabor-voopoo-vmate-e2-1500mah-pod-kit-lavender-purple",
     "section": "VMATE E2",
-    "isHit": true,
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
   {
-    "id": 113,
+    "id": 124,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo VMATE E2 1500mAh Pod Kit (Navy Blue)",
     "slug": "voopoo-nabor-voopoo-vmate-e2-1500mah-pod-kit-navy-blue",
     "section": "VMATE E2",
-    "isHit": true,
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
   {
-    "id": 114,
+    "id": 125,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo VMATE E2 1500mAh Pod Kit (Rose Red)",
     "slug": "voopoo-nabor-voopoo-vmate-e2-1500mah-pod-kit-rose-red",
     "section": "VMATE E2",
-    "isHit": true,
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
   {
-    "id": 115,
+    "id": 126,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo VMATE E2 1500mAh Pod Kit (Urban Camo)",
     "slug": "voopoo-nabor-voopoo-vmate-e2-1500mah-pod-kit-urban-camo",
     "section": "VMATE E2",
-    "isHit": true,
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
   {
-    "id": 116,
+    "id": 127,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo VMATE E2 1500mAh Pod Kit (Walnut Brown)",
     "slug": "voopoo-nabor-voopoo-vmate-e2-1500mah-pod-kit-walnut-brown",
     "section": "VMATE E2",
-    "isHit": true,
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
   {
-    "id": 117,
+    "id": 128,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo VMATE E 1200mAh Pod Kit (Classic Blue)",
@@ -1299,7 +1420,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 118,
+    "id": 129,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo VMATE E 1200mAh Pod Kit (Green Inlaid Gold)",
@@ -1310,7 +1431,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 119,
+    "id": 130,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo VMATE E 1200mAh Pod Kit (Pink Marble)",
@@ -1321,7 +1442,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 120,
+    "id": 131,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo VMATE E 1200mAh Pod Kit (Red Inlaid Gold)",
@@ -1332,7 +1453,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 121,
+    "id": 132,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo VMATE E 1200mAh Pod Kit (Sakura Pink)",
@@ -1343,7 +1464,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 122,
+    "id": 133,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo VMATE E 1200mAh Pod Kit (White Inlaid Gold)",
@@ -1354,134 +1475,13 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 123,
+    "id": 134,
     "brand": "Voopoo",
     "category": "Устройства",
     "name": "Набор Voopoo VMATE i3  Pod Kit (Black)",
     "slug": "voopoo-nabor-voopoo-vmate-i3-pod-kit-black",
     "section": "VMATE i3",
-    "isHit": true,
-    "isNew": false,
-    "inStock": true
-  },
-  {
-    "id": 124,
-    "brand": "Voopoo",
-    "category": "Устройства",
-    "name": "Набор Voopoo VMATE i3  Pod Kit (Neon)",
-    "slug": "voopoo-nabor-voopoo-vmate-i3-pod-kit-neon",
-    "section": "VMATE i3",
-    "isHit": true,
-    "isNew": false,
-    "inStock": true
-  },
-  {
-    "id": 125,
-    "brand": "Voopoo",
-    "category": "Устройства",
-    "name": "Набор Voopoo VMATE i3  Pod Kit (Pink)",
-    "slug": "voopoo-nabor-voopoo-vmate-i3-pod-kit-pink",
-    "section": "VMATE i3",
-    "isHit": true,
-    "isNew": false,
-    "inStock": true
-  },
-  {
-    "id": 126,
-    "brand": "Voopoo",
-    "category": "Устройства",
-    "name": "Набор Voopoo VMATE i3  Pod Kit (Red)",
-    "slug": "voopoo-nabor-voopoo-vmate-i3-pod-kit-red",
-    "section": "VMATE i3",
-    "isHit": true,
-    "isNew": false,
-    "inStock": true
-  },
-  {
-    "id": 127,
-    "brand": "Voopoo",
-    "category": "Устройства",
-    "name": "Набор Voopoo VMATE i3  Pod Kit (Silver Black)",
-    "slug": "voopoo-nabor-voopoo-vmate-i3-pod-kit-silver-black",
-    "section": "VMATE i3",
-    "isHit": true,
-    "isNew": false,
-    "inStock": true
-  },
-  {
-    "id": 128,
-    "brand": "Voopoo",
-    "category": "Устройства",
-    "name": "Набор Voopoo Vmate MAX 1200mAh Pod Kit (Dove Gray)",
-    "slug": "voopoo-nabor-voopoo-vmate-max-1200mah-pod-kit-dove-gray",
-    "section": "VMATE MAX",
-    "isHit": true,
-    "isNew": false,
-    "inStock": true
-  },
-  {
-    "id": 129,
-    "brand": "Voopoo",
-    "category": "Устройства",
-    "name": "Набор Voopoo Vmate MAX 1200mAh Pod Kit (Fancy Purple)",
-    "slug": "voopoo-nabor-voopoo-vmate-max-1200mah-pod-kit-fancy-purple",
-    "section": "VMATE MAX",
-    "isHit": true,
-    "isNew": false,
-    "inStock": true
-  },
-  {
-    "id": 130,
-    "brand": "Voopoo",
-    "category": "Устройства",
-    "name": "Набор Voopoo Vmate MAX 1200mAh Pod Kit (Glacier Silver)",
-    "slug": "voopoo-nabor-voopoo-vmate-max-1200mah-pod-kit-glacier-silver",
-    "section": "VMATE MAX",
-    "isHit": true,
-    "isNew": false,
-    "inStock": true
-  },
-  {
-    "id": 131,
-    "brand": "Voopoo",
-    "category": "Устройства",
-    "name": "Набор Voopoo Vmate MAX 1200mAh Pod Kit (Neon Blue)",
-    "slug": "voopoo-nabor-voopoo-vmate-max-1200mah-pod-kit-neon-blue",
-    "section": "VMATE MAX",
-    "isHit": true,
-    "isNew": false,
-    "inStock": true
-  },
-  {
-    "id": 132,
-    "brand": "Voopoo",
-    "category": "Устройства",
-    "name": "Набор Voopoo Vmate MAX 1200mAh Pod Kit (Onyx Black)",
-    "slug": "voopoo-nabor-voopoo-vmate-max-1200mah-pod-kit-onyx-black",
-    "section": "VMATE MAX",
-    "isHit": true,
-    "isNew": false,
-    "inStock": true
-  },
-  {
-    "id": 133,
-    "brand": "Voopoo",
-    "category": "Устройства",
-    "name": "Набор Voopoo Vmate MAX 1200mAh Pod Kit (Ruby Red)",
-    "slug": "voopoo-nabor-voopoo-vmate-max-1200mah-pod-kit-ruby-red",
-    "section": "VMATE MAX",
-    "isHit": true,
-    "isNew": false,
-    "inStock": true
-  },
-  {
-    "id": 134,
-    "brand": "Voopoo",
-    "category": "Устройства",
-    "name": "Набор Voopoo Vmate MAX 1200mAh Pod Kit (Shiny Green)",
-    "slug": "voopoo-nabor-voopoo-vmate-max-1200mah-pod-kit-shiny-green",
-    "section": "VMATE MAX",
-    "isHit": true,
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
@@ -1489,10 +1489,10 @@ export const products: Product[] = [
     "id": 135,
     "brand": "Voopoo",
     "category": "Устройства",
-    "name": "Набор Voopoo VMATE MINI 1000mAh (1 cartridge) (Classic Black)",
-    "slug": "voopoo-nabor-voopoo-vmate-mini-1000mah-1-cartridge-classic-black",
-    "section": "VMATE MINI (1 картридж)",
-    "isHit": true,
+    "name": "Набор Voopoo VMATE i3  Pod Kit (Neon)",
+    "slug": "voopoo-nabor-voopoo-vmate-i3-pod-kit-neon",
+    "section": "VMATE i3",
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
@@ -1500,10 +1500,10 @@ export const products: Product[] = [
     "id": 136,
     "brand": "Voopoo",
     "category": "Устройства",
-    "name": "Набор Voopoo VMATE MINI 1000mAh (1 cartridge) (Lavender Purple)",
-    "slug": "voopoo-nabor-voopoo-vmate-mini-1000mah-1-cartridge-lavender-purple",
-    "section": "VMATE MINI (1 картридж)",
-    "isHit": true,
+    "name": "Набор Voopoo VMATE i3  Pod Kit (Pink)",
+    "slug": "voopoo-nabor-voopoo-vmate-i3-pod-kit-pink",
+    "section": "VMATE i3",
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
@@ -1511,10 +1511,10 @@ export const products: Product[] = [
     "id": 137,
     "brand": "Voopoo",
     "category": "Устройства",
-    "name": "Набор Voopoo VMATE MINI 1000mAh (1 cartridge) (Matcha Green)",
-    "slug": "voopoo-nabor-voopoo-vmate-mini-1000mah-1-cartridge-matcha-green",
-    "section": "VMATE MINI (1 картридж)",
-    "isHit": true,
+    "name": "Набор Voopoo VMATE i3  Pod Kit (Red)",
+    "slug": "voopoo-nabor-voopoo-vmate-i3-pod-kit-red",
+    "section": "VMATE i3",
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
@@ -1522,10 +1522,10 @@ export const products: Product[] = [
     "id": 138,
     "brand": "Voopoo",
     "category": "Устройства",
-    "name": "Набор Voopoo VMATE MINI 1000mAh (1 cartridge) (Pure white)",
-    "slug": "voopoo-nabor-voopoo-vmate-mini-1000mah-1-cartridge-pure-white",
-    "section": "VMATE MINI (1 картридж)",
-    "isHit": true,
+    "name": "Набор Voopoo VMATE i3  Pod Kit (Silver Black)",
+    "slug": "voopoo-nabor-voopoo-vmate-i3-pod-kit-silver-black",
+    "section": "VMATE i3",
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
@@ -1533,10 +1533,10 @@ export const products: Product[] = [
     "id": 139,
     "brand": "Voopoo",
     "category": "Устройства",
-    "name": "Набор Voopoo VMATE MINI 1000mAh (1 cartridge) (Sakura Pink)",
-    "slug": "voopoo-nabor-voopoo-vmate-mini-1000mah-1-cartridge-sakura-pink",
-    "section": "VMATE MINI (1 картридж)",
-    "isHit": true,
+    "name": "Набор Voopoo Vmate MAX 1200mAh Pod Kit (Dove Gray)",
+    "slug": "voopoo-nabor-voopoo-vmate-max-1200mah-pod-kit-dove-gray",
+    "section": "VMATE MAX",
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
@@ -1544,10 +1544,10 @@ export const products: Product[] = [
     "id": 140,
     "brand": "Voopoo",
     "category": "Устройства",
-    "name": "Набор Voopoo VMATE MINI 1000mAh (1 cartridge) (Soul Red)",
-    "slug": "voopoo-nabor-voopoo-vmate-mini-1000mah-1-cartridge-soul-red",
-    "section": "VMATE MINI (1 картридж)",
-    "isHit": true,
+    "name": "Набор Voopoo Vmate MAX 1200mAh Pod Kit (Fancy Purple)",
+    "slug": "voopoo-nabor-voopoo-vmate-max-1200mah-pod-kit-fancy-purple",
+    "section": "VMATE MAX",
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
@@ -1555,10 +1555,10 @@ export const products: Product[] = [
     "id": 141,
     "brand": "Voopoo",
     "category": "Устройства",
-    "name": "Набор Voopoo VMATE MINI 1000mAh (1 cartridge) (Tiffany Green)",
-    "slug": "voopoo-nabor-voopoo-vmate-mini-1000mah-1-cartridge-tiffany-green",
-    "section": "VMATE MINI (1 картридж)",
-    "isHit": true,
+    "name": "Набор Voopoo Vmate MAX 1200mAh Pod Kit (Glacier Silver)",
+    "slug": "voopoo-nabor-voopoo-vmate-max-1200mah-pod-kit-glacier-silver",
+    "section": "VMATE MAX",
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
@@ -1566,10 +1566,10 @@ export const products: Product[] = [
     "id": 142,
     "brand": "Voopoo",
     "category": "Устройства",
-    "name": "Набор Voopoo VMATE MINI 1000mAh (4 cartridge) (Classic Black)",
-    "slug": "voopoo-nabor-voopoo-vmate-mini-1000mah-4-cartridge-classic-black",
-    "section": "VMATE MINI (4 картриджа)",
-    "isHit": true,
+    "name": "Набор Voopoo Vmate MAX 1200mAh Pod Kit (Neon Blue)",
+    "slug": "voopoo-nabor-voopoo-vmate-max-1200mah-pod-kit-neon-blue",
+    "section": "VMATE MAX",
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
@@ -1577,10 +1577,10 @@ export const products: Product[] = [
     "id": 143,
     "brand": "Voopoo",
     "category": "Устройства",
-    "name": "Набор Voopoo VMATE MINI 1000mAh (4 cartridge) (Lavender Purple)",
-    "slug": "voopoo-nabor-voopoo-vmate-mini-1000mah-4-cartridge-lavender-purple",
-    "section": "VMATE MINI (4 картриджа)",
-    "isHit": true,
+    "name": "Набор Voopoo Vmate MAX 1200mAh Pod Kit (Onyx Black)",
+    "slug": "voopoo-nabor-voopoo-vmate-max-1200mah-pod-kit-onyx-black",
+    "section": "VMATE MAX",
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
@@ -1588,10 +1588,10 @@ export const products: Product[] = [
     "id": 144,
     "brand": "Voopoo",
     "category": "Устройства",
-    "name": "Набор Voopoo VMATE MINI 1000mAh (4 cartridge) (Matcha Green)",
-    "slug": "voopoo-nabor-voopoo-vmate-mini-1000mah-4-cartridge-matcha-green",
-    "section": "VMATE MINI (4 картриджа)",
-    "isHit": true,
+    "name": "Набор Voopoo Vmate MAX 1200mAh Pod Kit (Ruby Red)",
+    "slug": "voopoo-nabor-voopoo-vmate-max-1200mah-pod-kit-ruby-red",
+    "section": "VMATE MAX",
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
@@ -1599,10 +1599,10 @@ export const products: Product[] = [
     "id": 145,
     "brand": "Voopoo",
     "category": "Устройства",
-    "name": "Набор Voopoo VMATE MINI 1000mAh (4 cartridge) (Pure white)",
-    "slug": "voopoo-nabor-voopoo-vmate-mini-1000mah-4-cartridge-pure-white",
-    "section": "VMATE MINI (4 картриджа)",
-    "isHit": true,
+    "name": "Набор Voopoo Vmate MAX 1200mAh Pod Kit (Shiny Green)",
+    "slug": "voopoo-nabor-voopoo-vmate-max-1200mah-pod-kit-shiny-green",
+    "section": "VMATE MAX",
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
@@ -1610,10 +1610,10 @@ export const products: Product[] = [
     "id": 146,
     "brand": "Voopoo",
     "category": "Устройства",
-    "name": "Набор Voopoo VMATE MINI 1000mAh (4 cartridge) (Sakura Pink)",
-    "slug": "voopoo-nabor-voopoo-vmate-mini-1000mah-4-cartridge-sakura-pink",
-    "section": "VMATE MINI (4 картриджа)",
-    "isHit": true,
+    "name": "Набор Voopoo VMATE MINI 1000mAh (1 cartridge) (Classic Black)",
+    "slug": "voopoo-nabor-voopoo-vmate-mini-1000mah-1-cartridge-classic-black",
+    "section": "VMATE MINI (1 картридж)",
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
@@ -1621,10 +1621,10 @@ export const products: Product[] = [
     "id": 147,
     "brand": "Voopoo",
     "category": "Устройства",
-    "name": "Набор Voopoo VMATE MINI 1000mAh (4 cartridge) (Soul Red)",
-    "slug": "voopoo-nabor-voopoo-vmate-mini-1000mah-4-cartridge-soul-red",
-    "section": "VMATE MINI (4 картриджа)",
-    "isHit": true,
+    "name": "Набор Voopoo VMATE MINI 1000mAh (1 cartridge) (Lavender Purple)",
+    "slug": "voopoo-nabor-voopoo-vmate-mini-1000mah-1-cartridge-lavender-purple",
+    "section": "VMATE MINI (1 картридж)",
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
@@ -1632,10 +1632,10 @@ export const products: Product[] = [
     "id": 148,
     "brand": "Voopoo",
     "category": "Устройства",
-    "name": "Набор Voopoo VMATE MINI 1000mAh (4 cartridge) (Tiffany Green)",
-    "slug": "voopoo-nabor-voopoo-vmate-mini-1000mah-4-cartridge-tiffany-green",
-    "section": "VMATE MINI (4 картриджа)",
-    "isHit": true,
+    "name": "Набор Voopoo VMATE MINI 1000mAh (1 cartridge) (Matcha Green)",
+    "slug": "voopoo-nabor-voopoo-vmate-mini-1000mah-1-cartridge-matcha-green",
+    "section": "VMATE MINI (1 картридж)",
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
@@ -1643,10 +1643,10 @@ export const products: Product[] = [
     "id": 149,
     "brand": "Voopoo",
     "category": "Устройства",
-    "name": "Набор Voopoo VMATE PRO 900mAh Pod Kit (Rosy)",
-    "slug": "voopoo-nabor-voopoo-vmate-pro-900mah-pod-kit-rosy",
-    "section": "VMATE PRO",
-    "isHit": true,
+    "name": "Набор Voopoo VMATE MINI 1000mAh (1 cartridge) (Pure white)",
+    "slug": "voopoo-nabor-voopoo-vmate-mini-1000mah-1-cartridge-pure-white",
+    "section": "VMATE MINI (1 картридж)",
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
@@ -1654,10 +1654,10 @@ export const products: Product[] = [
     "id": 150,
     "brand": "Voopoo",
     "category": "Устройства",
-    "name": "Набор Voopoo VMATE PRO 2 Pod 1500mAh Kit (Fresh Green)",
-    "slug": "voopoo-nabor-voopoo-vmate-pro-2-pod-1500mah-kit-fresh-green",
-    "section": "VMATE PRO 2",
-    "isHit": true,
+    "name": "Набор Voopoo VMATE MINI 1000mAh (1 cartridge) (Sakura Pink)",
+    "slug": "voopoo-nabor-voopoo-vmate-mini-1000mah-1-cartridge-sakura-pink",
+    "section": "VMATE MINI (1 картридж)",
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
@@ -1665,10 +1665,10 @@ export const products: Product[] = [
     "id": 151,
     "brand": "Voopoo",
     "category": "Устройства",
-    "name": "Набор Voopoo VMATE PRO 2 Pod 1500mAh Kit (Gilt Black)",
-    "slug": "voopoo-nabor-voopoo-vmate-pro-2-pod-1500mah-kit-gilt-black",
-    "section": "VMATE PRO 2",
-    "isHit": true,
+    "name": "Набор Voopoo VMATE MINI 1000mAh (1 cartridge) (Soul Red)",
+    "slug": "voopoo-nabor-voopoo-vmate-mini-1000mah-1-cartridge-soul-red",
+    "section": "VMATE MINI (1 картридж)",
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
@@ -1676,10 +1676,10 @@ export const products: Product[] = [
     "id": 152,
     "brand": "Voopoo",
     "category": "Устройства",
-    "name": "Набор Voopoo VMATE PRO 2 Pod 1500mAh Kit (Glacier Silver)",
-    "slug": "voopoo-nabor-voopoo-vmate-pro-2-pod-1500mah-kit-glacier-silver",
-    "section": "VMATE PRO 2",
-    "isHit": true,
+    "name": "Набор Voopoo VMATE MINI 1000mAh (1 cartridge) (Tiffany Green)",
+    "slug": "voopoo-nabor-voopoo-vmate-mini-1000mah-1-cartridge-tiffany-green",
+    "section": "VMATE MINI (1 картридж)",
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
@@ -1687,10 +1687,10 @@ export const products: Product[] = [
     "id": 153,
     "brand": "Voopoo",
     "category": "Устройства",
-    "name": "Набор Voopoo VMATE PRO 2 Pod 1500mAh Kit (Lavender)",
-    "slug": "voopoo-nabor-voopoo-vmate-pro-2-pod-1500mah-kit-lavender",
-    "section": "VMATE PRO 2",
-    "isHit": true,
+    "name": "Набор Voopoo VMATE MINI 1000mAh (4 cartridge) (Classic Black)",
+    "slug": "voopoo-nabor-voopoo-vmate-mini-1000mah-4-cartridge-classic-black",
+    "section": "VMATE MINI (4 картриджа)",
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
@@ -1698,10 +1698,10 @@ export const products: Product[] = [
     "id": 154,
     "brand": "Voopoo",
     "category": "Устройства",
-    "name": "Набор Voopoo VMATE PRO 2 Pod 1500mAh Kit (Navy Blue)",
-    "slug": "voopoo-nabor-voopoo-vmate-pro-2-pod-1500mah-kit-navy-blue",
-    "section": "VMATE PRO 2",
-    "isHit": true,
+    "name": "Набор Voopoo VMATE MINI 1000mAh (4 cartridge) (Lavender Purple)",
+    "slug": "voopoo-nabor-voopoo-vmate-mini-1000mah-4-cartridge-lavender-purple",
+    "section": "VMATE MINI (4 картриджа)",
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
@@ -1709,10 +1709,10 @@ export const products: Product[] = [
     "id": 155,
     "brand": "Voopoo",
     "category": "Устройства",
-    "name": "Набор Voopoo VMATE PRO 2 Pod 1500mAh Kit (Neon)",
-    "slug": "voopoo-nabor-voopoo-vmate-pro-2-pod-1500mah-kit-neon",
-    "section": "VMATE PRO 2",
-    "isHit": true,
+    "name": "Набор Voopoo VMATE MINI 1000mAh (4 cartridge) (Matcha Green)",
+    "slug": "voopoo-nabor-voopoo-vmate-mini-1000mah-4-cartridge-matcha-green",
+    "section": "VMATE MINI (4 картриджа)",
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
@@ -1720,15 +1720,136 @@ export const products: Product[] = [
     "id": 156,
     "brand": "Voopoo",
     "category": "Устройства",
-    "name": "Набор Voopoo VMATE PRO 2 Pod 1500mAh Kit (Space Grey)",
-    "slug": "voopoo-nabor-voopoo-vmate-pro-2-pod-1500mah-kit-space-grey",
-    "section": "VMATE PRO 2",
-    "isHit": true,
+    "name": "Набор Voopoo VMATE MINI 1000mAh (4 cartridge) (Pure white)",
+    "slug": "voopoo-nabor-voopoo-vmate-mini-1000mah-4-cartridge-pure-white",
+    "section": "VMATE MINI (4 картриджа)",
+    "isHit": false,
     "isNew": false,
     "inStock": true
   },
   {
     "id": 157,
+    "brand": "Voopoo",
+    "category": "Устройства",
+    "name": "Набор Voopoo VMATE MINI 1000mAh (4 cartridge) (Sakura Pink)",
+    "slug": "voopoo-nabor-voopoo-vmate-mini-1000mah-4-cartridge-sakura-pink",
+    "section": "VMATE MINI (4 картриджа)",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 158,
+    "brand": "Voopoo",
+    "category": "Устройства",
+    "name": "Набор Voopoo VMATE MINI 1000mAh (4 cartridge) (Soul Red)",
+    "slug": "voopoo-nabor-voopoo-vmate-mini-1000mah-4-cartridge-soul-red",
+    "section": "VMATE MINI (4 картриджа)",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 159,
+    "brand": "Voopoo",
+    "category": "Устройства",
+    "name": "Набор Voopoo VMATE MINI 1000mAh (4 cartridge) (Tiffany Green)",
+    "slug": "voopoo-nabor-voopoo-vmate-mini-1000mah-4-cartridge-tiffany-green",
+    "section": "VMATE MINI (4 картриджа)",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 160,
+    "brand": "Voopoo",
+    "category": "Устройства",
+    "name": "Набор Voopoo VMATE PRO 900mAh Pod Kit (Rosy)",
+    "slug": "voopoo-nabor-voopoo-vmate-pro-900mah-pod-kit-rosy",
+    "section": "VMATE PRO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 161,
+    "brand": "Voopoo",
+    "category": "Устройства",
+    "name": "Набор Voopoo VMATE PRO 2 Pod 1500mAh Kit (Fresh Green)",
+    "slug": "voopoo-nabor-voopoo-vmate-pro-2-pod-1500mah-kit-fresh-green",
+    "section": "VMATE PRO 2",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 162,
+    "brand": "Voopoo",
+    "category": "Устройства",
+    "name": "Набор Voopoo VMATE PRO 2 Pod 1500mAh Kit (Gilt Black)",
+    "slug": "voopoo-nabor-voopoo-vmate-pro-2-pod-1500mah-kit-gilt-black",
+    "section": "VMATE PRO 2",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 163,
+    "brand": "Voopoo",
+    "category": "Устройства",
+    "name": "Набор Voopoo VMATE PRO 2 Pod 1500mAh Kit (Glacier Silver)",
+    "slug": "voopoo-nabor-voopoo-vmate-pro-2-pod-1500mah-kit-glacier-silver",
+    "section": "VMATE PRO 2",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 164,
+    "brand": "Voopoo",
+    "category": "Устройства",
+    "name": "Набор Voopoo VMATE PRO 2 Pod 1500mAh Kit (Lavender)",
+    "slug": "voopoo-nabor-voopoo-vmate-pro-2-pod-1500mah-kit-lavender",
+    "section": "VMATE PRO 2",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 165,
+    "brand": "Voopoo",
+    "category": "Устройства",
+    "name": "Набор Voopoo VMATE PRO 2 Pod 1500mAh Kit (Navy Blue)",
+    "slug": "voopoo-nabor-voopoo-vmate-pro-2-pod-1500mah-kit-navy-blue",
+    "section": "VMATE PRO 2",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 166,
+    "brand": "Voopoo",
+    "category": "Устройства",
+    "name": "Набор Voopoo VMATE PRO 2 Pod 1500mAh Kit (Neon)",
+    "slug": "voopoo-nabor-voopoo-vmate-pro-2-pod-1500mah-kit-neon",
+    "section": "VMATE PRO 2",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 167,
+    "brand": "Voopoo",
+    "category": "Устройства",
+    "name": "Набор Voopoo VMATE PRO 2 Pod 1500mAh Kit (Space Grey)",
+    "slug": "voopoo-nabor-voopoo-vmate-pro-2-pod-1500mah-kit-space-grey",
+    "section": "VMATE PRO 2",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 168,
     "brand": "Smoant",
     "category": "Устройства",
     "name": "Набор Smoant Pasito 3 (Blue Azur)",
@@ -1739,7 +1860,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 158,
+    "id": 169,
     "brand": "Smoant",
     "category": "Устройства",
     "name": "Набор Smoant Pasito 3 (Blue Nuit)",
@@ -1750,7 +1871,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 159,
+    "id": 170,
     "brand": "Smoant",
     "category": "Устройства",
     "name": "Набор Smoant Pasito 3 (Camouflage Green)",
@@ -1761,7 +1882,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 160,
+    "id": 171,
     "brand": "Smoant",
     "category": "Устройства",
     "name": "Набор Smoant Pasito 3 (Classic Red)",
@@ -1772,7 +1893,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 161,
+    "id": 172,
     "brand": "Smoant",
     "category": "Устройства",
     "name": "Набор Smoant Pasito 3 (Matte Black)",
@@ -1783,7 +1904,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 162,
+    "id": 173,
     "brand": "Smoant",
     "category": "Устройства",
     "name": "Набор Smoant Pasito 3 (Pepper White)",
@@ -1794,7 +1915,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 163,
+    "id": 174,
     "brand": "Smoant",
     "category": "Устройства",
     "name": "Набор Smoant Pasito 3 (Rococo Purple)",
@@ -1805,7 +1926,7 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 164,
+    "id": 175,
     "brand": "Smoant",
     "category": "Устройства",
     "name": "Набор Smoant Pasito 3 (Space Gray)",
@@ -1816,210 +1937,1255 @@ export const products: Product[] = [
     "inStock": true
   },
   {
-    "id": 165,
-    "brand": "Upends",
-    "category": "Устройства",
-    "name": "Набор UpBOX KIT (Light-Brown / Светло-коричневый)",
-    "slug": "upends-nabor-upbox-kit-light-brown-svetlo-korichnevyy",
-    "section": "UpBOX KIT",
-    "isHit": true,
-    "isNew": false,
-    "inStock": true
-  },
-  {
-    "id": 166,
-    "brand": "Upends",
-    "category": "Устройства",
-    "name": "Набор UpBOX KIT (Magic-Red / Красно-черный)",
-    "slug": "upends-nabor-upbox-kit-magic-red-krasno-chernyy",
-    "section": "UpBOX KIT",
-    "isHit": true,
-    "isNew": false,
-    "inStock": true
-  },
-  {
-    "id": 167,
-    "brand": "Upends",
-    "category": "Устройства",
-    "name": "Набор UpBOX KIT (Nebula-Blue / Сине-золотой)",
-    "slug": "upends-nabor-upbox-kit-nebula-blue-sine-zolotoy",
-    "section": "UpBOX KIT",
-    "isHit": true,
-    "isNew": false,
-    "inStock": true
-  },
-  {
-    "id": 168,
-    "brand": "Upends",
-    "category": "Устройства",
-    "name": "Набор UpBOX KIT (Sky-Blue / Бело-синий)",
-    "slug": "upends-nabor-upbox-kit-sky-blue-belo-siniy",
-    "section": "UpBOX KIT",
-    "isHit": true,
-    "isNew": false,
-    "inStock": true
-  },
-  {
-    "id": 169,
-    "brand": "Upends",
-    "category": "Устройства",
-    "name": "Набор Upox (Astral Silver)",
-    "slug": "upends-nabor-upox-astral-silver",
-    "section": "UpOX",
-    "isHit": true,
-    "isNew": false,
-    "inStock": true
-  },
-  {
-    "id": 170,
-    "brand": "Upends",
-    "category": "Устройства",
-    "name": "Набор Upox (Chili Red)",
-    "slug": "upends-nabor-upox-chili-red",
-    "section": "UpOX",
-    "isHit": true,
-    "isNew": false,
-    "inStock": true
-  },
-  {
-    "id": 171,
-    "brand": "Upends",
-    "category": "Устройства",
-    "name": "Набор Upox (Sapphire Blue)",
-    "slug": "upends-nabor-upox-sapphire-blue",
-    "section": "UpOX",
-    "isHit": true,
-    "isNew": false,
-    "inStock": true
-  },
-  {
-    "id": 172,
-    "brand": "Other",
-    "category": "Аксессуары",
-    "name": "BRELLOCK e-liquid shaker (Abyss (синий))",
-    "slug": "other-brellock-e-liquid-shaker-abyss-siniy",
-    "section": "Брелоки",
-    "isHit": false,
-    "isNew": false,
-    "inStock": true
-  },
-  {
-    "id": 173,
-    "brand": "Other",
-    "category": "Аксессуары",
-    "name": "BRELLOCK e-liquid shaker (Aurum (золотой))",
-    "slug": "other-brellock-e-liquid-shaker-aurum-zolotoy",
-    "section": "Брелоки",
-    "isHit": false,
-    "isNew": false,
-    "inStock": true
-  },
-  {
-    "id": 174,
-    "brand": "Other",
-    "category": "Аксессуары",
-    "name": "BRELLOCK e-liquid shaker (Bloom (розовый))",
-    "slug": "other-brellock-e-liquid-shaker-bloom-rozovyy",
-    "section": "Брелоки",
-    "isHit": false,
-    "isNew": false,
-    "inStock": true
-  },
-  {
-    "id": 175,
-    "brand": "Other",
-    "category": "Аксессуары",
-    "name": "BRELLOCK e-liquid shaker (Chrome (серебро))",
-    "slug": "other-brellock-e-liquid-shaker-chrome-serebro",
-    "section": "Брелоки",
-    "isHit": false,
-    "isNew": false,
-    "inStock": true
-  },
-  {
     "id": 176,
     "brand": "Other",
-    "category": "Аксессуары",
-    "name": "BRELLOCK e-liquid shaker (Eclipse (фиолетовый))",
-    "slug": "other-brellock-e-liquid-shaker-eclipse-fioletovyy",
-    "section": "Брелоки",
-    "isHit": false,
+    "category": "Устройства",
+    "name": "Набор UpBOX KIT (Light-Brown / Светло-коричневый)",
+    "slug": "other-nabor-upbox-kit-light-brown-svetlo-korichnevyi",
+    "section": "UpBOX KIT",
+    "isHit": true,
     "isNew": false,
     "inStock": true
   },
   {
     "id": 177,
     "brand": "Other",
-    "category": "Аксессуары",
-    "name": "BRELLOCK e-liquid shaker (Ember (оранжевый))",
-    "slug": "other-brellock-e-liquid-shaker-ember-oranzhevyy",
-    "section": "Брелоки",
-    "isHit": false,
+    "category": "Устройства",
+    "name": "Набор UpBOX KIT (Magic-Red / Красно-черный)",
+    "slug": "other-nabor-upbox-kit-magic-red-krasno-chernyi",
+    "section": "UpBOX KIT",
+    "isHit": true,
     "isNew": false,
     "inStock": true
   },
   {
     "id": 178,
     "brand": "Other",
-    "category": "Аксессуары",
-    "name": "BRELLOCK e-liquid shaker (Halo (белый))",
-    "slug": "other-brellock-e-liquid-shaker-halo-belyy",
-    "section": "Брелоки",
-    "isHit": false,
+    "category": "Устройства",
+    "name": "Набор UpBOX KIT (Nebula-Blue / Сине-золотой)",
+    "slug": "other-nabor-upbox-kit-nebula-blue-sine-zolotoi",
+    "section": "UpBOX KIT",
+    "isHit": true,
     "isNew": false,
     "inStock": true
   },
   {
     "id": 179,
     "brand": "Other",
-    "category": "Аксессуары",
-    "name": "BRELLOCK e-liquid shaker (Inferno (красный))",
-    "slug": "other-brellock-e-liquid-shaker-inferno-krasnyy",
-    "section": "Брелоки",
-    "isHit": false,
+    "category": "Устройства",
+    "name": "Набор UpBOX KIT (Sky-Blue / Бело-синий)",
+    "slug": "other-nabor-upbox-kit-sky-blue-belo-sinii",
+    "section": "UpBOX KIT",
+    "isHit": true,
     "isNew": false,
     "inStock": true
   },
   {
     "id": 180,
     "brand": "Other",
-    "category": "Аксессуары",
-    "name": "BRELLOCK e-liquid shaker (Phantom (чёрный))",
-    "slug": "other-brellock-e-liquid-shaker-phantom-chernyy",
-    "section": "Брелоки",
-    "isHit": false,
+    "category": "Устройства",
+    "name": "Набор Upox (Astral Silver)",
+    "slug": "other-nabor-upox-astral-silver",
+    "section": "UpOX",
+    "isHit": true,
     "isNew": false,
     "inStock": true
   },
   {
     "id": 181,
     "brand": "Other",
-    "category": "Аксессуары",
-    "name": "BRELLOCK e-liquid shaker (Pulse (фуксия))",
-    "slug": "other-brellock-e-liquid-shaker-pulse-fuksiya",
-    "section": "Брелоки",
-    "isHit": false,
+    "category": "Устройства",
+    "name": "Набор Upox (Chili Red)",
+    "slug": "other-nabor-upox-chili-red",
+    "section": "UpOX",
+    "isHit": true,
     "isNew": false,
     "inStock": true
   },
   {
     "id": 182,
     "brand": "Other",
+    "category": "Устройства",
+    "name": "Набор Upox (Sapphire Blue)",
+    "slug": "other-nabor-upox-sapphire-blue",
+    "section": "UpOX",
+    "isHit": true,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 183,
+    "brand": "Smoant",
+    "category": "Прочее",
+    "name": "Адаптер Smoant Pasito 2 - переходник для испарителей Pasito",
+    "slug": "smoant-adapter-smoant-pasito-2-perekhodnik-dlia-isparitelei-pasito",
+    "section": "SMOANT",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 184,
+    "brand": "Geekvape",
+    "category": "Испарители",
+    "name": "Испаритель Geekvape B 1.2Ω Coil, 5шт",
+    "slug": "geekvape-isparitel-geekvape-b-1-2o-coil-5sht",
+    "section": "GEEKVAPE",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 185,
+    "brand": "Rincoe",
+    "category": "Испарители",
+    "name": "Испаритель Rincoe Jellybox Nano Mesh 1.0ohm Coil (3шт)",
+    "slug": "rincoe-isparitel-rincoe-jellybox-nano-mesh-1-0ohm-coil-3sht",
+    "section": "RINCOE",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 186,
+    "brand": "Rincoe",
+    "category": "Испарители",
+    "name": "Испаритель Rincoe Jellybox Nano Mesh 0.5ohm Coil (3шт)",
+    "slug": "rincoe-isparitel-rincoe-jellybox-nano-mesh-0-5ohm-coil-3sht",
+    "section": "RINCOE",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 187,
+    "brand": "Smoant",
+    "category": "Испарители",
+    "name": "Обслуживаемая база Smoant Pasito RBA Single Coil 0.5-1.0ohm",
+    "slug": "smoant-obsluzhivaemaia-baza-smoant-pasito-rba-single-coil-0-5-1-0ohm",
+    "section": "SMOANT",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 188,
+    "brand": "Smoant",
+    "category": "Испарители",
+    "name": "Обслуживаемая база Smoant (Pasito 2 / Knight 80) K-RBA",
+    "slug": "smoant-obsluzhivaemaia-baza-smoant-pasito-2-knight-80-k-rba",
+    "section": "SMOANT",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 189,
+    "brand": "Smoant",
+    "category": "Испарители",
+    "name": "Испаритель Smoant S7 0.3 Ом (Santi, Charon Baby Plus) 3шт",
+    "slug": "smoant-isparitel-smoant-s7-0-3-om-santi-charon-baby-plus-3sht",
+    "section": "SMOANT",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 190,
+    "brand": "Smoant",
+    "category": "Испарители",
+    "name": "Испаритель Smoant S6 1.1 Ом (Santi, Charon Baby Plus) 3шт",
+    "slug": "smoant-isparitel-smoant-s6-1-1-om-santi-charon-baby-plus-3sht",
+    "section": "SMOANT",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 191,
+    "brand": "Smoant",
+    "category": "Испарители",
+    "name": "Испаритель Smoant S5 0.55 Ом (Santi, Charon Baby Plus) 3шт",
+    "slug": "smoant-isparitel-smoant-s5-0-55-om-santi-charon-baby-plus-3sht",
+    "section": "SMOANT",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 192,
+    "brand": "Smoant",
+    "category": "Испарители",
+    "name": "Испаритель Smoant S4 0.35 Ом (Santi, Charon Baby Plus) 3шт",
+    "slug": "smoant-isparitel-smoant-s4-0-35-om-santi-charon-baby-plus-3sht",
+    "section": "SMOANT",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 193,
+    "brand": "Smoant",
+    "category": "Испарители",
+    "name": "Испаритель Smoant S3 1.2 Ом (Santi, Charon Baby Plus) 3шт",
+    "slug": "smoant-isparitel-smoant-s3-1-2-om-santi-charon-baby-plus-3sht",
+    "section": "SMOANT",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 194,
+    "brand": "Smoant",
+    "category": "Испарители",
+    "name": "Испаритель Smoant S2 0.6 Ом (Santi, Charon Baby Plus) 3шт",
+    "slug": "smoant-isparitel-smoant-s2-0-6-om-santi-charon-baby-plus-3sht",
+    "section": "SMOANT",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 195,
+    "brand": "Smoant",
+    "category": "Испарители",
+    "name": "Испаритель Smoant S1 0.4 Ом (Santi, Charon Baby Plus) 3шт",
+    "slug": "smoant-isparitel-smoant-s1-0-4-om-santi-charon-baby-plus-3sht",
+    "section": "SMOANT",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 196,
+    "brand": "Smoant",
+    "category": "Испарители",
+    "name": "Испаритель Smoant Pasito MTL Ni80 (Pasito / Knight 80) /упак 3 шт/",
+    "slug": "smoant-isparitel-smoant-pasito-mtl-ni80-pasito-knight-80-upak-3-sht",
+    "section": "SMOANT",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 197,
+    "brand": "Smoant",
+    "category": "Испарители",
+    "name": "Испаритель Smoant P-3 Mesh 1.0 Ом (Pasito mini) 3шт",
+    "slug": "smoant-isparitel-smoant-p-3-mesh-1-0-om-pasito-mini-3sht",
+    "section": "SMOANT",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 198,
+    "brand": "Smoant",
+    "category": "Испарители",
+    "name": "Испаритель Smoant P-2 Mesh 0.8 Ом (Pasito mini) 3шт",
+    "slug": "smoant-isparitel-smoant-p-2-mesh-0-8-om-pasito-mini-3sht",
+    "section": "SMOANT",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 199,
+    "brand": "Smoant",
+    "category": "Испарители",
+    "name": "Испаритель Smoant P-1 Mesh 0.6 Ом (Pasito mini) 3шт",
+    "slug": "smoant-isparitel-smoant-p-1-mesh-0-6-om-pasito-mini-3sht",
+    "section": "SMOANT",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 200,
+    "brand": "Smoant",
+    "category": "Испарители",
+    "name": "Испаритель Smoant NI80 Coil 1.2 Ом (Battlestar Baby / Charon Baby / Veer) 3шт",
+    "slug": "smoant-isparitel-smoant-ni80-coil-1-2-om-battlestar-baby-charon-baby-veer-3sht",
+    "section": "SMOANT",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 201,
+    "brand": "Smoant",
+    "category": "Испарители",
+    "name": "Испаритель Smoant Mesh 0.6 Ом (Battlestar Baby / Charon Baby / Veer) 3шт",
+    "slug": "smoant-isparitel-smoant-mesh-0-6-om-battlestar-baby-charon-baby-veer-3sht",
+    "section": "SMOANT",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 202,
+    "brand": "Smoant",
+    "category": "Испарители",
+    "name": "Испаритель Smoant K5 Mesh 0.15 ohm Coil (Pasito 2/ Knight 80) 3 шт",
+    "slug": "smoant-isparitel-smoant-k5-mesh-0-15-ohm-coil-pasito-2-knight-80-3-sht",
+    "section": "SMOANT",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 203,
+    "brand": "Smoant",
+    "category": "Испарители",
+    "name": "Испаритель Smoant K4 Dual Mesh 0.2 ohm Coil (Pasito 2/ Knight 80) 3 шт",
+    "slug": "smoant-isparitel-smoant-k4-dual-mesh-0-2-ohm-coil-pasito-2-knight-80-3-sht",
+    "section": "SMOANT",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 204,
+    "brand": "Smoant",
+    "category": "Испарители",
+    "name": "Испаритель Smoant K3 Half DTL 0.6 ohm Coil (Pasito 2 / Knight 80) 3шт",
+    "slug": "smoant-isparitel-smoant-k3-half-dtl-0-6-ohm-coil-pasito-2-knight-80-3sht",
+    "section": "SMOANT",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 205,
+    "brand": "Smoant",
+    "category": "Испарители",
+    "name": "Испаритель Smoant K2 Dual Mesh 0.4 ohm Coil (Pasito 2 / Knight 80) 3 шт",
+    "slug": "smoant-isparitel-smoant-k2-dual-mesh-0-4-ohm-coil-pasito-2-knight-80-3-sht",
+    "section": "SMOANT",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 206,
+    "brand": "Smoant",
+    "category": "Испарители",
+    "name": "Испаритель Smoant K1 Mesh 0.3 ohm Coil (Pasito 2/ Knight 80) 3 шт",
+    "slug": "smoant-isparitel-smoant-k1-mesh-0-3-ohm-coil-pasito-2-knight-80-3-sht",
+    "section": "SMOANT",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 207,
+    "brand": "Vaporesso",
+    "category": "Испарители",
+    "name": "Испаритель Vaporesso GTX 0,8 Ом Mesh Coil (5шт)",
+    "slug": "vaporesso-isparitel-vaporesso-gtx-0-8-om-mesh-coil-5sht",
+    "section": "VAPORESSO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 208,
+    "brand": "Vaporesso",
+    "category": "Испарители",
+    "name": "Испаритель Vaporesso GTX 0,6 Ом Mesh Coil (5шт)",
+    "slug": "vaporesso-isparitel-vaporesso-gtx-0-6-om-mesh-coil-5sht",
+    "section": "VAPORESSO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 209,
+    "brand": "Vaporesso",
+    "category": "Испарители",
+    "name": "Испаритель Vaporesso GTX 0,3 Ом Mesh Coil (5шт)",
+    "slug": "vaporesso-isparitel-vaporesso-gtx-0-3-om-mesh-coil-5sht",
+    "section": "VAPORESSO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 210,
+    "brand": "Vaporesso",
+    "category": "Испарители",
+    "name": "Испаритель Vaporesso GTX 0,2 Ом Mesh Coil (5шт)",
+    "slug": "vaporesso-isparitel-vaporesso-gtx-0-2-om-mesh-coil-5sht",
+    "section": "VAPORESSO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 211,
+    "brand": "Vaporesso",
+    "category": "Испарители",
+    "name": "Испаритель Vaporesso GTX 0,15 Ом Mesh Coil (5шт)",
+    "slug": "vaporesso-isparitel-vaporesso-gtx-0-15-om-mesh-coil-5sht",
+    "section": "VAPORESSO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 212,
+    "brand": "Vaporesso",
+    "category": "Испарители",
+    "name": "Испаритель Vaporesso GTi 0,5 Ом Mesh Coil (5шт)",
+    "slug": "vaporesso-isparitel-vaporesso-gti-0-5-om-mesh-coil-5sht",
+    "section": "VAPORESSO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 213,
+    "brand": "Vaporesso",
+    "category": "Испарители",
+    "name": "Испаритель Vaporesso GTi 0,4 Ом Mesh Coil (5шт)",
+    "slug": "vaporesso-isparitel-vaporesso-gti-0-4-om-mesh-coil-5sht",
+    "section": "VAPORESSO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 214,
+    "brand": "Vaporesso",
+    "category": "Испарители",
+    "name": "Испаритель Vaporesso GTi 0,2 Ом Mesh Coil (5шт)",
+    "slug": "vaporesso-isparitel-vaporesso-gti-0-2-om-mesh-coil-5sht",
+    "section": "VAPORESSO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 215,
+    "brand": "Vaporesso",
+    "category": "Испарители",
+    "name": "Испаритель Vaporesso GTi 0,15 Ом Mesh Coil (5шт)",
+    "slug": "vaporesso-isparitel-vaporesso-gti-0-15-om-mesh-coil-5sht",
+    "section": "VAPORESSO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 216,
+    "brand": "Voopoo",
+    "category": "Испарители",
+    "name": "Испаритель Voopoo TPP-DM4 0.3 Ом(Drag 3, Drag X Plus) 3шт",
+    "slug": "voopoo-isparitel-voopoo-tpp-dm4-0-3-om-drag-3-drag-x-plus-3sht",
+    "section": "VOOPOO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 217,
+    "brand": "Voopoo",
+    "category": "Испарители",
+    "name": "Испаритель Voopoo TPP-DM3 0.15 Ом (Drag 3, Drag X Plus) 3шт",
+    "slug": "voopoo-isparitel-voopoo-tpp-dm3-0-15-om-drag-3-drag-x-plus-3sht",
+    "section": "VOOPOO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 218,
+    "brand": "Voopoo",
+    "category": "Испарители",
+    "name": "Испаритель Voopoo TPP-DM2 0.2 Ом(Drag 3, Drag X Plus) 3шт",
+    "slug": "voopoo-isparitel-voopoo-tpp-dm2-0-2-om-drag-3-drag-x-plus-3sht",
+    "section": "VOOPOO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 219,
+    "brand": "Voopoo",
+    "category": "Испарители",
+    "name": "Испаритель Voopoo TPP-DM1 0.15 Ом (Drag 3, Drag X Plus) 3шт",
+    "slug": "voopoo-isparitel-voopoo-tpp-dm1-0-15-om-drag-3-drag-x-plus-3sht",
+    "section": "VOOPOO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 220,
+    "brand": "Voopoo",
+    "category": "Испарители",
+    "name": "Испаритель Voopoo PnP-VM5 Mesh 0.2 ом(Vinci, Vinci R/X, Drag X/S, Navi, Doric 60)5шт",
+    "slug": "voopoo-isparitel-voopoo-pnp-vm5-mesh-0-2-om-vinci-vinci-r-x-drag-x-s-navi-doric-60-5sht",
+    "section": "VOOPOO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 221,
+    "brand": "Voopoo",
+    "category": "Испарители",
+    "name": "Испаритель Voopoo PnP-VM4 Mesh 0.6 ом(Vinci, Vinci R/X, Drag X/S, Navi, Doric 60)5шт",
+    "slug": "voopoo-isparitel-voopoo-pnp-vm4-mesh-0-6-om-vinci-vinci-r-x-drag-x-s-navi-doric-60-5sht",
+    "section": "VOOPOO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 222,
+    "brand": "Voopoo",
+    "category": "Испарители",
+    "name": "Испаритель Voopoo PnP-VM3 Mesh 0.45 ом(Vinci, Vinci R/X, Drag X/S, Navi, Doric 60)5шт",
+    "slug": "voopoo-isparitel-voopoo-pnp-vm3-mesh-0-45-om-vinci-vinci-r-x-drag-x-s-navi-doric-60-5sht",
+    "section": "VOOPOO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 223,
+    "brand": "Voopoo",
+    "category": "Испарители",
+    "name": "Испаритель Voopoo PnP-VM1 Mesh 0.3 ом(Vinci, Vinci R/X, Drag X/S, Navi, Doric 60)5шт",
+    "slug": "voopoo-isparitel-voopoo-pnp-vm1-mesh-0-3-om-vinci-vinci-r-x-drag-x-s-navi-doric-60-5sht",
+    "section": "VOOPOO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 224,
+    "brand": "Voopoo",
+    "category": "Испарители",
+    "name": "Испаритель Voopoo PnP-TW30 0.3 Ом(Vinci, Vinci R/X/Air, Drag X/S/Baby, Navi)5шт",
+    "slug": "voopoo-isparitel-voopoo-pnp-tw30-0-3-om-vinci-vinci-r-x-air-drag-x-s-baby-navi-5sht",
+    "section": "VOOPOO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 225,
+    "brand": "Voopoo",
+    "category": "Испарители",
+    "name": "Испаритель Voopoo PnP-TW20 0.2 Ом(Vinci, Vinci R/X/Air, Drag X/S/Baby, Navi)5шт",
+    "slug": "voopoo-isparitel-voopoo-pnp-tw20-0-2-om-vinci-vinci-r-x-air-drag-x-s-baby-navi-5sht",
+    "section": "VOOPOO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 226,
+    "brand": "Voopoo",
+    "category": "Испарители",
+    "name": "Испаритель Voopoo PnP-TW15 0.15 Ом(Vinci, Vinci R/X/Air, Drag X/S/Baby, Navi)5шт",
+    "slug": "voopoo-isparitel-voopoo-pnp-tw15-0-15-om-vinci-vinci-r-x-air-drag-x-s-baby-navi-5sht",
+    "section": "VOOPOO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 227,
+    "brand": "Voopoo",
+    "category": "Испарители",
+    "name": "Испаритель Voopoo PnP-DW60 0.6 Ом(Vinci, Vinci R/X/Air, Drag X/S/Baby, Navi) 5шт",
+    "slug": "voopoo-isparitel-voopoo-pnp-dw60-0-6-om-vinci-vinci-r-x-air-drag-x-s-baby-navi-5sht",
+    "section": "VOOPOO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 228,
+    "brand": "Voopoo",
+    "category": "Испарители",
+    "name": "Испаритель Voopoo ITO-M3 Coil 1.2 Ом 5шт",
+    "slug": "voopoo-isparitel-voopoo-ito-m3-coil-1-2-om-5sht",
+    "section": "VOOPOO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 229,
+    "brand": "Voopoo",
+    "category": "Испарители",
+    "name": "Испаритель Voopoo ITO-M2 Coil 1.0 Ом 5шт",
+    "slug": "voopoo-isparitel-voopoo-ito-m2-coil-1-0-om-5sht",
+    "section": "VOOPOO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 230,
+    "brand": "Voopoo",
+    "category": "Испарители",
+    "name": "Испаритель Voopoo ITO-M1 Coil 0.7 Ом 5шт",
+    "slug": "voopoo-isparitel-voopoo-ito-m1-coil-0-7-om-5sht",
+    "section": "VOOPOO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 231,
+    "brand": "Voopoo",
+    "category": "Испарители",
+    "name": "Испаритель Voopoo ITO-M0 Coil 0.5 Ом 5шт",
+    "slug": "voopoo-isparitel-voopoo-ito-m0-coil-0-5-om-5sht",
+    "section": "VOOPOO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 232,
+    "brand": "Other",
+    "category": "Картриджи",
+    "name": "Картридж NOVO2POD mesh 1.0om",
+    "slug": "other-kartridzh-novo2pod-mesh-1-0om",
+    "section": "СМЕННЫЙ КАРТРИДЖ",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 233,
+    "brand": "Other",
+    "category": "Картриджи",
+    "name": "Картридж NOVO2POD DC 1.4om MTL",
+    "slug": "other-kartridzh-novo2pod-dc-1-4om-mtl",
+    "section": "СМЕННЫЙ КАРТРИДЖ",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 234,
+    "brand": "Geekvape",
+    "category": "Картриджи",
+    "name": "Картридж Geekvape Hero 5 White 6.5mL (уп 1 шт.)",
+    "slug": "geekvape-kartridzh-geekvape-hero-5-white-6-5ml-up-1-sht",
+    "section": "Картридж Hero 5",
+    "isHit": true,
+    "isNew": true,
+    "inStock": true
+  },
+  {
+    "id": 235,
+    "brand": "Geekvape",
+    "category": "Картриджи",
+    "name": "Картридж с испарителем Geekvape H45, 0.6Ω,5ml /2 шт/",
+    "slug": "geekvape-kartridzh-s-isparitelem-geekvape-h45-0-6o-5ml-2-sht",
+    "section": "Картриджи Aegis H45 (Hero)",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 236,
+    "brand": "Geekvape",
+    "category": "Картриджи",
+    "name": "Картридж Geekvape H45 Crystal Green 4ml /2 шт/",
+    "slug": "geekvape-kartridzh-geekvape-h45-crystal-green-4ml-2-sht",
+    "section": "Картриджи Aegis H45 (Hero)",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 237,
+    "brand": "Geekvape",
+    "category": "Картриджи",
+    "name": "Картридж Geekvape H45 Crystal Gold 4ml /2 шт/",
+    "slug": "geekvape-kartridzh-geekvape-h45-crystal-gold-4ml-2-sht",
+    "section": "Картриджи Aegis H45 (Hero)",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 238,
+    "brand": "Geekvape",
+    "category": "Картриджи",
+    "name": "Картридж Geekvape N (Aegis Nano 2) Pod 0.6Ω, 2ml /2 шт/",
+    "slug": "geekvape-kartridzh-geekvape-n-aegis-nano-2-pod-0-6o-2ml-2-sht",
+    "section": "Картриджи Aegis Nano",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 239,
+    "brand": "Geekvape",
+    "category": "Картриджи",
+    "name": "Картридж Geekvape Aegis Nano Pod 1.2Ω, 2ml(Black) /2 шт/",
+    "slug": "geekvape-kartridzh-geekvape-aegis-nano-pod-1-2o-2ml-black-2-sht",
+    "section": "Картриджи Aegis Nano",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 240,
+    "brand": "Geekvape",
+    "category": "Картриджи",
+    "name": "Картридж Geek Vape Q 0.4 (Side Fill) 3 ml. /3 шт/",
+    "slug": "geekvape-kartridzh-geek-vape-q-0-4-side-fill-3-ml-3-sht",
+    "section": "Картриджи Q Series",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 241,
+    "brand": "Geekvape",
+    "category": "Картриджи",
+    "name": "Картридж Geek Vape Wenax H1 1.4ohm 2.5ml Pod Black /3 шт/",
+    "slug": "geekvape-kartridzh-geek-vape-wenax-h1-1-4ohm-2-5ml-pod-black-3-sht",
+    "section": "Картриджи Прочее",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 242,
+    "brand": "Geekvape",
+    "category": "Картриджи",
+    "name": "Картридж Geek Vape Wenax H1 0.7ohm 2.5ml Pod Black /3 шт/",
+    "slug": "geekvape-kartridzh-geek-vape-wenax-h1-0-7ohm-2-5ml-pod-black-3-sht",
+    "section": "Картриджи Прочее",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 243,
+    "brand": "Geekvape",
+    "category": "Картриджи",
+    "name": "Картридж Geek Vape U 1.1Ω 2ml /3 шт/",
+    "slug": "geekvape-kartridzh-geek-vape-u-1-1o-2ml-3-sht",
+    "section": "Картриджи Прочее",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 244,
+    "brand": "Geekvape",
+    "category": "Картриджи",
+    "name": "Картридж Geekvape Soul 1.0 Ом (5-15W)",
+    "slug": "geekvape-kartridzh-geekvape-soul-1-0-om-5-15w",
+    "section": "Картриджи Прочее",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 245,
+    "brand": "Geekvape",
+    "category": "Картриджи",
+    "name": "Картридж Geek Vape Aegis One Pod 1.2Ω /3 шт/",
+    "slug": "geekvape-kartridzh-geek-vape-aegis-one-pod-1-2o-3-sht",
+    "section": "Картриджи Прочее",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 246,
+    "brand": "Geekvape",
+    "category": "Картриджи",
+    "name": "Картридж Geek Vape Aegis One Pod 0.8Ω /3 шт/",
+    "slug": "geekvape-kartridzh-geek-vape-aegis-one-pod-0-8o-3-sht",
+    "section": "Картриджи Прочее",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 247,
+    "brand": "Geekvape",
+    "category": "Картриджи",
+    "name": "Картридж Geek Vape Aegis Force /2 шт/",
+    "slug": "geekvape-kartridzh-geek-vape-aegis-force-2-sht",
+    "section": "Картриджи Прочее",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 248,
+    "brand": "Smoant",
+    "category": "Картриджи",
+    "name": "Картридж Smoant Veer 2.3ml (без испарителя)",
+    "slug": "smoant-kartridzh-smoant-veer-2-3ml-bez-isparitelia",
+    "section": "SMOANT",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 249,
+    "brand": "Smoant",
+    "category": "Картриджи",
+    "name": "Картридж Smoant Pasito Mini 3.5ml (без испарителя)",
+    "slug": "smoant-kartridzh-smoant-pasito-mini-3-5ml-bez-isparitelia",
+    "section": "SMOANT",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 250,
+    "brand": "Smoant",
+    "category": "Картриджи",
+    "name": "Картридж Smoant Pasito III 7 ml (без испарителя)",
+    "slug": "smoant-kartridzh-smoant-pasito-iii-7-ml-bez-isparitelia",
+    "section": "SMOANT",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 251,
+    "brand": "Smoant",
+    "category": "Картриджи",
+    "name": "Картридж Smoant Levin PRO 1.0Ω /2 шт/",
+    "slug": "smoant-kartridzh-smoant-levin-pro-1-0o-2-sht",
+    "section": "SMOANT",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 252,
+    "brand": "Smoant",
+    "category": "Картриджи",
+    "name": "Картридж Smoant Levin PRO 0.8Ω /2 шт/",
+    "slug": "smoant-kartridzh-smoant-levin-pro-0-8o-2-sht",
+    "section": "SMOANT",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 253,
+    "brand": "Smoant",
+    "category": "Картриджи",
+    "name": "Картридж Smoant Levin PRO 0.6Ω /2 шт/",
+    "slug": "smoant-kartridzh-smoant-levin-pro-0-6o-2-sht",
+    "section": "SMOANT",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 254,
+    "brand": "Vaporesso",
+    "category": "Картриджи",
+    "name": "Картридж Vaporesso OSMALL 2 1.2Ω (4 шт)",
+    "slug": "vaporesso-kartridzh-vaporesso-osmall-2-1-2o-4-sht",
+    "section": "VAPORESSO",
+    "isHit": true,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 255,
+    "brand": "Vaporesso",
+    "category": "Картриджи",
+    "name": "Картридж Vaporesso APEX 0.8 Ом 5ml (2шт.)",
+    "slug": "vaporesso-kartridzh-vaporesso-apex-0-8-om-5ml-2sht",
+    "section": "APEX",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 256,
+    "brand": "Vaporesso",
+    "category": "Картриджи",
+    "name": "Картридж Vaporesso APEX 0.6 Ом 5ml (2шт.)",
+    "slug": "vaporesso-kartridzh-vaporesso-apex-0-6-om-5ml-2sht",
+    "section": "APEX",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 257,
+    "brand": "Vaporesso",
+    "category": "Картриджи",
+    "name": "Картридж Vaporesso ECO NANO 1,2Ω 6 мл (2 шт)",
+    "slug": "vaporesso-kartridzh-vaporesso-eco-nano-1-2o-6-ml-2-sht",
+    "section": "ECO NANO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 258,
+    "brand": "Vaporesso",
+    "category": "Картриджи",
+    "name": "Картридж Vaporesso Luxe Q 1.0Ω 3ml (4 шт)",
+    "slug": "vaporesso-kartridzh-vaporesso-luxe-q-1-0o-3ml-4-sht",
+    "section": "Luxe Q",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 259,
+    "brand": "Vaporesso",
+    "category": "Картриджи",
+    "name": "Картридж Vaporesso LUXE X 0.8Ω 5ml COREX 2.0 (2 шт)",
+    "slug": "vaporesso-kartridzh-vaporesso-luxe-x-0-8o-5ml-corex-2-0-2-sht",
+    "section": "Luxe X",
+    "isHit": true,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 260,
+    "brand": "Vaporesso",
+    "category": "Картриджи",
+    "name": "Картридж Vaporesso XROS 3ml 0.8 Ом COREX 3.0 Pod (4 шт)",
+    "slug": "vaporesso-kartridzh-vaporesso-xros-3ml-0-8-om-corex-3-0-pod-4-sht",
+    "section": "XROS",
+    "isHit": true,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 261,
+    "brand": "Vaporesso",
+    "category": "Картриджи",
+    "name": "Картридж Vaporesso XROS 3ml 0.6 Ом COREX 3.0 Pod (4 шт)",
+    "slug": "vaporesso-kartridzh-vaporesso-xros-3ml-0-6-om-corex-3-0-pod-4-sht",
+    "section": "XROS",
+    "isHit": true,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 262,
+    "brand": "Vaporesso",
+    "category": "Картриджи",
+    "name": "Картридж Vaporesso XROS 3ml 0.4 Ом COREX 3.0 Pod (4 шт)",
+    "slug": "vaporesso-kartridzh-vaporesso-xros-3ml-0-4-om-corex-3-0-pod-4-sht",
+    "section": "XROS",
+    "isHit": true,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 263,
+    "brand": "Vaporesso",
+    "category": "Картриджи",
+    "name": "Картридж Vaporesso XROS 2ml 1.2 Ом COREX 3.0 Pod (4 шт)",
+    "slug": "vaporesso-kartridzh-vaporesso-xros-2ml-1-2-om-corex-3-0-pod-4-sht",
+    "section": "XROS",
+    "isHit": true,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 264,
+    "brand": "Vaporesso",
+    "category": "Картриджи",
+    "name": "Картридж Vaporesso XROS 2ml 1.2 Ом COREX 2.0 Pod (4 шт)",
+    "slug": "vaporesso-kartridzh-vaporesso-xros-2ml-1-2-om-corex-2-0-pod-4-sht",
+    "section": "XROS",
+    "isHit": true,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 265,
+    "brand": "Vaporesso",
+    "category": "Картриджи",
+    "name": "Картридж Vaporesso XROS 2ml 1.0 Ом COREX 3.0 Pod (4 шт)",
+    "slug": "vaporesso-kartridzh-vaporesso-xros-2ml-1-0-om-corex-3-0-pod-4-sht",
+    "section": "XROS",
+    "isHit": true,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 266,
+    "brand": "Vaporesso",
+    "category": "Картриджи",
+    "name": "Картридж Vaporesso XROS 2ml 0.8 Ом COREX 3.0 Pod (4 шт)",
+    "slug": "vaporesso-kartridzh-vaporesso-xros-2ml-0-8-om-corex-3-0-pod-4-sht",
+    "section": "XROS",
+    "isHit": true,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 267,
+    "brand": "Vaporesso",
+    "category": "Картриджи",
+    "name": "Картридж Vaporesso XROS 2ml 0.6 Ом COREX 3.0 Pod (4 шт)",
+    "slug": "vaporesso-kartridzh-vaporesso-xros-2ml-0-6-om-corex-3-0-pod-4-sht",
+    "section": "XROS",
+    "isHit": true,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 268,
+    "brand": "Vaporesso",
+    "category": "Картриджи",
+    "name": "Картридж Vaporesso XTRA 2ml 0.8Ω (2 шт)",
+    "slug": "vaporesso-kartridzh-vaporesso-xtra-2ml-0-8o-2-sht",
+    "section": "XTRA",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 269,
+    "brand": "Voopoo",
+    "category": "Картриджи",
+    "name": "Картридж Voopoo (без испарителя) PnP Pod II 5ml /2 шт/",
+    "slug": "voopoo-kartridzh-voopoo-bez-isparitelia-pnp-pod-ii-5ml-2-sht",
+    "section": "VOOPOO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 270,
+    "brand": "Voopoo",
+    "category": "Картриджи",
+    "name": "Картридж Voopoo (без испарителя) PnP MTL Pod 2ml /2 шт/",
+    "slug": "voopoo-kartridzh-voopoo-bez-isparitelia-pnp-mtl-pod-2ml-2-sht",
+    "section": "VOOPOO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 271,
+    "brand": "Voopoo",
+    "category": "Картриджи",
+    "name": "Картридж Voopoo VMATE Top Fill/V.THRU Pro 0.7Ω 3ml /2 шт/",
+    "slug": "voopoo-kartridzh-voopoo-vmate-top-fill-v-thru-pro-0-7o-3ml-2-sht",
+    "section": "VOOPOO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 272,
+    "brand": "Voopoo",
+    "category": "Картриджи",
+    "name": "Картридж Voopoo Vinci Series V2 POD 1.2Ω /3 шт/",
+    "slug": "voopoo-kartridzh-voopoo-vinci-series-v2-pod-1-2o-3-sht",
+    "section": "VOOPOO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 273,
+    "brand": "Voopoo",
+    "category": "Картриджи",
+    "name": "Картридж Voopoo Vinci Series V2 POD 0.8Ω /3 шт/",
+    "slug": "voopoo-kartridzh-voopoo-vinci-series-v2-pod-0-8o-3-sht",
+    "section": "VOOPOO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 274,
+    "brand": "Voopoo",
+    "category": "Картриджи",
+    "name": "Картридж Voopoo ARGUS Top Fill 0.4Ω 2ml /3 шт/",
+    "slug": "voopoo-kartridzh-voopoo-argus-top-fill-0-4o-2ml-3-sht",
+    "section": "VOOPOO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 275,
+    "brand": "Voopoo",
+    "category": "Картриджи",
+    "name": "Картридж Voopoo ARGUS Pod 1.2Ω 2ml /3 шт/",
+    "slug": "voopoo-kartridzh-voopoo-argus-pod-1-2o-2ml-3-sht",
+    "section": "VOOPOO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 276,
+    "brand": "Voopoo",
+    "category": "Картриджи",
+    "name": "Картридж Voopoo ARGUS E40  0.45Ω /2 шт./",
+    "slug": "voopoo-kartridzh-voopoo-argus-e40-0-45o-2-sht",
+    "section": "VOOPOO",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 277,
+    "brand": "Brelock",
     "category": "Аксессуары",
-    "name": "BRELLOCK e-liquid shaker (Splash (бирюзовый))",
-    "slug": "other-brellock-e-liquid-shaker-splash-biryuzovyy",
+    "name": "BRELLOCK e-liquid shaker (Abyss (синий))",
+    "slug": "brelock-brellock-e-liquid-shaker-abyss-sinii",
     "section": "Брелоки",
     "isHit": false,
     "isNew": false,
     "inStock": true
   },
   {
-    "id": 183,
-    "brand": "Other",
+    "id": 278,
+    "brand": "Brelock",
+    "category": "Аксессуары",
+    "name": "BRELLOCK e-liquid shaker (Aurum (золотой))",
+    "slug": "brelock-brellock-e-liquid-shaker-aurum-zolotoi",
+    "section": "Брелоки",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 279,
+    "brand": "Brelock",
+    "category": "Аксессуары",
+    "name": "BRELLOCK e-liquid shaker (Bloom (розовый))",
+    "slug": "brelock-brellock-e-liquid-shaker-bloom-rozovyi",
+    "section": "Брелоки",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 280,
+    "brand": "Brelock",
+    "category": "Аксессуары",
+    "name": "BRELLOCK e-liquid shaker (Chrome (серебро))",
+    "slug": "brelock-brellock-e-liquid-shaker-chrome-serebro",
+    "section": "Брелоки",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 281,
+    "brand": "Brelock",
+    "category": "Аксессуары",
+    "name": "BRELLOCK e-liquid shaker (Eclipse (фиолетовый))",
+    "slug": "brelock-brellock-e-liquid-shaker-eclipse-fioletovyi",
+    "section": "Брелоки",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 282,
+    "brand": "Brelock",
+    "category": "Аксессуары",
+    "name": "BRELLOCK e-liquid shaker (Ember (оранжевый))",
+    "slug": "brelock-brellock-e-liquid-shaker-ember-oranzhevyi",
+    "section": "Брелоки",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 283,
+    "brand": "Brelock",
+    "category": "Аксессуары",
+    "name": "BRELLOCK e-liquid shaker (Halo (белый))",
+    "slug": "brelock-brellock-e-liquid-shaker-halo-belyi",
+    "section": "Брелоки",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 284,
+    "brand": "Brelock",
+    "category": "Аксессуары",
+    "name": "BRELLOCK e-liquid shaker (Inferno (красный))",
+    "slug": "brelock-brellock-e-liquid-shaker-inferno-krasnyi",
+    "section": "Брелоки",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 285,
+    "brand": "Brelock",
+    "category": "Аксессуары",
+    "name": "BRELLOCK e-liquid shaker (Phantom (чёрный))",
+    "slug": "brelock-brellock-e-liquid-shaker-phantom-chiornyi",
+    "section": "Брелоки",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 286,
+    "brand": "Brelock",
+    "category": "Аксессуары",
+    "name": "BRELLOCK e-liquid shaker (Pulse (фуксия))",
+    "slug": "brelock-brellock-e-liquid-shaker-pulse-fuksiia",
+    "section": "Брелоки",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 287,
+    "brand": "Brelock",
+    "category": "Аксессуары",
+    "name": "BRELLOCK e-liquid shaker (Splash (бирюзовый))",
+    "slug": "brelock-brellock-e-liquid-shaker-splash-biriuzovyi",
+    "section": "Брелоки",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 288,
+    "brand": "Brelock",
     "category": "Аксессуары",
     "name": "BRELLOCK e-liquid shaker (Vortex (зелёный))",
-    "slug": "other-brellock-e-liquid-shaker-vortex-zelenyy",
+    "slug": "brelock-brellock-e-liquid-shaker-vortex-zelionyi",
     "section": "Брелоки",
+    "isHit": false,
+    "isNew": false,
+    "inStock": true
+  },
+  {
+    "id": 289,
+    "brand": "Geekvape",
+    "category": "Мерч",
+    "name": "Картридж Geekvape Q 0.6 3мл Side Fill (не для продажи), 1 шт",
+    "slug": "geekvape-kartridzh-geekvape-q-0-6-3ml-side-fill-ne-dlia-prodazhi-1-sht",
+    "section": "Geekvape",
     "isHit": false,
     "isNew": false,
     "inStock": true
