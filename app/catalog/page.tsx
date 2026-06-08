@@ -3,13 +3,6 @@
 import { useMemo, useState } from 'react';
 import { products } from '../../data/products';
 
-const brands = ['Все', ...Array.from(new Set(products.map((p) => p.brand)))];
-const categories = ['Все', ...Array.from(new Set(products.map((p) => p.category)))];
-
-export default function CatalogPage() {
-  const [query, setQuery] = useState('');
-  const [brand, setBrand] = useState('Все');
-  const [category, setCategory] = useState('Все');
 const normalizeSearch = (value: string) =>
   value
     .toLowerCase()
@@ -19,31 +12,40 @@ const normalizeSearch = (value: string) =>
     .replace(/[^a-zа-я0-9.\s]/gi, ' ')
     .replace(/\s+/g, ' ')
     .trim();
+
+const brands = ['Все', ...Array.from(new Set(products.map((p) => p.brand)))];
+const categories = ['Все', ...Array.from(new Set(products.map((p) => p.category)))];
+
+export default function CatalogPage() {
+  const [query, setQuery] = useState('');
+  const [brand, setBrand] = useState('Все');
+  const [category, setCategory] = useState('Все');
+
   const filtered = useMemo(() => {
-    const q = normalizeSearch(query);
-const searchWords = q.split(/\s+/).filter(Boolean);
+  const q = normalizeSearch(query);
+  const searchWords = q.split(/\s+/).filter(Boolean);
 
-return products.filter((product) => {
-const searchableText = normalizeSearch(
-  [
-    product.name,
-    product.brand,
-    product.category,
-    product.section,
-  ].join(' ')
-);
+  return products.filter((product) => {
+    const searchableText = normalizeSearch(
+      [
+        product.name,
+        product.brand,
+        product.category,
+        product.section,
+      ].join(' ')
+    );
 
-  const matchesSearch =
-    searchWords.length === 0 ||
-    searchWords.every((word) => searchableText.includes(word));
+    const matchesSearch =
+      searchWords.length === 0 ||
+      searchWords.every((word) => searchableText.includes(word));
 
-      return (
-        matchesSearch &&
-        (brand === 'Все' || product.brand === brand) &&
-        (category === 'Все' || product.category === category)
-      );
-    });
-  }, [query, brand, category]);
+    return (
+      matchesSearch &&
+      (brand === 'Все' || product.brand === brand) &&
+      (category === 'Все' || product.category === category)
+    );
+  });
+}, [query, brand, category]);
 
   return (
     <main className="min-h-screen bg-black text-white">
@@ -76,7 +78,7 @@ const searchableText = normalizeSearch(
     🔍 Сейчас найдено: {filtered.length}
   </div>
 </div>
-
+</div>
           <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4">
             <div className="rounded-2xl border border-white/10 bg-white/5 px-5 py-4">
               🔥 <span className="font-bold">{products.length}</span> товаров
