@@ -170,11 +170,19 @@ export default function CatalogPage() {
                   {product.category}
                 </div>
 
-                <h2 className="mt-1 line-clamp-3 text-base font-black leading-tight">
-                  {product.name}
-                </h2>
+                <a href={`/catalog/${product.slug}`}>
+  <h2 className="mt-1 line-clamp-3 text-base font-black leading-tight transition group-hover:text-cyan-300">
+    {product.name}
+  </h2>
+</a>
 
                 <div className="mt-auto pt-4">
+                <a
+  href={`/catalog/${product.slug}`}
+  className="mb-3 flex w-full justify-center rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-center text-sm font-bold text-zinc-200 transition hover:border-cyan-500/40 hover:text-cyan-300"
+>
+  Подробнее
+</a>
                   <a
                     href={`https://t.me/Galaxy_Stan?text=${encodeURIComponent(
                       `Здравствуйте! Интересует товар:\n\n${product.name}\n\nПрошу отправить оптовые условия.`
