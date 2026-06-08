@@ -271,7 +271,7 @@ export default function CatalogPage() {
     target="_blank"
     className="flex w-full justify-center rounded-2xl bg-gradient-to-r from-fuchsia-600 to-cyan-500 px-4 py-3 text-center text-sm font-black transition hover:scale-[1.02] hover:shadow-[0_0_25px_rgba(34,211,238,0.35)]"
   >
-    🚀 Получить цену
+    🚀 Запросить оптовую цену
   </a>
 </div>
               </article>
