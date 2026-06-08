@@ -190,24 +190,24 @@ export default function CatalogPage() {
     {product.name}
   </h2>
 </a>
+<div className="mt-auto pt-4 grid gap-2">
+  <a
+    href={`/catalog/${product.slug}`}
+    className="flex w-full justify-center rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-center text-sm font-bold text-zinc-200 transition hover:border-cyan-500/40 hover:bg-cyan-500/10 hover:text-cyan-300"
+  >
+    Подробнее
+  </a>
 
-                <div className="mt-auto pt-4">
-                <a
-  href={`/catalog/${product.slug}`}
-  className="mb-3 flex w-full justify-center rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-center text-sm font-bold text-zinc-200 transition hover:border-cyan-500/40 hover:text-cyan-300"
->
-  Подробнее
-</a>
-                  <a
-                    href={`https://t.me/Galaxy_Stan?text=${encodeURIComponent(
-                      `Здравствуйте! Интересует товар:\n\n${product.name}\n\nПрошу отправить оптовые условия.`
-                    )}`}
-                    target="_blank"
-                    className="flex w-full justify-center rounded-2xl bg-gradient-to-r from-fuchsia-600 to-cyan-500 px-4 py-3 text-center text-sm font-black transition hover:scale-[1.02] hover:shadow-[0_0_25px_rgba(34,211,238,0.35)]"
-                  >
-                    🚀 Получить цену
-                  </a>
-                </div>
+  <a
+    href={`https://t.me/Galaxy_Stan?text=${encodeURIComponent(
+      `Здравствуйте! Интересует товар:\n\n${product.name}\n\nПрошу отправить оптовые условия.`
+    )}`}
+    target="_blank"
+    className="flex w-full justify-center rounded-2xl bg-gradient-to-r from-fuchsia-600 to-cyan-500 px-4 py-3 text-center text-sm font-black transition hover:scale-[1.02] hover:shadow-[0_0_25px_rgba(34,211,238,0.35)]"
+  >
+    🚀 Получить цену
+  </a>
+</div>
               </article>
             ))}
           </div>
