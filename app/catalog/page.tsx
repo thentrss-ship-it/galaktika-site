@@ -134,9 +134,11 @@ export default function CatalogPage() {
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5">
             {filtered.map((product) => (
               <article
+              
                 key={product.id}
-                className="group flex min-h-[265px] flex-col rounded-[24px] border border-white/10 bg-zinc-950/80 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-fuchsia-500/40 hover:shadow-[0_0_35px_rgba(217,70,239,0.18)]"
+                className="group relative flex min-h-[285px] flex-col overflow-hidden rounded-[28px] border border-white/10 bg-gradient-to-b from-zinc-950 to-black p-4 transition-all duration-500 hover:-translate-y-2 hover:border-cyan-400/50 hover:shadow-[0_0_45px_rgba(34,211,238,0.22)]"
               >
+                <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_top,rgba(34,211,238,0.16),transparent_45%)]" />
                 <div className="flex h-20 items-center justify-center rounded-[20px] border border-white/10 bg-gradient-to-br from-zinc-900 to-black p-3 text-center">
                   <div>
                     <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-cyan-300">
