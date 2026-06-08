@@ -60,17 +60,22 @@ const searchableText = normalizeSearch(
               B2B Catalog
             </div>
 
-            <h1 className="text-5xl font-black leading-tight md:text-7xl">
-              Каталог
-              <span className="bg-gradient-to-r from-fuchsia-400 to-cyan-300 bg-clip-text text-transparent">
-                {' '}ГАЛАКТИКА
-              </span>
-            </h1>
+           <h1 className="text-5xl font-black leading-tight md:text-7xl">
+  Каталог
+  <span className="bg-gradient-to-r from-fuchsia-400 to-cyan-300 bg-clip-text text-transparent">
+    {' '}ГАЛАКТИКА
+  </span>
+</h1>
 
-            <p className="mt-5 max-w-3xl text-lg leading-relaxed text-zinc-400">
-              {products.length} позиций из актуального прайса. Цены не публикуем — оставьте заявку, и менеджер отправит оптовые условия.
-            </p>
-          </div>
+<div className="mt-5">
+  <p className="max-w-3xl text-lg leading-relaxed text-zinc-400">
+    Более {products.length} позиций из актуального прайса. Цены не публикуем — отправим наличие и оптовые условия по запросу.
+  </p>
+
+  <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/10 px-4 py-2 text-sm font-bold text-cyan-300">
+    🔍 Сейчас найдено: {filtered.length}
+  </div>
+</div>
 
           <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4">
             <div className="rounded-2xl border border-white/10 bg-white/5 px-5 py-4">
