@@ -115,6 +115,16 @@ export default function CatalogPage() {
             <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2">
               Заявка в Telegram
             </span>
+            <button
+  onClick={() => {
+    setQuery('');
+    setBrand('Все');
+    setCategory('Все');
+  }}
+  className="rounded-full border border-cyan-500/20 bg-cyan-500/10 px-4 py-2 text-cyan-300 transition hover:bg-cyan-500/20"
+>
+  Сбросить фильтры
+</button>
           </div>
 <div className="mt-5 flex flex-wrap gap-3">
   {['Все', 'Geekvape', 'Vaporesso', 'Voopoo', 'Smoant'].map((item) => (
@@ -131,6 +141,30 @@ export default function CatalogPage() {
     </button>
   ))}
 </div>
+{filtered.length === 0 && (
+  <div className="mt-10 rounded-[28px] border border-fuchsia-500/20 bg-fuchsia-500/10 p-8 text-center">
+    <div className="text-5xl mb-4">🔍</div>
+
+    <h3 className="text-2xl font-black mb-3">
+      Ничего не найдено
+    </h3>
+
+    <p className="text-zinc-400 mb-6">
+      Попробуйте изменить запрос или напишите нам — поможем найти нужную позицию по прайсу.
+    </p>
+
+    <button
+      onClick={() => {
+        setQuery('');
+        setBrand('Все');
+        setCategory('Все');
+      }}
+      className="rounded-2xl bg-gradient-to-r from-fuchsia-600 to-cyan-500 px-6 py-3 font-bold"
+    >
+      Сбросить фильтры
+    </button>
+  </div>
+)}
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5">
             {filtered.map((product) => (
               <article
