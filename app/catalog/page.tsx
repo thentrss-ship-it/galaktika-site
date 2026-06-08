@@ -13,14 +13,21 @@ export default function CatalogPage() {
 
   const filtered = useMemo(() => {
     const q = query.toLowerCase().trim();
+const searchWords = q.split(/\s+/).filter(Boolean);
 
-    return products.filter((product) => {
-      const matchesSearch =
-        !q ||
-        product.name.toLowerCase().includes(q) ||
-        product.brand.toLowerCase().includes(q) ||
-        product.category.toLowerCase().includes(q) ||
-        product.section.toLowerCase().includes(q);
+return products.filter((product) => {
+  const searchableText = [
+    product.name,
+    product.brand,
+    product.category,
+    product.section,
+  ]
+    .join(' ')
+    .toLowerCase();
+
+  const matchesSearch =
+    searchWords.length === 0 ||
+    searchWords.every((word) => searchableText.includes(word));
 
       return (
         matchesSearch &&
