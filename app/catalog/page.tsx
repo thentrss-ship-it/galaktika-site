@@ -1,5 +1,7 @@
 'use client';
 
+// GALAXY CATALOG UX FIX 2026-06-17: toggle filters, active filter chips, stronger no-photo fallback.
+
 import { FormEvent, useEffect, useMemo, useState } from 'react';
 import { products, type Product } from '../../data/products';
 import { reachGoal } from '../../components/YandexMetrika';
@@ -145,6 +147,60 @@ const GLOBAL_PRIORITY_SECTIONS = [
   'COREX 3.0',
 ];
 
+
+function BrandFallbackVisual({
+  brand,
+  compact = false,
+  large = false,
+}: {
+  brand: string;
+  compact?: boolean;
+  large?: boolean;
+}) {
+  const shortBrand = brand.slice(0, 2).toUpperCase();
+  const brandKey = brand.toLowerCase();
+  const gradientByBrand: Record<string, string> = {
+    vaporesso: 'from-cyan-400/25 via-blue-500/10 to-violet-500/20 border-cyan-400/25 text-cyan-100',
+    geekvape: 'from-orange-400/25 via-amber-500/10 to-red-500/20 border-orange-400/25 text-orange-100',
+    voopoo: 'from-yellow-400/25 via-amber-500/10 to-orange-500/20 border-yellow-400/25 text-yellow-100',
+    smoant: 'from-yellow-300/25 via-orange-500/10 to-amber-500/20 border-yellow-300/25 text-yellow-100',
+    rincoe: 'from-emerald-400/25 via-cyan-500/10 to-blue-500/20 border-emerald-400/25 text-emerald-100',
+  };
+  const accent = gradientByBrand[brandKey] ?? 'from-cyan-400/25 via-violet-500/10 to-blue-500/20 border-cyan-400/25 text-cyan-100';
+
+  if (compact) {
+    return (
+      <div className={`relative z-10 flex h-full items-center justify-center overflow-hidden bg-gradient-to-br ${accent}`}>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_46%,rgba(34,211,238,0.24),transparent_40%)]" />
+        <div className="absolute left-1/2 top-1/2 h-16 w-16 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/10 blur-2xl" />
+        <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-black/50 text-lg font-black backdrop-blur-xl">
+          {shortBrand}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className={`relative z-10 flex h-full min-h-full items-center justify-center overflow-hidden p-7 text-center bg-gradient-to-br ${accent}`}>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_44%,rgba(34,211,238,0.24),transparent_34%),radial-gradient(circle_at_80%_18%,rgba(139,92,246,0.20),transparent_28%)]" />
+      <div className="absolute left-1/2 top-1/2 h-44 w-44 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/10 blur-3xl" />
+      <div className="absolute bottom-8 left-1/2 h-px w-56 -translate-x-1/2 bg-gradient-to-r from-transparent via-white/65 to-transparent" />
+      <div className="relative">
+        <div className={`${large ? 'h-36 w-36 rounded-[40px] text-5xl' : 'h-28 w-28 rounded-[32px] text-4xl'} relative mx-auto flex items-center justify-center border border-white/15 bg-black/55 font-black shadow-[0_0_70px_rgba(34,211,238,0.20)] backdrop-blur-xl`}>
+          <div className="absolute inset-0 rounded-[inherit] bg-gradient-to-br from-white/12 to-transparent" />
+          <span className="relative">{shortBrand}</span>
+        </div>
+        <div className={`${large ? 'mt-6 text-sm' : 'mt-5 text-xs'} font-black uppercase tracking-[0.24em] text-white/80`}>
+          Фото скоро
+        </div>
+        <div className={`${large ? 'max-w-[260px] text-sm' : 'max-w-[190px] text-xs'} mx-auto mt-2 leading-relaxed text-white/45`}>
+          Товар уже можно добавить в запрос и уточнить наличие у менеджера
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ProductTile({
   product,
   onLead,
@@ -170,7 +226,6 @@ function ProductTile({
   };
 
   const brandAccent = accentByBrand[brandKey] ?? 'from-cyan-400/25 via-violet-500/10 to-blue-500/20 border-cyan-400/25 text-cyan-100';
-  const shortBrand = product.brand.slice(0, 2).toUpperCase();
   const displayName = cleanProductName(product);
 
   return (
@@ -218,24 +273,15 @@ function ProductTile({
           <img
             src={productImage(product)}
             alt={product.name}
-            onError={() => setImageFailed(true)}
+            loading="lazy"
+            onError={(event) => {
+              event.currentTarget.style.display = 'none';
+              setImageFailed(true);
+            }}
             className="relative z-10 mx-auto h-full w-full scale-110 object-contain p-3 transition duration-700 group-hover:scale-[1.18]"
           />
         ) : (
-          <div className="relative z-10 flex h-full items-center justify-center p-8 text-center">
-            <div className="relative">
-              <div className="absolute inset-0 rounded-full bg-cyan-400/20 blur-3xl" />
-              <div className="relative mx-auto flex h-28 w-28 items-center justify-center rounded-[32px] border border-cyan-400/25 bg-black/55 text-4xl font-black text-cyan-100 shadow-[0_0_55px_rgba(34,211,238,0.18)] backdrop-blur-xl">
-                {shortBrand}
-              </div>
-              <div className="mt-5 text-xs font-black uppercase tracking-[0.22em] text-cyan-200/70">
-                Фото скоро
-              </div>
-              <div className="mt-2 max-w-[180px] text-xs leading-relaxed text-zinc-400">
-                Изображение товара добавим в каталог
-              </div>
-            </div>
-          </div>
+          <BrandFallbackVisual brand={product.brand} />
         )}
       </button>
 
@@ -322,7 +368,6 @@ function ProductPreviewModal({
 }) {
   const [imageFailed, setImageFailed] = useState(false);
   const displayName = cleanProductName(product);
-  const shortBrand = product.brand.slice(0, 2).toUpperCase();
 
   return (
     <div className="fixed inset-0 z-[997] flex items-center justify-center bg-black/82 px-4 py-6 text-white backdrop-blur-2xl">
@@ -349,23 +394,15 @@ function ProductPreviewModal({
               <img
                 src={productImage(product)}
                 alt={product.name}
-                onError={() => setImageFailed(true)}
+                loading="lazy"
+                onError={(event) => {
+                  event.currentTarget.style.display = 'none';
+                  setImageFailed(true);
+                }}
                 className="relative z-10 mx-auto h-full min-h-[360px] w-full object-contain p-3 drop-shadow-[0_28px_60px_rgba(34,211,238,0.12)]"
               />
             ) : (
-              <div className="relative z-10 flex min-h-[360px] items-center justify-center text-center">
-                <div>
-                  <div className="relative mx-auto flex h-32 w-32 items-center justify-center rounded-[36px] border border-cyan-400/25 bg-black/55 text-5xl font-black text-cyan-100 shadow-[0_0_70px_rgba(34,211,238,0.18)] backdrop-blur-xl">
-                    {shortBrand}
-                  </div>
-                  <div className="mt-6 text-sm font-black uppercase tracking-[0.24em] text-cyan-200/75">
-                    Фото скоро
-                  </div>
-                  <div className="mx-auto mt-2 max-w-[230px] text-sm leading-relaxed text-zinc-400">
-                    Карточку с фото добавим в каталог. Товар уже можно запросить у менеджера.
-                  </div>
-                </div>
-              </div>
+              <BrandFallbackVisual brand={product.brand} large />
             )}
           </div>
 
@@ -462,7 +499,6 @@ function RequestItemRow({
 }) {
   const [imageFailed, setImageFailed] = useState(false);
   const displayName = cleanProductName(product);
-  const shortBrand = product.brand.slice(0, 2).toUpperCase();
 
   return (
     <div className="group grid gap-3 rounded-[24px] border border-white/10 bg-black/42 p-3 transition hover:border-cyan-400/25 hover:bg-white/[0.045] sm:grid-cols-[86px_1fr_auto] sm:items-center">
@@ -477,13 +513,15 @@ function RequestItemRow({
           <img
             src={productImage(product)}
             alt={product.name}
-            onError={() => setImageFailed(true)}
+            loading="lazy"
+            onError={(event) => {
+              event.currentTarget.style.display = 'none';
+              setImageFailed(true);
+            }}
             className="relative z-10 h-full w-full object-contain p-2 transition duration-500 group-hover:scale-110"
           />
         ) : (
-          <div className="relative z-10 flex h-full items-center justify-center text-lg font-black text-cyan-100">
-            {shortBrand}
-          </div>
+          <BrandFallbackVisual brand={product.brand} compact />
         )}
       </button>
 
@@ -1020,6 +1058,48 @@ export default function CatalogPage() {
     brand === 'Все'
       ? 'Выберите бренд — и здесь останутся только его модели и линейки.'
       : 'Подсказки обновлены под выбранный бренд.';
+
+
+  const hasActiveFilters =
+    Boolean(query.trim()) ||
+    brand !== 'Все' ||
+    category !== 'Все' ||
+    section !== 'Все' ||
+    status !== 'Все' ||
+    sort !== 'Умная сортировка';
+
+  const clearQuery = () => {
+    setQuery('');
+    setVisibleCount(PAGE_SIZE);
+  };
+
+  const clearBrand = () => {
+    setBrand('Все');
+    setSection('Все');
+    setVisibleCount(PAGE_SIZE);
+  };
+
+  const clearCategory = () => {
+    setCategory('Все');
+    setSection('Все');
+    setVisibleCount(PAGE_SIZE);
+  };
+
+  const clearSection = () => {
+    setSection('Все');
+    setVisibleCount(PAGE_SIZE);
+  };
+
+  const clearStatus = () => {
+    setStatus('Все');
+    setSection('Все');
+    setVisibleCount(PAGE_SIZE);
+  };
+
+  const clearSort = () => {
+    setSort('Умная сортировка');
+    setVisibleCount(PAGE_SIZE);
+  };
 
   return (
     <>
@@ -1577,39 +1657,78 @@ export default function CatalogPage() {
               </div>
             </div>
 
-            {(query || brand !== 'Все' || category !== 'Все' || section !== 'Все' || status !== 'Все' || sort !== 'Умная сортировка') && (
-              <div className="mt-5 flex flex-wrap items-center gap-2 text-xs font-bold text-zinc-400">
-                <span className="mr-1 uppercase tracking-[0.18em] text-zinc-600">Активно:</span>
-                {query && (
-                  <span className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-cyan-100">
-                    Поиск: {query}
-                  </span>
-                )}
-                {brand !== 'Все' && (
-                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-white">
-                    Бренд: {brand}
-                  </span>
-                )}
-                {category !== 'Все' && (
-                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-white">
-                    Категория: {category}
-                  </span>
-                )}
-                {section !== 'Все' && (
-                  <span className="rounded-full border border-violet-400/20 bg-violet-400/10 px-3 py-1 text-violet-100">
-                    Серия: {section}
-                  </span>
-                )}
-                {status !== 'Все' && (
-                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-white">
-                    {status}
-                  </span>
-                )}
-                {sort !== 'Умная сортировка' && (
-                  <span className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-cyan-100">
-                    Сортировка: {sort}
-                  </span>
-                )}
+            {hasActiveFilters && (
+              <div className="mt-5 rounded-[24px] border border-cyan-400/15 bg-cyan-400/[0.045] p-4 shadow-[0_0_45px_rgba(34,211,238,0.08)]">
+                <div className="mb-3 flex items-center justify-between gap-3">
+                  <div className="text-[11px] font-black uppercase tracking-[0.22em] text-cyan-300/70">
+                    Активные фильтры
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={resetFilters}
+                    className="text-xs font-black text-cyan-200 transition hover:text-white"
+                  >
+                    Сбросить все
+                  </button>
+                </div>
+
+                <div className="flex flex-wrap gap-2 text-xs font-black">
+                  {query.trim() && (
+                    <button
+                      type="button"
+                      onClick={clearQuery}
+                      className="rounded-full border border-cyan-400/25 bg-cyan-400/12 px-3 py-2 text-cyan-100 transition hover:border-cyan-300/60 hover:bg-cyan-400/18"
+                    >
+                      Поиск: {query} ×
+                    </button>
+                  )}
+                  {brand !== 'Все' && (
+                    <button
+                      type="button"
+                      onClick={clearBrand}
+                      className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-2 text-white transition hover:border-cyan-300/50 hover:bg-white/[0.09]"
+                    >
+                      Бренд: {brand} ×
+                    </button>
+                  )}
+                  {category !== 'Все' && (
+                    <button
+                      type="button"
+                      onClick={clearCategory}
+                      className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-2 text-white transition hover:border-cyan-300/50 hover:bg-white/[0.09]"
+                    >
+                      Категория: {category} ×
+                    </button>
+                  )}
+                  {section !== 'Все' && (
+                    <button
+                      type="button"
+                      onClick={clearSection}
+                      className="rounded-full border border-violet-400/25 bg-violet-400/12 px-3 py-2 text-violet-100 transition hover:border-violet-300/60 hover:bg-violet-400/18"
+                    >
+                      Серия: {section} ×
+                    </button>
+                  )}
+                  {status !== 'Все' && (
+                    <button
+                      type="button"
+                      onClick={clearStatus}
+                      className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-2 text-white transition hover:border-cyan-300/50 hover:bg-white/[0.09]"
+                    >
+                      {status} ×
+                    </button>
+                  )}
+                  {sort !== 'Умная сортировка' && (
+                    <button
+                      type="button"
+                      onClick={clearSort}
+                      className="rounded-full border border-cyan-400/25 bg-cyan-400/12 px-3 py-2 text-cyan-100 transition hover:border-cyan-300/60 hover:bg-cyan-400/18"
+                    >
+                      Сортировка: {sort} ×
+                    </button>
+                  )}
+                </div>
               </div>
             )}
 
