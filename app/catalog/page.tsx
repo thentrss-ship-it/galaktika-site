@@ -930,19 +930,25 @@ export default function CatalogPage() {
   };
 
   const chooseBrand = (value: string) => {
-    setBrand(value);
+    const nextBrand = brand === value && value !== 'Все' ? 'Все' : value;
+
+    setBrand(nextBrand);
     setSection('Все');
     setVisibleCount(PAGE_SIZE);
   };
 
   const chooseCategory = (value: string) => {
-    setCategory(value);
+    const nextCategory = category === value && value !== 'Все' ? 'Все' : value;
+
+    setCategory(nextCategory);
     setSection('Все');
     setVisibleCount(PAGE_SIZE);
   };
 
   const chooseStatus = (value: string) => {
-    setStatus(value);
+    const nextStatus = status === value && value !== 'Все' ? 'Все' : value;
+
+    setStatus(nextStatus);
     setSection('Все');
     setVisibleCount(PAGE_SIZE);
   };
@@ -953,12 +959,16 @@ export default function CatalogPage() {
   };
 
   const chooseSection = (value: string) => {
-    setSection(value);
+    const nextSection = section === value && value !== 'Все' ? 'Все' : value;
+
+    setSection(nextSection);
     setVisibleCount(PAGE_SIZE);
   };
 
   const setPopularQuery = (value: string) => {
-    setQuery(value);
+    const nextQuery = normalizeSearch(query) === normalizeSearch(value) ? '' : value;
+
+    setQuery(nextQuery);
     setVisibleCount(PAGE_SIZE);
   };
 
