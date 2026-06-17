@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = "https://galaxyopt.ru";
+  const baseUrl = "https://www.galaxyopt.ru";
 
   return {
     rules: {
