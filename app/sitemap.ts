@@ -1,25 +1,26 @@
-import type { MetadataRoute } from 'next';
+import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.galaxyopt.ru';
+  const baseUrl = "https://www.galaxyopt.ru";
+  const currentDate = new Date();
 
   return [
     {
-      url: `${baseUrl}/`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
+      url: baseUrl,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: `${baseUrl}/catalog`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
+      lastModified: currentDate,
+      changeFrequency: "daily",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/contacts`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
+      lastModified: currentDate,
+      changeFrequency: "monthly",
       priority: 0.7,
     },
   ];
