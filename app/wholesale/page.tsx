@@ -130,6 +130,7 @@ export default function WholesalePage() {
             <a href="/" className="transition hover:text-cyan-300">Главная</a>
             <a href="/catalog" className="transition hover:text-cyan-300">Каталог</a>
             <a href="/wholesale" className="text-cyan-300">Оптовый заказ</a>
+            <a href="/delivery" className="transition hover:text-cyan-300">Доставка</a>
             <a href="/contacts" className="transition hover:text-cyan-300">Контакты</a>
           </nav>
 

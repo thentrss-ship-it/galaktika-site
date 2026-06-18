@@ -1331,13 +1331,13 @@ export default function CatalogPage() {
               </div>
             </a>
 
-            <nav className="hidden items-center gap-9 text-sm font-medium text-white/80 lg:flex">
+            <nav className="hidden items-center gap-7 text-sm font-medium text-white/80 lg:flex">
               <a href="/catalog" className="text-cyan-300">Каталог</a>
+              <a href="/wholesale" className="transition hover:text-cyan-300">Оптовый заказ</a>
+              <a href="/delivery" className="transition hover:text-cyan-300">Доставка</a>
               <a href="/#brands" className="transition hover:text-cyan-300">Бренды</a>
               <a href="/#about" className="transition hover:text-cyan-300">О нас</a>
-              <a href="/#terms" className="transition hover:text-cyan-300">Условия</a>
-              <a href="/#delivery" className="transition hover:text-cyan-300">Доставка</a>
-              <a href="/#contacts" className="transition hover:text-cyan-300">Контакты</a>
+              <a href="/contacts" className="transition hover:text-cyan-300">Контакты</a>
             </nav>
 
             <div className="flex items-center gap-3">
@@ -1375,8 +1375,10 @@ export default function CatalogPage() {
               <nav className="mx-auto grid max-w-7xl gap-2 text-sm font-bold text-white/85">
                 <a href="/" onClick={() => setIsMobileMenuOpen(false)} className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 transition hover:border-cyan-400/30 hover:text-cyan-200">Главная</a>
                 <a href="/catalog" onClick={() => setIsMobileMenuOpen(false)} className="rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-4 py-3 text-cyan-200">Каталог</a>
+                <a href="/wholesale" onClick={() => setIsMobileMenuOpen(false)} className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 transition hover:border-cyan-400/30 hover:text-cyan-200">Оптовый заказ</a>
+                <a href="/delivery" onClick={() => setIsMobileMenuOpen(false)} className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 transition hover:border-cyan-400/30 hover:text-cyan-200">Доставка</a>
                 <a href="/#brands" onClick={() => setIsMobileMenuOpen(false)} className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 transition hover:border-cyan-400/30 hover:text-cyan-200">Бренды</a>
-                <a href="/#terms" onClick={() => setIsMobileMenuOpen(false)} className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 transition hover:border-cyan-400/30 hover:text-cyan-200">Условия</a>
+                <a href="/contacts" onClick={() => setIsMobileMenuOpen(false)} className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 transition hover:border-cyan-400/30 hover:text-cyan-200">Контакты</a>
                 <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="mt-2 rounded-2xl border border-cyan-400/25 bg-gradient-to-r from-cyan-950/50 to-violet-950/40 px-4 py-3 text-cyan-100">✈ Написать в Telegram</a>
               </nav>
             </div>
@@ -1807,8 +1809,9 @@ export default function CatalogPage() {
               <div className="grid gap-2 text-sm text-zinc-400">
                 <a href="/" className="transition hover:text-cyan-300">Главная</a>
                 <a href="/catalog" className="transition hover:text-cyan-300">Каталог</a>
-                <a href="/#brands" className="transition hover:text-cyan-300">Бренды</a>
-                <a href="/#delivery" className="transition hover:text-cyan-300">Доставка</a>
+                <a href="/wholesale" className="transition hover:text-cyan-300">Оптовый заказ</a>
+                <a href="/delivery" className="transition hover:text-cyan-300">Доставка</a>
+                <a href="/contacts" className="transition hover:text-cyan-300">Контакты</a>
               </div>
             </div>
             <div>

@@ -80,12 +80,12 @@ export default function ContactsPage() {
             </div>
           </a>
 
-          <nav className="hidden items-center gap-9 text-sm font-medium text-white/80 lg:flex">
+          <nav className="hidden items-center gap-7 text-sm font-medium text-white/80 lg:flex">
             <a href="/" className="transition hover:text-cyan-300">Главная</a>
             <a href="/catalog" className="transition hover:text-cyan-300">Каталог</a>
+            <a href="/wholesale" className="transition hover:text-cyan-300">Оптовый заказ</a>
+            <a href="/delivery" className="transition hover:text-cyan-300">Доставка</a>
             <a href="/#brands" className="transition hover:text-cyan-300">Бренды</a>
-            <a href="/#terms" className="transition hover:text-cyan-300">Условия</a>
-            <a href="/#delivery" className="transition hover:text-cyan-300">Доставка</a>
             <a href="/contacts" className="text-cyan-300">Контакты</a>
           </nav>
 

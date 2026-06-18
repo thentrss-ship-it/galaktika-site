@@ -112,6 +112,7 @@ export default function DeliveryPage() {
             <nav className="hidden items-center gap-6 text-sm font-bold text-white/75 md:flex">
               <a href="/catalog" className="transition hover:text-cyan-300">Каталог</a>
               <a href="/wholesale" className="transition hover:text-cyan-300">Оптовый заказ</a>
+              <a href="/delivery" className="text-cyan-300">Доставка</a>
               <a href="/contacts" className="transition hover:text-cyan-300">Контакты</a>
             </nav>
 

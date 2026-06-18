@@ -479,9 +479,15 @@ export default function GalaktikaVapeSite() {
               </div>
             </a>
 
-            <nav className="hidden items-center gap-9 text-sm font-medium text-white/80 lg:flex">
-              <a href="/catalog" className="text-cyan-300">
+            <nav className="hidden items-center gap-7 text-sm font-medium text-white/80 lg:flex">
+              <a href="/catalog" className="transition hover:text-cyan-300">
                 Каталог
+              </a>
+              <a href="/wholesale" className="transition hover:text-cyan-300">
+                Оптовый заказ
+              </a>
+              <a href="/delivery" className="transition hover:text-cyan-300">
+                Доставка
               </a>
               <a href="#brands" className="transition hover:text-cyan-300">
                 Бренды
@@ -489,13 +495,7 @@ export default function GalaktikaVapeSite() {
               <a href="#about" className="transition hover:text-cyan-300">
                 О нас
               </a>
-              <a href="#terms" className="transition hover:text-cyan-300">
-                Условия
-              </a>
-              <a href="#delivery" className="transition hover:text-cyan-300">
-                Доставка
-              </a>
-              <a href="#contacts" className="transition hover:text-cyan-300">
+              <a href="/contacts" className="transition hover:text-cyan-300">
                 Контакты
               </a>
             </nav>
@@ -543,6 +543,20 @@ export default function GalaktikaVapeSite() {
                   Каталог
                 </a>
                 <a
+                  href="/wholesale"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 transition hover:border-cyan-400/30 hover:text-cyan-200"
+                >
+                  Оптовый заказ
+                </a>
+                <a
+                  href="/delivery"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 transition hover:border-cyan-400/30 hover:text-cyan-200"
+                >
+                  Доставка
+                </a>
+                <a
                   href="#brands"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 transition hover:border-cyan-400/30 hover:text-cyan-200"
@@ -557,21 +571,7 @@ export default function GalaktikaVapeSite() {
                   О нас
                 </a>
                 <a
-                  href="#terms"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 transition hover:border-cyan-400/30 hover:text-cyan-200"
-                >
-                  Условия
-                </a>
-                <a
-                  href="#delivery"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 transition hover:border-cyan-400/30 hover:text-cyan-200"
-                >
-                  Доставка
-                </a>
-                <a
-                  href="#contacts"
+                  href="/contacts"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 transition hover:border-cyan-400/30 hover:text-cyan-200"
                 >
@@ -1217,17 +1217,17 @@ export default function GalaktikaVapeSite() {
                   <a href="/catalog" className="block transition hover:text-cyan-300">
                     Каталог
                   </a>
+                  <a href="/wholesale" className="block transition hover:text-cyan-300">
+                    Оптовый заказ
+                  </a>
+                  <a href="/delivery" className="block transition hover:text-cyan-300">
+                    Доставка
+                  </a>
                   <a href="#brands" className="block transition hover:text-cyan-300">
                     Бренды
                   </a>
-                  <a href="#about" className="block transition hover:text-cyan-300">
-                    Почему мы
-                  </a>
-                  <a href="#terms" className="block transition hover:text-cyan-300">
-                    Условия
-                  </a>
-                  <a href="#delivery" className="block transition hover:text-cyan-300">
-                    Доставка
+                  <a href="/contacts" className="block transition hover:text-cyan-300">
+                    Контакты
                   </a>
                 </div>
               </div>
