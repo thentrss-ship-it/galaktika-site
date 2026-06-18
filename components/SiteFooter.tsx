@@ -15,26 +15,28 @@ const terms = [
   "Связь через Telegram",
 ];
 
+const bottomMeta = ["Москва", "Отгрузка по России", "Минимальный заказ от 20 000 ₽"];
+
 export default function SiteFooter() {
   return (
-    <footer className="galaxy-footer relative overflow-hidden border-t border-white/10 bg-black px-5 pb-8 pt-14 text-white lg:px-6 lg:pt-18">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_0%,rgba(34,211,238,0.12),transparent_30%),radial-gradient(circle_at_86%_0%,rgba(139,92,246,0.12),transparent_34%)]" />
+    <footer className="galaxy-footer relative overflow-hidden border-t border-white/10 bg-black px-5 pb-8 pt-12 text-white lg:px-6 lg:pt-16">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_0%,rgba(34,211,238,0.10),transparent_30%),radial-gradient(circle_at_86%_0%,rgba(139,92,246,0.10),transparent_34%)]" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/45 to-transparent" />
 
       <div className="relative mx-auto max-w-7xl">
-        <div className="mb-12 overflow-hidden rounded-[34px] border border-cyan-400/18 bg-white/[0.035] p-6 shadow-[0_0_70px_rgba(34,211,238,0.08)] backdrop-blur-2xl md:p-8">
-          <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-cyan-500/14 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-24 left-0 h-64 w-64 rounded-full bg-violet-500/14 blur-3xl" />
+        <div className="mb-10 overflow-hidden rounded-[30px] border border-cyan-400/16 bg-white/[0.028] p-5 shadow-[0_0_54px_rgba(34,211,238,0.07)] backdrop-blur-2xl md:p-7">
+          <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-cyan-500/12 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-24 left-0 h-56 w-56 rounded-full bg-violet-500/12 blur-3xl" />
 
-          <div className="relative grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div className="relative grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
               <div className="mb-3 text-xs font-black uppercase tracking-[0.28em] text-cyan-300">
                 B2B contact
               </div>
-              <h2 className="max-w-3xl text-3xl font-black uppercase leading-tight md:text-4xl">
+              <h2 className="max-w-3xl text-2xl font-black uppercase leading-tight md:text-3xl">
                 Получите оптовый прайс и актуальное наличие
               </h2>
-              <p className="mt-4 max-w-2xl leading-relaxed text-zinc-400">
+              <p className="mt-3 max-w-2xl leading-relaxed text-zinc-400">
                 Напишите менеджеру в Telegram — отправим условия, наличие и поможем собрать заказ под формат вашего магазина или сети.
               </p>
             </div>
@@ -44,7 +46,7 @@ export default function SiteFooter() {
                 href={TELEGRAM_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="group relative overflow-hidden rounded-[22px] bg-gradient-to-r from-violet-600 via-blue-500 to-cyan-400 px-7 py-5 text-center text-base font-black shadow-[0_0_45px_rgba(34,211,238,0.25)] transition hover:scale-[1.02] hover:shadow-[0_0_65px_rgba(34,211,238,0.38)]"
+                className="group relative overflow-hidden rounded-[20px] bg-gradient-to-r from-violet-600 via-blue-500 to-cyan-400 px-6 py-4 text-center text-sm font-black shadow-[0_0_38px_rgba(34,211,238,0.22)] transition hover:scale-[1.02] hover:shadow-[0_0_55px_rgba(34,211,238,0.34)]"
               >
                 <span className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent transition duration-700 group-hover:translate-x-[100%]" />
                 <span className="relative">Написать менеджеру →</span>
@@ -52,7 +54,7 @@ export default function SiteFooter() {
 
               <a
                 href="/catalog"
-                className="rounded-[22px] border border-white/10 bg-black/35 px-7 py-5 text-center text-base font-black text-zinc-200 transition hover:border-cyan-400/40 hover:bg-white/[0.06] hover:text-white"
+                className="rounded-[20px] border border-white/10 bg-black/35 px-6 py-4 text-center text-sm font-black text-zinc-200 transition hover:border-cyan-400/40 hover:bg-white/[0.06] hover:text-white"
               >
                 Перейти в каталог
               </a>
@@ -143,12 +145,13 @@ export default function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs font-medium text-zinc-600 md:flex-row md:items-center md:justify-between">
+        <div className="galaxy-footer-bottom">
           <div>© 2026 ГАЛАКТИКА. B2B-поставки для магазинов.</div>
-          <div className="flex flex-wrap gap-x-5 gap-y-2">
-            <span>Москва</span>
-            <span>Отгрузка по России</span>
-            <span>Минимальный заказ от 20 000 ₽</span>
+
+          <div className="galaxy-footer-meta">
+            {bottomMeta.map((item) => (
+              <span key={item}>{item}</span>
+            ))}
           </div>
         </div>
       </div>
@@ -161,6 +164,32 @@ export default function SiteFooter() {
           align-items: start;
         }
 
+        .galaxy-footer-bottom {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          gap: 24px;
+          margin-top: 48px;
+          border-top: 1px solid rgba(255, 255, 255, 0.10);
+          padding-top: 24px;
+          color: rgb(82, 82, 91);
+          font-size: 12px;
+          font-weight: 600;
+        }
+
+        .galaxy-footer-meta {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: flex-end;
+          gap: 10px 22px;
+          text-align: right;
+        }
+
+        .galaxy-footer-meta span {
+          white-space: nowrap;
+        }
+
         @media (max-width: 1023px) {
           .galaxy-footer-grid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -169,6 +198,16 @@ export default function SiteFooter() {
 
           .galaxy-footer-brand {
             grid-column: 1 / -1;
+          }
+
+          .galaxy-footer-bottom {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+
+          .galaxy-footer-meta {
+            justify-content: flex-start;
+            text-align: left;
           }
         }
 
@@ -180,6 +219,15 @@ export default function SiteFooter() {
 
           .galaxy-footer-brand {
             grid-column: auto;
+          }
+
+          .galaxy-footer-bottom {
+            margin-top: 36px;
+          }
+
+          .galaxy-footer-meta {
+            display: grid;
+            gap: 8px;
           }
         }
       `}</style>
