@@ -17,13 +17,43 @@ const navItems: Array<{
   label: string;
   href: string;
   key?: ActivePage;
+  description: string;
 }> = [
-  { label: "Главная", href: "/", key: "home" },
-  { label: "Каталог", href: "/catalog", key: "catalog" },
-  { label: "Оптовый заказ", href: "/wholesale", key: "wholesale" },
-  { label: "Доставка", href: "/delivery", key: "delivery" },
-  { label: "Бренды", href: "/#brands" },
-  { label: "Контакты", href: "/contacts", key: "contacts" },
+  {
+    label: "Главная",
+    href: "/",
+    key: "home",
+    description: "Основная страница",
+  },
+  {
+    label: "Каталог",
+    href: "/catalog",
+    key: "catalog",
+    description: "Товары и запрос цен",
+  },
+  {
+    label: "Оптовый заказ",
+    href: "/wholesale",
+    key: "wholesale",
+    description: "Как начать закупку",
+  },
+  {
+    label: "Доставка",
+    href: "/delivery",
+    key: "delivery",
+    description: "Москва и регионы",
+  },
+  {
+    label: "Бренды",
+    href: "/#brands",
+    description: "Популярные бренды",
+  },
+  {
+    label: "Контакты",
+    href: "/contacts",
+    key: "contacts",
+    description: "Связь с менеджером",
+  },
 ];
 
 export default function SiteHeader({
@@ -123,7 +153,7 @@ export default function SiteHeader({
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen((value) => !value)}
-              className="galaxy-mobile-menu-button h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-xl font-black text-white shadow-[0_0_24px_rgba(34,211,238,0.12)] transition hover:border-cyan-400/45 hover:bg-white/[0.08]"
+              className="galaxy-mobile-menu-button h-11 w-11 items-center justify-center rounded-2xl border border-cyan-400/25 bg-black/55 text-xl font-black text-white shadow-[0_0_24px_rgba(34,211,238,0.18)] transition hover:border-cyan-400/45 hover:bg-white/[0.08]"
               aria-label="Открыть меню"
               aria-expanded={isMobileMenuOpen}
             >
@@ -131,10 +161,37 @@ export default function SiteHeader({
             </button>
           </div>
         </div>
+      </header>
 
-        {isMobileMenuOpen && (
-          <div className="galaxy-mobile-menu border-t border-white/10 bg-black/95 px-5 py-5 shadow-[0_24px_60px_rgba(0,0,0,0.55)] backdrop-blur-2xl">
-            <nav className="mx-auto grid max-w-7xl gap-2 text-sm font-bold text-white/85">
+      {isMobileMenuOpen && (
+        <div className="galaxy-mobile-menu-panel">
+          <div className="galaxy-mobile-menu-card">
+            <div className="pointer-events-none absolute -left-16 -top-16 h-48 w-48 rounded-full bg-cyan-500/16 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-20 right-0 h-56 w-56 rounded-full bg-violet-500/18 blur-3xl" />
+            <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-cyan-200/45 to-transparent" />
+
+            <div className="relative mb-4 flex items-center justify-between gap-4">
+              <div>
+                <div className="text-[11px] font-black uppercase tracking-[0.28em] text-cyan-300">
+                  Menu
+                </div>
+                <div className="mt-1 text-xl font-black uppercase tracking-[0.08em] text-white">
+                  ГАЛАКТИКА
+                </div>
+              </div>
+
+              <a
+                href={TELEGRAM_URL}
+                target="_blank"
+                rel="noreferrer"
+                onClick={closeMobileMenu}
+                className="rounded-2xl border border-cyan-400/25 bg-cyan-400/10 px-4 py-3 text-sm font-black text-cyan-100 shadow-[0_0_28px_rgba(34,211,238,0.16)]"
+              >
+                Telegram
+              </a>
+            </div>
+
+            <nav className="relative grid gap-2.5">
               {navItems.map((item) => {
                 const isActive = item.key === active;
 
@@ -145,28 +202,57 @@ export default function SiteHeader({
                     onClick={closeMobileMenu}
                     className={
                       isActive
-                        ? "rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-4 py-3 text-cyan-200"
-                        : "rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 transition hover:border-cyan-400/30 hover:text-cyan-200"
+                        ? "group rounded-[22px] border border-cyan-400/30 bg-gradient-to-r from-cyan-400/16 to-violet-500/10 px-4 py-3.5 text-cyan-100 shadow-[0_0_30px_rgba(34,211,238,0.12)]"
+                        : "group rounded-[22px] border border-white/10 bg-white/[0.045] px-4 py-3.5 text-white/88 transition hover:border-cyan-400/30 hover:bg-white/[0.07] hover:text-cyan-100"
                     }
                   >
-                    {item.label}
+                    <div className="flex items-center justify-between gap-4">
+                      <div>
+                        <div className="text-base font-black leading-tight">
+                          {item.label}
+                        </div>
+                        <div className="mt-1 text-xs font-medium text-zinc-500 group-hover:text-zinc-400">
+                          {item.description}
+                        </div>
+                      </div>
+
+                      <span
+                        className={
+                          isActive
+                            ? "flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl border border-cyan-300/25 bg-cyan-400/15 text-cyan-100"
+                            : "flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-black/30 text-zinc-500 transition group-hover:border-cyan-400/25 group-hover:text-cyan-100"
+                        }
+                      >
+                        →
+                      </span>
+                    </div>
                   </a>
                 );
               })}
+            </nav>
+
+            <div className="relative mt-4 rounded-[24px] border border-white/10 bg-black/45 p-4">
+              <div className="text-sm font-black text-white">
+                Оптовый прайс и наличие
+              </div>
+              <div className="mt-1 text-xs leading-relaxed text-zinc-500">
+                Напишите менеджеру — отправим актуальные условия и поможем собрать заказ.
+              </div>
 
               <a
                 href={TELEGRAM_URL}
                 target="_blank"
                 rel="noreferrer"
                 onClick={closeMobileMenu}
-                className="mt-2 rounded-2xl border border-cyan-400/25 bg-gradient-to-r from-cyan-950/50 to-violet-950/40 px-4 py-3 text-cyan-100"
+                className="mt-4 flex items-center justify-between rounded-[20px] bg-gradient-to-r from-violet-600 via-blue-500 to-cyan-400 px-5 py-4 text-sm font-black text-white shadow-[0_0_35px_rgba(34,211,238,0.22)]"
               >
-                ✈ Написать в Telegram
+                Написать менеджеру
+                <span>✈</span>
               </a>
-            </nav>
+            </div>
           </div>
-        )}
-      </header>
+        </div>
+      )}
 
       <style>{`
         .galaxy-desktop-nav {
@@ -178,8 +264,34 @@ export default function SiteHeader({
           display: none;
         }
 
-        .galaxy-mobile-menu {
-          display: none;
+        .galaxy-mobile-menu-panel {
+          position: fixed;
+          left: 0;
+          right: 0;
+          top: 76px;
+          z-index: 998;
+          padding: 14px 16px 18px;
+          background:
+            linear-gradient(to bottom, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0)),
+            radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.12), transparent 45%);
+          backdrop-filter: blur(18px);
+        }
+
+        .galaxy-mobile-menu-card {
+          position: relative;
+          overflow: hidden;
+          max-width: 720px;
+          margin: 0 auto;
+          border: 1px solid rgba(34, 211, 238, 0.18);
+          border-radius: 30px;
+          background:
+            linear-gradient(135deg, rgba(8, 12, 18, 0.98), rgba(3, 7, 18, 0.96)),
+            radial-gradient(circle at 10% 0%, rgba(34, 211, 238, 0.16), transparent 34%),
+            radial-gradient(circle at 90% 10%, rgba(139, 92, 246, 0.16), transparent 36%);
+          box-shadow:
+            0 28px 90px rgba(0, 0, 0, 0.72),
+            0 0 48px rgba(34, 211, 238, 0.12);
+          padding: 18px;
         }
 
         .galaxy-cta-desktop-text {
@@ -205,15 +317,21 @@ export default function SiteHeader({
           .galaxy-mobile-menu-button {
             display: flex;
           }
-
-          .galaxy-mobile-menu {
-            display: block;
-          }
         }
 
         @media (max-width: 640px) {
           .galaxy-site-header > div {
             height: 64px;
+          }
+
+          .galaxy-mobile-menu-panel {
+            top: 64px;
+            padding: 10px 10px 16px;
+          }
+
+          .galaxy-mobile-menu-card {
+            border-radius: 26px;
+            padding: 14px;
           }
 
           .galaxy-cta-desktop-text {
