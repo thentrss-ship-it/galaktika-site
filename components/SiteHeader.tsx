@@ -79,7 +79,7 @@ export default function SiteHeader({
             </div>
           </a>
 
-          <nav className="galaxy-desktop-nav flex-1 items-center justify-center gap-7 text-[15px] font-bold text-white/82 xl:gap-8">
+          <nav className="galaxy-desktop-nav flex-1 items-center justify-center text-[15px] font-bold text-white/82">
             {navItems.map((item) => {
               const isActive = item.key === active;
 
@@ -171,6 +171,7 @@ export default function SiteHeader({
       <style>{`
         .galaxy-desktop-nav {
           display: flex;
+          gap: 26px;
         }
 
         .galaxy-mobile-menu-button {
@@ -187,6 +188,13 @@ export default function SiteHeader({
 
         .galaxy-cta-mobile-text {
           display: none;
+        }
+
+        @media (max-width: 1180px) {
+          .galaxy-desktop-nav {
+            gap: 18px;
+            font-size: 13px;
+          }
         }
 
         @media (max-width: 1023px) {
