@@ -914,7 +914,15 @@ export default function CatalogPage() {
         });
       }
 
+      if (selectedProduct || selectedProducts.length > 0) {
+        localStorage.removeItem(REQUEST_STORAGE_KEY);
+      }
+
       setLeadSent(true);
+
+      window.setTimeout(() => {
+        window.location.href = '/thanks';
+      }, 350);
     } catch {
       setLeadError(
         'Не удалось отправить заявку. Проверьте интернет или напишите менеджеру в Telegram.'
