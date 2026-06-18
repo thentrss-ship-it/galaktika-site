@@ -1331,12 +1331,12 @@ export default function CatalogPage() {
               </div>
             </a>
 
-            <nav className="hidden items-center gap-7 text-sm font-medium text-white/80 lg:flex">
+            <nav className="hidden items-center gap-5 text-sm font-medium text-white/80 lg:flex xl:gap-7">
+              <a href="/" className="transition hover:text-cyan-300">Главная</a>
               <a href="/catalog" className="text-cyan-300">Каталог</a>
               <a href="/wholesale" className="transition hover:text-cyan-300">Оптовый заказ</a>
               <a href="/delivery" className="transition hover:text-cyan-300">Доставка</a>
               <a href="/#brands" className="transition hover:text-cyan-300">Бренды</a>
-              <a href="/#about" className="transition hover:text-cyan-300">О нас</a>
               <a href="/contacts" className="transition hover:text-cyan-300">Контакты</a>
             </nav>
 

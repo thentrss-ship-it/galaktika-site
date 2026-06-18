@@ -479,7 +479,10 @@ export default function GalaktikaVapeSite() {
               </div>
             </a>
 
-            <nav className="hidden items-center gap-7 text-sm font-medium text-white/80 lg:flex">
+            <nav className="hidden items-center gap-5 text-sm font-medium text-white/80 lg:flex xl:gap-7">
+              <a href="/" className="text-cyan-300">
+                Главная
+              </a>
               <a href="/catalog" className="transition hover:text-cyan-300">
                 Каталог
               </a>
@@ -491,9 +494,6 @@ export default function GalaktikaVapeSite() {
               </a>
               <a href="#brands" className="transition hover:text-cyan-300">
                 Бренды
-              </a>
-              <a href="#about" className="transition hover:text-cyan-300">
-                О нас
               </a>
               <a href="/contacts" className="transition hover:text-cyan-300">
                 Контакты
@@ -536,9 +536,16 @@ export default function GalaktikaVapeSite() {
             <div className="border-t border-white/10 bg-black/95 px-5 py-5 shadow-[0_24px_60px_rgba(0,0,0,0.55)] backdrop-blur-2xl lg:hidden">
               <nav className="mx-auto grid max-w-7xl gap-2 text-sm font-bold text-white/85">
                 <a
-                  href="/catalog"
+                  href="/"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-4 py-3 text-cyan-200"
+                >
+                  Главная
+                </a>
+                <a
+                  href="/catalog"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 transition hover:border-cyan-400/30 hover:text-cyan-200"
                 >
                   Каталог
                 </a>
@@ -562,13 +569,6 @@ export default function GalaktikaVapeSite() {
                   className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 transition hover:border-cyan-400/30 hover:text-cyan-200"
                 >
                   Бренды
-                </a>
-                <a
-                  href="#about"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 transition hover:border-cyan-400/30 hover:text-cyan-200"
-                >
-                  О нас
                 </a>
                 <a
                   href="/contacts"
