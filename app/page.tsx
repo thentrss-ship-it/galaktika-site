@@ -2,6 +2,8 @@
 
 import { FormEvent, useEffect, useState } from "react";
 import { reachGoal } from "../components/YandexMetrika";
+import SiteHeader from "../components/SiteHeader";
+import SiteFooter from "../components/SiteFooter";
 
 const TELEGRAM_URL = "https://t.me/Galaxy_Stan";
 
@@ -11,7 +13,6 @@ export default function GalaktikaVapeSite() {
   const [leadSent, setLeadSent] = useState(false);
   const [leadError, setLeadError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const [form, setForm] = useState({
     name: "",
@@ -37,7 +38,6 @@ export default function GalaktikaVapeSite() {
   const openLead = () => {
     setLeadSent(false);
     setLeadError("");
-    setIsMobileMenuOpen(false);
     setIsLeadOpen(true);
   };
 
@@ -455,143 +455,8 @@ export default function GalaktikaVapeSite() {
       )}
 
       <main className="min-h-screen overflow-hidden bg-black text-white">
-        <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur-2xl">
-          <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 lg:px-6">
-            <a href="/" className="flex items-center gap-3">
-              <div className="relative h-11 w-11">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 opacity-70 blur-lg" />
-                <div className="relative flex h-11 w-11 items-center justify-center rounded-full border border-cyan-400/40 bg-black">
-                  <img
-                    src="/logo-galaktika.png"
-                    alt="ГАЛАКТИКА"
-                    className="h-9 w-9 object-contain"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <div className="text-base font-black uppercase tracking-[0.1em] sm:text-lg">
-                  ГАЛАКТИКА
-                </div>
-                <div className="-mt-1 text-[9px] uppercase tracking-[0.16em] text-zinc-400 sm:text-[11px] sm:tracking-[0.18em]">
-                  оптовые поставки
-                </div>
-              </div>
-            </a>
-
-            <nav className="hidden items-center gap-5 text-sm font-medium text-white/80 lg:flex xl:gap-7">
-              <a href="/" className="text-cyan-300">
-                Главная
-              </a>
-              <a href="/catalog" className="transition hover:text-cyan-300">
-                Каталог
-              </a>
-              <a href="/wholesale" className="transition hover:text-cyan-300">
-                Оптовый заказ
-              </a>
-              <a href="/delivery" className="transition hover:text-cyan-300">
-                Доставка
-              </a>
-              <a href="#brands" className="transition hover:text-cyan-300">
-                Бренды
-              </a>
-              <a href="/contacts" className="transition hover:text-cyan-300">
-                Контакты
-              </a>
-            </nav>
-
-            <div className="flex items-center gap-3">
-              <a
-                href={TELEGRAM_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="hidden items-center gap-2 rounded-full px-4 py-2 text-sm font-bold transition hover:bg-white/5 md:flex"
-              >
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-cyan-500 text-white shadow-[0_0_25px_rgba(34,211,238,0.45)]">
-                  ✈
-                </span>
-                Написать в Telegram
-              </a>
-
-              <button
-                onClick={openLead}
-                className="rounded-2xl bg-gradient-to-r from-violet-600 via-blue-500 to-cyan-400 px-4 py-3 text-sm font-black shadow-[0_0_35px_rgba(34,211,238,0.25)] transition hover:scale-105 hover:shadow-[0_0_45px_rgba(34,211,238,0.4)] sm:px-5 md:px-7"
-              >
-                <span className="hidden sm:inline">Получить прайс</span>
-                <span className="sm:hidden">Прайс</span>
-              </button>
-
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-xl font-black text-white shadow-[0_0_24px_rgba(34,211,238,0.12)] transition hover:border-cyan-400/45 hover:bg-white/[0.08] lg:hidden"
-                aria-label="Открыть меню"
-                aria-expanded={isMobileMenuOpen}
-              >
-                {isMobileMenuOpen ? "×" : "☰"}
-              </button>
-            </div>
-          </div>
-
-          {isMobileMenuOpen && (
-            <div className="border-t border-white/10 bg-black/95 px-5 py-5 shadow-[0_24px_60px_rgba(0,0,0,0.55)] backdrop-blur-2xl lg:hidden">
-              <nav className="mx-auto grid max-w-7xl gap-2 text-sm font-bold text-white/85">
-                <a
-                  href="/"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-4 py-3 text-cyan-200"
-                >
-                  Главная
-                </a>
-                <a
-                  href="/catalog"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 transition hover:border-cyan-400/30 hover:text-cyan-200"
-                >
-                  Каталог
-                </a>
-                <a
-                  href="/wholesale"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 transition hover:border-cyan-400/30 hover:text-cyan-200"
-                >
-                  Оптовый заказ
-                </a>
-                <a
-                  href="/delivery"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 transition hover:border-cyan-400/30 hover:text-cyan-200"
-                >
-                  Доставка
-                </a>
-                <a
-                  href="#brands"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 transition hover:border-cyan-400/30 hover:text-cyan-200"
-                >
-                  Бренды
-                </a>
-                <a
-                  href="/contacts"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 transition hover:border-cyan-400/30 hover:text-cyan-200"
-                >
-                  Контакты
-                </a>
-                <a
-                  href={TELEGRAM_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="mt-2 rounded-2xl border border-cyan-400/25 bg-gradient-to-r from-cyan-950/50 to-violet-950/40 px-4 py-3 text-cyan-100"
-                >
-                  ✈ Написать в Telegram
-                </a>
-              </nav>
-            </div>
-          )}
-        </header>
-
-        <section className="relative min-h-[800px] overflow-hidden bg-black px-5 pb-12 pt-24 lg:px-6 lg:pt-24">
+        <SiteHeader active="home" onLead={openLead} />
+<section className="relative min-h-[800px] overflow-hidden bg-black px-5 pb-12 pt-24 lg:px-6 lg:pt-24">
           <div
             className="absolute left-1/2 top-0 h-full w-full max-w-[1780px] -translate-x-1/2 bg-cover bg-center"
             style={{ backgroundImage: "url('/hero-bg.png')" }}
@@ -1168,132 +1033,7 @@ export default function GalaktikaVapeSite() {
             </div>
           </div>
         </section>
-
-        <footer className="relative z-10 border-t border-white/10 bg-black px-5 pb-10 pt-12 lg:px-6">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_0%,rgba(34,211,238,0.10),transparent_30%),radial-gradient(circle_at_85%_20%,rgba(139,92,246,0.10),transparent_28%)]" />
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/35 to-transparent" />
-
-          <div className="relative mx-auto max-w-7xl">
-            <div className="grid gap-8 rounded-[34px] border border-white/10 bg-white/[0.025] p-6 shadow-[0_0_70px_rgba(34,211,238,0.08)] backdrop-blur-xl md:p-8 lg:grid-cols-[1.25fr_0.9fr_0.9fr_1fr]">
-              <div>
-                <a href="/" className="inline-flex items-center gap-3">
-                  <div className="relative h-12 w-12">
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 opacity-70 blur-lg" />
-                    <div className="relative flex h-12 w-12 items-center justify-center rounded-full border border-cyan-400/40 bg-black">
-                      <img
-                        src="/logo-galaktika.png"
-                        alt="ГАЛАКТИКА"
-                        className="h-10 w-10 object-contain"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="text-xl font-black uppercase tracking-[0.1em]">
-                      ГАЛАКТИКА
-                    </div>
-                    <div className="-mt-1 text-[9px] uppercase tracking-[0.16em] text-zinc-400 sm:text-[11px] sm:tracking-[0.18em]">
-                      оптовые поставки
-                    </div>
-                  </div>
-                </a>
-
-                <p className="mt-5 max-w-sm leading-relaxed text-zinc-400">
-                  Оптовые поставки vape-продукции для вейп-шопов, табачных
-                  магазинов, сетей и оптовых клиентов.
-                </p>
-
-                <div className="mt-6 inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-cyan-200">
-                  B2B only · 18+
-                </div>
-              </div>
-
-              <div>
-                <div className="mb-4 text-xs font-black uppercase tracking-[0.22em] text-cyan-300/80">
-                  Навигация
-                </div>
-
-                <div className="space-y-3 text-sm font-bold text-zinc-300">
-                  <a href="/catalog" className="block transition hover:text-cyan-300">
-                    Каталог
-                  </a>
-                  <a href="/wholesale" className="block transition hover:text-cyan-300">
-                    Оптовый заказ
-                  </a>
-                  <a href="/delivery" className="block transition hover:text-cyan-300">
-                    Доставка
-                  </a>
-                  <a href="#brands" className="block transition hover:text-cyan-300">
-                    Бренды
-                  </a>
-                  <a href="/contacts" className="block transition hover:text-cyan-300">
-                    Контакты
-                  </a>
-                </div>
-              </div>
-
-              <div>
-                <div className="mb-4 text-xs font-black uppercase tracking-[0.22em] text-violet-300/80">
-                  Работаем
-                </div>
-
-                <div className="space-y-4">
-                  <div>
-                    <div className="text-sm text-zinc-500">Склад</div>
-                    <div className="font-black">Москва</div>
-                  </div>
-
-                  <div>
-                    <div className="text-sm text-zinc-500">Минимальный заказ</div>
-                    <div className="font-black">от 20 000 ₽</div>
-                  </div>
-
-                  <div>
-                    <div className="text-sm text-zinc-500">Отправка</div>
-                    <div className="font-black">по всей России</div>
-                  </div>
-                </div>
-              </div>
-
-              <div id="contacts">
-                <div className="mb-4 text-xs font-black uppercase tracking-[0.22em] text-cyan-300/80">
-                  Связь
-                </div>
-
-                <p className="mb-5 leading-relaxed text-zinc-400">
-                  Напишите менеджеру, чтобы получить актуальный прайс, наличие,
-                  новинки и условия сотрудничества.
-                </p>
-
-                <a
-                  href={TELEGRAM_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-3 rounded-[20px] border border-cyan-400/25 bg-cyan-400/10 px-5 py-4 font-black text-cyan-100 shadow-[0_0_35px_rgba(34,211,238,0.12)] transition hover:border-cyan-300/60 hover:bg-cyan-400/15 hover:shadow-[0_0_50px_rgba(34,211,238,0.22)]"
-                >
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-r from-violet-600 to-cyan-400">
-                    ✈
-                  </span>
-                  Написать в Telegram
-                </a>
-              </div>
-            </div>
-
-            <div className="mt-6 flex flex-col justify-between gap-4 border-t border-white/10 pt-6 text-xs leading-relaxed text-zinc-500 md:flex-row md:items-center">
-              <div>
-                © 2026 ГАЛАКТИКА. Информация предназначена для совершеннолетних
-                B2B-клиентов.
-              </div>
-
-              <div className="max-w-xl md:text-right">
-                Материалы сайта носят информационный характер и не являются
-                публичной офертой. Продажа несовершеннолетним запрещена.
-              </div>
-            </div>
-          </div>
-        </footer>
-
-        <a
+<a
           href={TELEGRAM_URL}
           target="_blank"
           rel="noreferrer"
@@ -1311,6 +1051,7 @@ export default function GalaktikaVapeSite() {
             </div>
           </div>
         </a>
+              <SiteFooter />
       </main>
     </>
   );

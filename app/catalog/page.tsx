@@ -5,6 +5,8 @@
 import { FormEvent, useEffect, useMemo, useState } from 'react';
 import { products, type Product } from '../../data/products';
 import { reachGoal } from '../../components/YandexMetrika';
+import SiteHeader from "../../components/SiteHeader";
+import SiteFooter from "../../components/SiteFooter";
 
 const TELEGRAM_URL = 'https://t.me/Galaxy_Stan';
 const PAGE_SIZE = 60;
@@ -658,7 +660,6 @@ export default function CatalogPage() {
   const [isRequestPanelOpen, setIsRequestPanelOpen] = useState(false);
   const [requestRestored, setRequestRestored] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [urlReady, setUrlReady] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
 
@@ -808,7 +809,6 @@ export default function CatalogPage() {
     setSelectedProduct(product ?? null);
     setLeadSent(false);
     setLeadError('');
-    setIsMobileMenuOpen(false);
     setIsLeadOpen(true);
   };
 
@@ -818,7 +818,6 @@ export default function CatalogPage() {
     setSelectedProduct(null);
     setLeadSent(false);
     setLeadError('');
-    setIsMobileMenuOpen(false);
     setIsLeadOpen(true);
   };
 
@@ -1313,79 +1312,8 @@ export default function CatalogPage() {
       )}
 
       <main className="min-h-screen overflow-hidden bg-black text-white">
-        <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur-2xl">
-          <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 lg:px-6">
-            <a href="/" className="flex items-center gap-3">
-              <div className="relative h-11 w-11">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 opacity-70 blur-lg" />
-                <div className="relative flex h-11 w-11 items-center justify-center rounded-full border border-cyan-400/40 bg-black">
-                  <img src="/logo-galaktika.png" alt="ГАЛАКТИКА" className="h-9 w-9 object-contain" />
-                </div>
-              </div>
-
-              <div>
-                <div className="text-base font-black uppercase tracking-[0.1em] sm:text-lg">ГАЛАКТИКА</div>
-                <div className="-mt-1 text-[9px] uppercase tracking-[0.16em] text-zinc-400 sm:text-[11px] sm:tracking-[0.18em]">
-                  оптовые поставки
-                </div>
-              </div>
-            </a>
-
-            <nav className="hidden items-center gap-5 text-sm font-medium text-white/80 lg:flex xl:gap-7">
-              <a href="/" className="transition hover:text-cyan-300">Главная</a>
-              <a href="/catalog" className="text-cyan-300">Каталог</a>
-              <a href="/wholesale" className="transition hover:text-cyan-300">Оптовый заказ</a>
-              <a href="/delivery" className="transition hover:text-cyan-300">Доставка</a>
-              <a href="/#brands" className="transition hover:text-cyan-300">Бренды</a>
-              <a href="/contacts" className="transition hover:text-cyan-300">Контакты</a>
-            </nav>
-
-            <div className="flex items-center gap-3">
-              <a
-                href={TELEGRAM_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="hidden items-center gap-2 rounded-full px-4 py-2 text-sm font-bold transition hover:bg-white/5 md:flex"
-              >
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-cyan-500 text-white shadow-[0_0_25px_rgba(34,211,238,0.45)]">✈</span>
-                Написать в Telegram
-              </a>
-
-              <button
-                onClick={() => openLead()}
-                className="rounded-2xl bg-gradient-to-r from-violet-600 via-blue-500 to-cyan-400 px-4 py-3 text-sm font-black shadow-[0_0_35px_rgba(34,211,238,0.25)] transition hover:scale-105 hover:shadow-[0_0_45px_rgba(34,211,238,0.4)] sm:px-5 md:px-7"
-              >
-                <span className="hidden sm:inline">Получить прайс</span>
-                <span className="sm:hidden">Прайс</span>
-              </button>
-
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-xl font-black text-white shadow-[0_0_24px_rgba(34,211,238,0.12)] transition hover:border-cyan-400/45 hover:bg-white/[0.08] lg:hidden"
-                aria-label="Открыть меню"
-                aria-expanded={isMobileMenuOpen}
-              >
-                {isMobileMenuOpen ? '×' : '☰'}
-              </button>
-            </div>
-          </div>
-
-          {isMobileMenuOpen && (
-            <div className="border-t border-white/10 bg-black/95 px-5 py-5 shadow-[0_24px_60px_rgba(0,0,0,0.55)] backdrop-blur-2xl lg:hidden">
-              <nav className="mx-auto grid max-w-7xl gap-2 text-sm font-bold text-white/85">
-                <a href="/" onClick={() => setIsMobileMenuOpen(false)} className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 transition hover:border-cyan-400/30 hover:text-cyan-200">Главная</a>
-                <a href="/catalog" onClick={() => setIsMobileMenuOpen(false)} className="rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-4 py-3 text-cyan-200">Каталог</a>
-                <a href="/wholesale" onClick={() => setIsMobileMenuOpen(false)} className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 transition hover:border-cyan-400/30 hover:text-cyan-200">Оптовый заказ</a>
-                <a href="/delivery" onClick={() => setIsMobileMenuOpen(false)} className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 transition hover:border-cyan-400/30 hover:text-cyan-200">Доставка</a>
-                <a href="/#brands" onClick={() => setIsMobileMenuOpen(false)} className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 transition hover:border-cyan-400/30 hover:text-cyan-200">Бренды</a>
-                <a href="/contacts" onClick={() => setIsMobileMenuOpen(false)} className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 transition hover:border-cyan-400/30 hover:text-cyan-200">Контакты</a>
-                <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="mt-2 rounded-2xl border border-cyan-400/25 bg-gradient-to-r from-cyan-950/50 to-violet-950/40 px-4 py-3 text-cyan-100">✈ Написать в Telegram</a>
-              </nav>
-            </div>
-          )}
-        </header>
-
-        <section className="relative overflow-hidden px-5 pb-16 pt-28 lg:px-6 lg:pt-32">
+        <SiteHeader active="catalog" onLead={() => openLead()} />
+<section className="relative overflow-hidden px-5 pb-16 pt-28 lg:px-6 lg:pt-32">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_12%,rgba(34,211,238,0.16),transparent_30%),radial-gradient(circle_at_80%_10%,rgba(139,92,246,0.18),transparent_34%),radial-gradient(circle_at_50%_65%,rgba(14,165,233,0.08),transparent_38%)]" />
           <div className="absolute inset-x-0 top-0 h-[620px] bg-gradient-to-b from-cyan-950/15 via-black to-black" />
           <div className="absolute left-1/2 top-24 h-80 w-[900px] -translate-x-1/2 rounded-full bg-cyan-500/10 blur-[110px]" />
@@ -1789,44 +1717,7 @@ export default function CatalogPage() {
             </div>
           </div>
         </section>
-
-        <footer className="relative border-t border-white/10 px-5 py-10 lg:px-6">
-          <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
-            <div>
-              <div className="mb-4 flex items-center gap-3">
-                <div className="relative flex h-11 w-11 items-center justify-center rounded-full border border-cyan-400/40 bg-black">
-                  <img src="/logo-galaktika.png" alt="ГАЛАКТИКА" className="h-9 w-9 object-contain" />
-                </div>
-                <div>
-                  <div className="font-black uppercase tracking-[0.12em]">ГАЛАКТИКА</div>
-                  <div className="text-xs uppercase tracking-[0.18em] text-zinc-500">оптовые поставки</div>
-                </div>
-              </div>
-              <p className="max-w-md leading-relaxed text-zinc-400">Оптовые поставки vape-продукции для магазинов, сетей и B2B-клиентов.</p>
-            </div>
-            <div>
-              <div className="mb-4 text-sm font-black uppercase tracking-[0.2em] text-cyan-300">Навигация</div>
-              <div className="grid gap-2 text-sm text-zinc-400">
-                <a href="/" className="transition hover:text-cyan-300">Главная</a>
-                <a href="/catalog" className="transition hover:text-cyan-300">Каталог</a>
-                <a href="/wholesale" className="transition hover:text-cyan-300">Оптовый заказ</a>
-                <a href="/delivery" className="transition hover:text-cyan-300">Доставка</a>
-                <a href="/contacts" className="transition hover:text-cyan-300">Контакты</a>
-              </div>
-            </div>
-            <div>
-              <div className="mb-4 text-sm font-black uppercase tracking-[0.2em] text-cyan-300">Связь</div>
-              <div className="grid gap-2 text-sm text-zinc-400">
-                <div>Склад: Москва</div>
-                <div>Заказ: от 20 000 ₽</div>
-                <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="font-bold text-cyan-300 transition hover:text-white">Написать менеджеру →</a>
-              </div>
-            </div>
-          </div>
-          <div className="mx-auto mt-8 max-w-7xl border-t border-white/10 pt-5 text-xs text-zinc-600">B2B only · 18+ · Информация предназначена для совершеннолетних оптовых клиентов.</div>
-        </footer>
-
-        {selectedProducts.length > 0 && (
+{selectedProducts.length > 0 && (
           <div className="fixed bottom-5 left-1/2 z-50 w-[calc(100%-24px)] max-w-4xl -translate-x-1/2 rounded-[24px] border border-cyan-400/25 bg-black/82 p-3 shadow-[0_0_55px_rgba(34,211,238,0.25)] backdrop-blur-2xl">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <button
@@ -1885,6 +1776,7 @@ export default function CatalogPage() {
             </div>
           </div>
         </a>
+              <SiteFooter />
       </main>
     </>
   );

@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import SiteHeader from "../../components/SiteHeader";
+import SiteFooter from "../../components/SiteFooter";
 
 const TELEGRAM_URL = 'https://t.me/Galaxy_Stan';
 
@@ -62,46 +64,8 @@ const steps = [
 export default function ContactsPage() {
   return (
     <main className="min-h-screen overflow-hidden bg-black text-white">
-      <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur-2xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 lg:px-6">
-          <a href="/" className="flex items-center gap-3">
-            <div className="relative h-11 w-11">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 opacity-70 blur-lg" />
-              <div className="relative flex h-11 w-11 items-center justify-center rounded-full border border-cyan-400/40 bg-black">
-                <img src="/logo-galaktika.png" alt="ГАЛАКТИКА" className="h-9 w-9 object-contain" />
-              </div>
-            </div>
-
-            <div>
-              <div className="text-base font-black uppercase tracking-[0.1em] sm:text-lg">ГАЛАКТИКА</div>
-              <div className="-mt-1 text-[9px] uppercase tracking-[0.16em] text-zinc-400 sm:text-[11px] sm:tracking-[0.18em]">
-                оптовые поставки
-              </div>
-            </div>
-          </a>
-
-          <nav className="hidden items-center gap-5 text-sm font-medium text-white/80 lg:flex xl:gap-7">
-            <a href="/" className="transition hover:text-cyan-300">Главная</a>
-            <a href="/catalog" className="transition hover:text-cyan-300">Каталог</a>
-            <a href="/wholesale" className="transition hover:text-cyan-300">Оптовый заказ</a>
-            <a href="/delivery" className="transition hover:text-cyan-300">Доставка</a>
-            <a href="/#brands" className="transition hover:text-cyan-300">Бренды</a>
-            <a href="/contacts" className="text-cyan-300">Контакты</a>
-          </nav>
-
-          <a
-            href={TELEGRAM_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="rounded-2xl bg-gradient-to-r from-violet-600 via-blue-500 to-cyan-400 px-4 py-3 text-sm font-black shadow-[0_0_35px_rgba(34,211,238,0.25)] transition hover:scale-105 hover:shadow-[0_0_45px_rgba(34,211,238,0.4)] sm:px-5 md:px-7"
-          >
-            <span className="hidden sm:inline">Написать в Telegram</span>
-            <span className="sm:hidden">Telegram</span>
-          </a>
-        </div>
-      </header>
-
-      <section className="relative overflow-hidden px-5 pb-16 pt-28 lg:px-6 lg:pb-24 lg:pt-36">
+        <SiteHeader active="contacts" ctaText="Написать в Telegram" />
+<section className="relative overflow-hidden px-5 pb-16 pt-28 lg:px-6 lg:pb-24 lg:pt-36">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_12%,rgba(34,211,238,0.16),transparent_30%),radial-gradient(circle_at_80%_10%,rgba(139,92,246,0.18),transparent_34%),radial-gradient(circle_at_50%_70%,rgba(14,165,233,0.08),transparent_38%)]" />
         <div className="absolute inset-x-0 top-0 h-[620px] bg-gradient-to-b from-cyan-950/15 via-black to-black" />
         <div className="absolute left-1/2 top-24 h-80 w-[900px] -translate-x-1/2 rounded-full bg-cyan-500/10 blur-[110px]" />
@@ -284,6 +248,7 @@ export default function ContactsPage() {
           </div>
         </div>
       </section>
-    </main>
+            <SiteFooter />
+      </main>
   );
 }
