@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://www.galaxyopt.ru";
+  const baseUrl = "https://galaxyopt.ru";
   const currentDate = new Date();
 
   return [

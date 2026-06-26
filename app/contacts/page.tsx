@@ -9,17 +9,17 @@ export const metadata: Metadata = {
   description:
     'Контакты ГАЛАКТИКА: оптовые поставки оригинальной продукции для вейп-шопов, табачных магазинов, сетей и оптовиков. Склад в Москве, отгрузка по России.',
   alternates: {
-    canonical: 'https://www.galaxyopt.ru/contacts',
+    canonical: 'https://galaxyopt.ru/contacts',
   },
   openGraph: {
     title: 'Контакты ГАЛАКТИКА',
     description:
       'Оптовые поставки для магазинов. Склад в Москве, отгрузка по России, связь через Telegram.',
-    url: 'https://www.galaxyopt.ru/contacts',
+    url: 'https://galaxyopt.ru/contacts',
     siteName: 'ГАЛАКТИКА',
     images: [
       {
-        url: 'https://www.galaxyopt.ru/preview.jpg',
+        url: 'https://galaxyopt.ru/preview.jpg',
         width: 1200,
         height: 630,
         alt: 'ГАЛАКТИКА — оптовые поставки',

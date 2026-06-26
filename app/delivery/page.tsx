@@ -3,7 +3,7 @@ import SiteHeader from "../../components/SiteHeader";
 import SiteFooter from "../../components/SiteFooter";
 
 const TELEGRAM_URL = "https://t.me/Galaxy_Stan";
-const SITE_URL = "https://www.galaxyopt.ru";
+const SITE_URL = "https://galaxyopt.ru";
 
 export const metadata: Metadata = {
   title: "Доставка и условия оптового заказа | ГАЛАКТИКА",

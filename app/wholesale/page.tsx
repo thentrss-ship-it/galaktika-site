@@ -9,17 +9,17 @@ export const metadata: Metadata = {
   description:
     'Как сделать оптовый заказ в ГАЛАКТИКЕ: заявка, прайс, подбор товаров, минимальный заказ от 20 000 ₽, отгрузка из Москвы и доставка по России.',
   alternates: {
-    canonical: 'https://www.galaxyopt.ru/wholesale',
+    canonical: 'https://galaxyopt.ru/wholesale',
   },
   openGraph: {
     title: 'Как сделать оптовый заказ — ГАЛАКТИКА',
     description:
       'Понятная схема оптового заказа для магазинов, сетей и оптовых клиентов. Склад в Москве, отгрузка по России.',
-    url: 'https://www.galaxyopt.ru/wholesale',
+    url: 'https://galaxyopt.ru/wholesale',
     siteName: 'ГАЛАКТИКА',
     images: [
       {
-        url: 'https://www.galaxyopt.ru/preview.jpg',
+        url: 'https://galaxyopt.ru/preview.jpg',
         width: 1200,
         height: 630,
         alt: 'ГАЛАКТИКА — оптовые поставки',
