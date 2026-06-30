@@ -68,7 +68,7 @@ export default function SiteFooter() {
               <div className="relative h-12 w-14 shrink-0">
                 <div className="absolute inset-1 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 opacity-55 blur-xl" />
                 <img
-                  src="/logo-galaktika-v2.png"
+                  src="/logo-galaktika-v3.png"
                   alt="ГАЛАКТИКА"
                   className="relative h-12 w-14 object-contain drop-shadow-[0_0_12px_rgba(34,211,238,0.35)]"
                 />
