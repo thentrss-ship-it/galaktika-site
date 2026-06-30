@@ -33,7 +33,7 @@ export default function ThanksPage() {
               <div className="relative h-14 w-14">
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 opacity-70 blur-lg" />
                 <div className="relative flex h-14 w-14 items-center justify-center rounded-full border border-cyan-400/40 bg-black">
-                  <img src="/logo-galaktika.png" alt="ГАЛАКТИКА" className="h-11 w-11 object-contain" />
+                  <img src="/logo-galaktika-v2.png" alt="ГАЛАКТИКА" className="h-11 w-12 object-contain" />
                 </div>
               </div>
 

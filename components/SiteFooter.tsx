@@ -65,15 +65,13 @@ export default function SiteFooter() {
         <div className="galaxy-footer-grid">
           <div className="galaxy-footer-brand">
             <a href="/" className="inline-flex items-center gap-3">
-              <div className="relative h-12 w-12 shrink-0">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 opacity-70 blur-lg" />
-                <div className="relative flex h-12 w-12 items-center justify-center rounded-full border border-cyan-400/40 bg-black">
-                  <img
-                    src="/logo-galaktika.png"
-                    alt="ГАЛАКТИКА"
-                    className="h-10 w-10 object-contain"
-                  />
-                </div>
+              <div className="relative h-12 w-14 shrink-0">
+                <div className="absolute inset-1 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 opacity-55 blur-xl" />
+                <img
+                  src="/logo-galaktika-v2.png"
+                  alt="ГАЛАКТИКА"
+                  className="relative h-12 w-14 object-contain drop-shadow-[0_0_12px_rgba(34,211,238,0.35)]"
+                />
               </div>
 
               <div>

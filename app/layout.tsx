@@ -38,7 +38,9 @@ export const metadata: Metadata = {
     canonical: siteUrl,
   },
   icons: {
-    icon: "/favicon.png",
+    icon: [{ url: "/favicon-v2.png", type: "image/png", sizes: "512x512" }],
+    shortcut: "/favicon-v2.png",
+    apple: [{ url: "/apple-touch-icon-v2.png", sizes: "180x180", type: "image/png" }],
   },
   openGraph: {
     title: siteTitle,
@@ -48,7 +50,7 @@ export const metadata: Metadata = {
     siteName: "ГАЛАКТИКА",
     images: [
       {
-        url: "/preview.jpg",
+        url: "/preview-v2.jpg",
         width: 1200,
         height: 630,
         alt: "ГАЛАКТИКА — оптовые поставки vape-продукции",
@@ -62,7 +64,7 @@ export const metadata: Metadata = {
     title: siteTitle,
     description:
       "Оптовый B2B-каталог vape-продукции. Склад Москва, отправка по России.",
-    images: ["/preview.jpg"],
+    images: ["/preview-v2.jpg"],
   },
   robots: {
     index: true,
