@@ -1,0 +1,248 @@
+from __future__ import annotations
+
+from collections import deque
+from pathlib import Path
+
+import numpy as np
+from PIL import Image, ImageDraw, ImageFilter
+
+
+ALPHA_EXTENSIONS = {".webp", ".png", ".avif"}
+
+
+def remove_white_matte(rgb: np.ndarray, matte_alpha: np.ndarray) -> np.ndarray:
+    """Recover edge colours that were anti-aliased against a white background."""
+    source = rgb.astype(np.float32)
+    alpha = matte_alpha.astype(np.float32)[:, :, None] / 255.0
+    partial = (alpha > 0.02) & (alpha < 0.995)
+    recovered = (source - (1.0 - alpha) * 255.0) / np.maximum(alpha, 0.02)
+    return np.clip(np.where(partial, recovered, source), 0, 255)
+
+
+def erode_alpha_edge(alpha: np.ndarray, radius: int = 1) -> np.ndarray:
+    """Remove a narrow fringe while retaining a softly anti-aliased edge."""
+    return np.array(
+        Image.fromarray(alpha.astype(np.uint8), "L")
+        .filter(ImageFilter.MinFilter(radius * 2 + 1))
+        .filter(ImageFilter.GaussianBlur(0.4)),
+        dtype=np.uint8,
+    )
+
+
+def has_transparent_edge(arr: np.ndarray) -> bool:
+    alpha = arr[:, :, 3]
+    height, width = alpha.shape
+    edge_width = max(30, min(height, width) // 20)
+    edge = np.concatenate(
+        [
+            alpha[:edge_width, :].reshape(-1),
+            alpha[-edge_width:, :].reshape(-1),
+            alpha[:, :edge_width].reshape(-1),
+            alpha[:, -edge_width:].reshape(-1),
+        ]
+    )
+    return int((edge < 8).sum()) > max(1200, round(edge.size * 0.05))
+
+
+def convex_hull(points: list[tuple[int, int]]) -> list[tuple[int, int]]:
+    points = sorted(set(points))
+    if len(points) <= 1:
+        return points
+
+    def cross(origin, first, second):
+        return (first[0] - origin[0]) * (second[1] - origin[1]) - (first[1] - origin[1]) * (second[0] - origin[0])
+
+    lower = []
+    for point in points:
+        while len(lower) >= 2 and cross(lower[-2], lower[-1], point) <= 0:
+            lower.pop()
+        lower.append(point)
+
+    upper = []
+    for point in reversed(points):
+        while len(upper) >= 2 and cross(upper[-2], upper[-1], point) <= 0:
+            upper.pop()
+        upper.append(point)
+    return lower[:-1] + upper[:-1]
+
+
+def clean_transparent_edges(arr: np.ndarray) -> tuple[np.ndarray, float]:
+    source = arr.astype(np.float32)
+    alpha_image = Image.fromarray(arr[:, :, 3], "L")
+    strong = alpha_image.point(lambda value: 255 if value >= 96 else 0)
+    nearby = strong.filter(ImageFilter.MaxFilter(15))
+    alpha = np.array(alpha_image, dtype=np.uint8)
+    near_product = np.array(nearby) > 0
+    cleaned_alpha = np.where(near_product, alpha, 0).astype(np.uint8)
+    # Use the original coverage to remove the white matte. Using the eroded
+    # alpha here over-corrects the colour and creates dark/jagged edges.
+    source[:, :, :3] = remove_white_matte(source[:, :, :3], cleaned_alpha)
+    source[:, :, 3] = erode_alpha_edge(cleaned_alpha, radius=1)
+
+    old_visible = int((arr[:, :, 3] >= 8).sum())
+    new_visible = int((source[:, :, 3] >= 8).sum())
+    removed_percent = round(max(0, old_visible - new_visible) / arr[:, :, 3].size * 100, 1)
+    return source.astype(np.uint8), removed_percent
+
+
+def build_foreground_mask(arr: np.ndarray) -> Image.Image | None:
+    rgb = arr[:, :, :3].astype(np.int16)
+    alpha = arr[:, :, 3]
+    height, width = alpha.shape
+    edge_width = max(40, min(height, width) // 18)
+    edge = np.concatenate(
+        [
+            rgb[:edge_width].reshape(-1, 3),
+            rgb[-edge_width:].reshape(-1, 3),
+            rgb[:, :edge_width].reshape(-1, 3),
+            rgb[:, -edge_width:].reshape(-1, 3),
+        ]
+    )
+    background = np.median(edge, axis=0).astype(np.int16)
+    edge_distance = np.abs(edge - background).max(axis=1)
+    if float((edge_distance <= 20).mean()) < 0.68:
+        return None
+
+    distance = np.abs(rgb - background).max(axis=2)
+    background_like = (distance <= 16) & (alpha >= 8)
+    seed_bool = (~background_like) & (alpha >= 8)
+    seed = seed_bool.astype(np.uint8) * 255
+    connected_seed = np.array(Image.fromarray(seed, "L").filter(ImageFilter.MaxFilter(9))) > 0
+
+    visited = np.zeros((height, width), dtype=bool)
+    output = Image.new("L", (width, height), 0)
+    draw = ImageDraw.Draw(output)
+    minimum_component = max(600, round(width * height * 0.0012))
+
+    for start_y in range(height):
+        for start_x in range(width):
+            if not connected_seed[start_y, start_x] or visited[start_y, start_x]:
+                continue
+            queue = deque([(start_y, start_x)])
+            visited[start_y, start_x] = True
+            source_pixels = []
+            row_ranges = {}
+
+            while queue:
+                y, x = queue.popleft()
+                if seed_bool[y, x]:
+                    source_pixels.append((x, y))
+                    current = row_ranges.get(y)
+                    row_ranges[y] = (x, x) if current is None else (min(current[0], x), max(current[1], x))
+                for dy, dx in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                    ny, nx = y + dy, x + dx
+                    if 0 <= ny < height and 0 <= nx < width and connected_seed[ny, nx] and not visited[ny, nx]:
+                        visited[ny, nx] = True
+                        queue.append((ny, nx))
+
+            if len(source_pixels) < minimum_component:
+                continue
+
+            xs = [point[0] for point in source_pixels]
+            ys = [point[1] for point in source_pixels]
+            left, top, right, bottom = min(xs), min(ys), max(xs), max(ys)
+            component_width = right - left + 1
+            component_height = bottom - top + 1
+            is_large_package = (
+                component_width >= width * 0.3
+                and component_height >= height * 0.3
+                and len(source_pixels) >= width * height * 0.08
+            )
+
+            if is_large_package:
+                boundary = []
+                for y, (row_left, row_right) in row_ranges.items():
+                    boundary.append((row_left, y))
+                    boundary.append((row_right, y))
+                hull = convex_hull(boundary)
+                if len(hull) >= 3:
+                    draw.polygon(hull, fill=255)
+                continue
+
+            crop_width = component_width + 4
+            crop_height = component_height + 4
+            component = np.zeros((crop_height, crop_width), dtype=np.uint8)
+            for x, y in source_pixels:
+                component[y - top + 2, x - left + 2] = 255
+
+            outside = np.zeros_like(component, dtype=bool)
+            outside_queue = deque()
+
+            def add_outside(y: int, x: int) -> None:
+                if component[y, x] == 0 and not outside[y, x]:
+                    outside[y, x] = True
+                    outside_queue.append((y, x))
+
+            for x in range(crop_width):
+                add_outside(0, x)
+                add_outside(crop_height - 1, x)
+            for y in range(crop_height):
+                add_outside(y, 0)
+                add_outside(y, crop_width - 1)
+            while outside_queue:
+                y, x = outside_queue.popleft()
+                for dy, dx in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                    ny, nx = y + dy, x + dx
+                    if 0 <= ny < crop_height and 0 <= nx < crop_width:
+                        add_outside(ny, nx)
+
+            filled = np.where(outside, component, 255).astype(np.uint8)
+            filled_image = Image.fromarray(filled, "L")
+            output.paste(filled_image, (left - 2, top - 2), filled_image)
+
+    if not output.getbbox():
+        return None
+    return output.filter(ImageFilter.GaussianBlur(0.5))
+
+
+def clean_one(path: Path) -> tuple[Path, float] | None:
+    image = Image.open(path).convert("RGBA")
+    arr = np.array(image)
+    if has_transparent_edge(arr):
+        cleaned_arr, removed_percent = clean_transparent_edges(arr)
+        cleaned = Image.fromarray(cleaned_arr, "RGBA")
+        extension = path.suffix.lower()
+        target = path if extension in ALPHA_EXTENSIONS else path.with_suffix(".webp")
+        temp = target.with_name(f"{target.name}.cleaning.tmp{target.suffix}")
+        if target.suffix.lower() == ".png":
+            cleaned.save(temp, optimize=True)
+        else:
+            cleaned.save(temp, quality=94, method=5, exact=True)
+        temp.replace(target)
+        return target, removed_percent
+
+    foreground_mask = build_foreground_mask(arr)
+    if foreground_mask is None:
+        return None
+
+    original_alpha = arr[:, :, 3].copy()
+    mask_alpha = np.array(foreground_mask, dtype=np.uint8)
+    mask_values = mask_alpha.astype(np.float32) / 255.0
+    # JPG/opaque sources keep white anti-aliasing in RGB even after their
+    # background becomes transparent. Remove that white matte before the
+    # final one-pixel alpha erosion.
+    arr[:, :, :3] = remove_white_matte(arr[:, :, :3], mask_alpha).astype(np.uint8)
+    combined_alpha = np.round(original_alpha.astype(np.float32) * mask_values).astype(np.uint8)
+    # Opaque white-background sources usually carry a 1–2 px baked-in halo.
+    arr[:, :, 3] = erode_alpha_edge(combined_alpha, radius=2)
+    original_visible = int((original_alpha >= 8).sum())
+    remaining_visible = int((arr[:, :, 3] >= 8).sum())
+    removed_opaque = original_visible - remaining_visible
+    min_pixels_to_change = max(1500, round(mask_values.size * 0.004))
+    if removed_opaque < min_pixels_to_change:
+        return None
+    if remaining_visible < max(1000, round(original_visible * 0.08)):
+        return None
+
+    cleaned = Image.fromarray(arr, "RGBA")
+    extension = path.suffix.lower()
+    target = path if extension in ALPHA_EXTENSIONS else path.with_suffix(".webp")
+    temp = target.with_name(f"{target.name}.cleaning.tmp{target.suffix}")
+
+    if target.suffix.lower() == ".png":
+        cleaned.save(temp, optimize=True)
+    else:
+        cleaned.save(temp, quality=94, method=5, exact=True)
+
+    temp.replace(target)
+    return target, round(removed_opaque / mask_values.size * 100, 1)

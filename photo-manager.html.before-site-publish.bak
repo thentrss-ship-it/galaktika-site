@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Фотоменеджер — Галактика</title>
+    <link rel="stylesheet" href="photo-manager.css" />
+    <script defer src="photo-manager.js"></script>
+  </head>
+  <body>
+    <header class="manager-header">
+      <img src="galaktika-logo.png" alt="Галактика" />
+      <div class="manager-header__title">
+        <span>Галактика</span>
+        <strong>Фотоменеджер</strong>
+      </div>
+      <div class="manager-header__status"><i></i> Работает локально</div>
+    </header>
+
+    <main class="manager-shell">
+      <section class="manager-summary" aria-label="Состояние каталога">
+        <div><span>С фото</span><strong id="withPhotoCount">0</strong></div>
+        <div><span>Без фото</span><strong id="missingCount">0</strong></div>
+        <div><span>На проверке</span><strong id="pendingCount">0</strong></div>
+        <button id="refreshButton" type="button">Обновить список</button>
+        <button id="deployButton" class="manager-summary__deploy" type="button">Опубликовать на сайт</button>
+      </section>
+
+      <div class="manager-layout">
+        <section class="product-browser" aria-labelledby="browserTitle">
+          <div class="section-heading">
+            <div>
+              <p>Каталог</p>
+              <h1 id="browserTitle">Выберите товар</h1>
+            </div>
+            <span id="resultCount">0 позиций</span>
+          </div>
+
+          <label class="search-field">
+            <span>Поиск</span>
+            <input id="searchInput" type="search" placeholder="Название, бренд или код товара" autocomplete="off" />
+          </label>
+
+          <div class="mode-switch" role="group" aria-label="Состояние фотографии">
+            <button class="is-active" type="button" data-mode="missing">Без фото</button>
+            <button type="button" data-mode="pending">На проверке</button>
+            <button type="button" data-mode="all">Все товары</button>
+          </div>
+
+          <div class="product-list" id="productList" aria-live="polite"></div>
+        </section>
+
+        <aside class="photo-workspace" id="photoWorkspace" aria-live="polite">
+          <div class="workspace-empty" id="workspaceEmpty">
+            <img src="galaktika-logo.png" alt="" />
+            <h2>Товар не выбран</h2>
+            <p>Выберите позицию слева, чтобы добавить или заменить фотографию.</p>
+          </div>
+
+          <div class="workspace-content" id="workspaceContent" hidden></div>
+          <div class="workspace-busy" id="workspaceBusy" hidden>
+            <span class="spinner"></span>
+            <strong id="busyTitle">Обрабатываю фотографию</strong>
+            <p>Удаляю фон, выравниваю товар и создаю превью.</p>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <input id="photoInput" type="file" accept="image/png,image/jpeg,image/webp,image/avif" hidden />
+    <div class="manager-toast" id="toast" role="status" hidden></div>
+  </body>
+</html>

@@ -1,0 +1,307 @@
+const managerState = {
+  mode: "missing",
+  query: "",
+  products: [],
+  selected: null,
+  busy: false,
+  searchTimer: 0,
+};
+
+const managerElements = {
+  withPhotoCount: document.querySelector("#withPhotoCount"),
+  missingCount: document.querySelector("#missingCount"),
+  pendingCount: document.querySelector("#pendingCount"),
+  refreshButton: document.querySelector("#refreshButton"),
+  deployButton: document.querySelector("#deployButton"),
+  resultCount: document.querySelector("#resultCount"),
+  searchInput: document.querySelector("#searchInput"),
+  productList: document.querySelector("#productList"),
+  workspaceEmpty: document.querySelector("#workspaceEmpty"),
+  workspaceContent: document.querySelector("#workspaceContent"),
+  workspaceBusy: document.querySelector("#workspaceBusy"),
+  busyTitle: document.querySelector("#busyTitle"),
+  photoInput: document.querySelector("#photoInput"),
+  toast: document.querySelector("#toast"),
+};
+
+function escapeManagerHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function showToast(message, error = false) {
+  window.clearTimeout(showToast.timer);
+  managerElements.toast.textContent = message;
+  managerElements.toast.classList.toggle("is-error", error);
+  managerElements.toast.hidden = false;
+  showToast.timer = window.setTimeout(() => {
+    managerElements.toast.hidden = true;
+  }, 3800);
+}
+
+async function requestJson(url, options) {
+  const response = await fetch(url, options);
+  const payload = await response.json().catch(() => ({}));
+  if (!response.ok) throw new Error(payload.error || "Не удалось выполнить действие.");
+  return payload;
+}
+
+function setBusy(busy, title = "Обрабатываю фотографию") {
+  managerState.busy = busy;
+  managerElements.workspaceBusy.hidden = !busy;
+  managerElements.workspaceEmpty.hidden = true;
+  managerElements.workspaceContent.hidden = busy || !managerState.selected;
+  managerElements.busyTitle.textContent = title;
+}
+
+async function loadProducts(preserveSelection = true) {
+  const params = new URLSearchParams({ mode: managerState.mode, q: managerState.query });
+  try {
+    const payload = await requestJson(`/api/products?${params}`);
+    managerState.products = payload.products;
+    managerElements.withPhotoCount.textContent = payload.stats.withPhoto.toLocaleString("ru-RU");
+    managerElements.missingCount.textContent = payload.stats.missing.toLocaleString("ru-RU");
+    managerElements.pendingCount.textContent = payload.stats.pending.toLocaleString("ru-RU");
+    managerElements.resultCount.textContent = `${payload.totalMatching.toLocaleString("ru-RU")} позиций`;
+
+    if (preserveSelection && managerState.selected) {
+      const refreshed = managerState.products.find((product) => product.id === managerState.selected.id);
+      if (refreshed) managerState.selected = refreshed;
+    }
+    renderProductList();
+    renderWorkspace();
+  } catch (error) {
+    showToast(error.message, true);
+  }
+}
+
+function renderProductList() {
+  if (!managerState.products.length) {
+    managerElements.productList.innerHTML = '<div class="empty-list">Подходящих товаров не найдено.</div>';
+    return;
+  }
+
+  managerElements.productList.innerHTML = managerState.products.map((product) => {
+    const visual = product.photoUrl
+      ? `<img src="${escapeManagerHtml(product.photoUrl)}" alt="" />`
+      : '<img class="is-mark" src="galaktika-logo.png" alt="" />';
+    const status = product.job?.status === "ready"
+      ? '<span class="status-chip status-chip--pending">Готово</span>'
+      : product.pending
+      ? '<span class="status-chip status-chip--pending">Нужно заменить</span>'
+      : `<span class="status-chip">${product.hasPhoto ? "Есть фото" : "Нет фото"}</span>`;
+    return `
+      <button class="product-row ${managerState.selected?.id === product.id ? "is-selected" : ""}" type="button" data-product-id="${escapeManagerHtml(product.id)}">
+        <span class="product-row__visual">${visual}</span>
+        <span class="product-row__text">
+          <strong>${escapeManagerHtml(product.name)}</strong>
+          <span>${escapeManagerHtml(product.brand)} · ${escapeManagerHtml(product.category)}${product.section ? ` · ${escapeManagerHtml(product.section)}` : ""}</span>
+        </span>
+        ${status}
+      </button>
+    `;
+  }).join("");
+}
+
+function getSearchUrl(product) {
+  return `https://yandex.ru/images/search?text=${encodeURIComponent(`${product.name} фото товара`)}`;
+}
+
+function renderWorkspace() {
+  if (managerState.busy) return;
+  const product = managerState.selected;
+  managerElements.workspaceEmpty.hidden = Boolean(product);
+  managerElements.workspaceContent.hidden = !product;
+  managerElements.workspaceBusy.hidden = true;
+  if (!product) return;
+
+  const job = product.job;
+  const imageUrl = job?.previewUrl || product.photoUrl || "galaktika-logo.png";
+  const imageClass = job || product.photoUrl ? "" : "is-placeholder";
+  const warningHtml = job?.warnings?.length
+    ? `<div class="review-box"><strong>Нужно исправить</strong>${job.warnings.map(escapeManagerHtml).join("<br />")}</div>`
+    : job
+      ? '<div class="review-box review-box--ready"><strong>Готово к публикации</strong>Прозрачный фон сохранён. Товар отцентрирован на холсте 1200×1200 без подложки.</div>'
+      : "";
+
+  const primaryActions = job?.status === "ready"
+    ? `
+        <button class="manager-button manager-button--primary" type="button" data-action="publish">Опубликовать</button>
+        <button class="manager-button" type="button" data-action="choose">Заменить фото</button>
+        <button class="manager-button manager-button--quiet" type="button" data-action="discard">Удалить черновик</button>
+      `
+    : job
+      ? `
+          <button class="manager-button manager-button--primary" type="button" data-action="choose">Загрузить исправленное фото</button>
+          <button class="manager-button manager-button--quiet" type="button" data-action="discard">Удалить черновик</button>
+        `
+      : '<button class="manager-button manager-button--primary" type="button" data-action="choose">Выбрать фотографию</button>';
+
+  managerElements.workspaceContent.innerHTML = `
+    <div class="workspace-title">
+      <p>${escapeManagerHtml(product.brand)} · ${escapeManagerHtml(product.category)}</p>
+      <h2>${escapeManagerHtml(product.name)}</h2>
+      <small>Код: ${escapeManagerHtml(product.id)}</small>
+    </div>
+    <div class="preview-stage" data-drop-zone>
+      <img class="${imageClass}" src="${escapeManagerHtml(imageUrl)}" alt="${escapeManagerHtml(product.name)}" />
+    </div>
+    ${warningHtml}
+    <div class="drop-zone" data-drop-zone>
+      <strong>Перетащите фотографию товара</strong>
+      <span>Прозрачный PNG/WebP или фото на ровном белом фоне</span>
+    </div>
+    <div class="workspace-actions">
+      ${primaryActions}
+      <a class="manager-button" href="${escapeManagerHtml(getSearchUrl(product))}" target="_blank" rel="noreferrer">Найти фото</a>
+      <button class="manager-button" type="button" data-action="copy-id">Скопировать код</button>
+    </div>
+  `;
+}
+
+function selectProduct(productId) {
+  const product = managerState.products.find((item) => item.id === productId);
+  if (!product) return;
+  managerState.selected = product;
+  renderProductList();
+  renderWorkspace();
+}
+
+async function uploadPhoto(file) {
+  if (!managerState.selected || !file || managerState.busy) return;
+  setBusy(true);
+  try {
+    const params = new URLSearchParams({ productId: managerState.selected.id, filename: file.name });
+    const payload = await requestJson(`/api/upload?${params}`, {
+      method: "POST",
+      headers: { "Content-Type": file.type || "application/octet-stream" },
+      body: file,
+    });
+    managerState.selected = payload.product;
+    showToast(payload.job.status === "ready"
+      ? "Фото отцентрировано. Проверьте превью и нажмите «Опубликовать»."
+      : "Фото требует исправления. Прочитайте предупреждение в превью.");
+    await loadProducts(true);
+  } catch (error) {
+    showToast(error.message, true);
+  } finally {
+    setBusy(false);
+    renderWorkspace();
+  }
+}
+
+async function publishSelected() {
+  if (!managerState.selected || managerState.busy) return;
+  setBusy(true, "Публикую фотографию");
+  try {
+    await requestJson(`/api/publish?productId=${encodeURIComponent(managerState.selected.id)}`, { method: "POST" });
+    showToast("Фотография опубликована в каталоге.");
+    managerState.selected = null;
+    await loadProducts(false);
+  } catch (error) {
+    showToast(error.message, true);
+  } finally {
+    setBusy(false);
+    renderWorkspace();
+  }
+}
+
+async function discardSelected() {
+  if (!managerState.selected?.job || managerState.busy) return;
+  const confirmed = window.confirm("Удалить этот черновик? Оригинал в каталоге не изменится.");
+  if (!confirmed) return;
+  try {
+    await requestJson(`/api/discard?productId=${encodeURIComponent(managerState.selected.id)}`, { method: "POST" });
+    managerState.selected = null;
+    showToast("Черновик удалён.");
+    await loadProducts(false);
+  } catch (error) {
+    showToast(error.message, true);
+  }
+}
+
+async function deploySite() {
+  if (managerState.busy || managerElements.deployButton.disabled) return;
+  const confirmed = window.confirm("Опубликовать все новые и изменённые фотографии на сайте?");
+  if (!confirmed) return;
+
+  const originalText = managerElements.deployButton.textContent;
+  managerElements.deployButton.disabled = true;
+  managerElements.deployButton.textContent = "Публикую…";
+  try {
+    const result = await requestJson("/api/deploy", { method: "POST" });
+    showToast(result.changed
+      ? "Фотографии отправлены на сайт. Обновление появится через несколько минут."
+      : "Новых фотографий для публикации нет.");
+    await loadProducts(true);
+  } catch (error) {
+    showToast(error.message, true);
+  } finally {
+    managerElements.deployButton.disabled = false;
+    managerElements.deployButton.textContent = originalText;
+  }
+}
+
+document.querySelector(".mode-switch").addEventListener("click", (event) => {
+  const button = event.target.closest("[data-mode]");
+  if (!button) return;
+  managerState.mode = button.dataset.mode;
+  managerState.selected = null;
+  document.querySelectorAll("[data-mode]").forEach((item) => item.classList.toggle("is-active", item === button));
+  loadProducts(false);
+});
+
+managerElements.searchInput.addEventListener("input", (event) => {
+  window.clearTimeout(managerState.searchTimer);
+  managerState.query = event.target.value.trim();
+  managerState.searchTimer = window.setTimeout(() => loadProducts(true), 300);
+});
+
+managerElements.productList.addEventListener("click", (event) => {
+  const row = event.target.closest("[data-product-id]");
+  if (row) selectProduct(row.dataset.productId);
+});
+
+managerElements.workspaceContent.addEventListener("click", async (event) => {
+  const action = event.target.closest("[data-action]")?.dataset.action;
+  if (action === "choose") managerElements.photoInput.click();
+  if (action === "publish") await publishSelected();
+  if (action === "discard") await discardSelected();
+  if (action === "copy-id" && managerState.selected) {
+    await navigator.clipboard.writeText(managerState.selected.id);
+    showToast("Код товара скопирован.");
+  }
+});
+
+managerElements.workspaceContent.addEventListener("dragover", (event) => {
+  const zone = event.target.closest("[data-drop-zone]");
+  if (!zone) return;
+  event.preventDefault();
+  zone.classList.add("is-dragging");
+});
+
+managerElements.workspaceContent.addEventListener("dragleave", (event) => {
+  event.target.closest("[data-drop-zone]")?.classList.remove("is-dragging");
+});
+
+managerElements.workspaceContent.addEventListener("drop", (event) => {
+  const zone = event.target.closest("[data-drop-zone]");
+  if (!zone) return;
+  event.preventDefault();
+  zone.classList.remove("is-dragging");
+  uploadPhoto(event.dataTransfer.files?.[0]);
+});
+
+managerElements.photoInput.addEventListener("change", () => {
+  uploadPhoto(managerElements.photoInput.files?.[0]);
+  managerElements.photoInput.value = "";
+});
+
+managerElements.refreshButton.addEventListener("click", () => loadProducts(true));
+managerElements.deployButton.addEventListener("click", deploySite);
+
+loadProducts(false);

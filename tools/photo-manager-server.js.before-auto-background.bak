@@ -1,0 +1,495 @@
+const fs = require("fs");
+const http = require("http");
+const path = require("path");
+const { spawn, spawnSync } = require("child_process");
+const { findPython, findGit } = require("./photo-manager-runtime");
+
+const rootDir = path.resolve(__dirname, "..");
+const workDir = path.join(rootDir, "work");
+const managerDir = path.join(workDir, "photo-manager");
+const inboxDir = path.join(managerDir, "inbox");
+const preparedDir = path.join(managerDir, "prepared");
+const previewsDir = path.join(managerDir, "previews");
+const jobsDir = path.join(managerDir, "jobs");
+const originalsDir = path.join(workDir, "product-photo-originals");
+const historyDir = path.join(workDir, "product-photo-history");
+const publicProductsDir = path.join(rootDir, "public", "products");
+const prepareScript = path.join(__dirname, "prepare-product-photo.py");
+const port = Number(process.env.GALAKTIKA_PHOTO_PORT) || 8767;
+const host = "127.0.0.1";
+const maxUploadBytes = 30 * 1024 * 1024;
+const photoProcessorVersion = 4;
+const allowedExtensions = new Set([".webp", ".jpg", ".jpeg", ".png", ".avif"]);
+const extensionPriority = [".webp", ".png", ".avif", ".jpg", ".jpeg"];
+
+for (const directory of [managerDir, inboxDir, preparedDir, previewsDir, jobsDir, originalsDir, historyDir]) {
+  fs.mkdirSync(directory, { recursive: true });
+}
+
+function readInventory() {
+  const productsPath = path.join(rootDir, "data", "products.ts");
+  const code = fs.readFileSync(productsPath, "utf8");
+  const declaration = code.indexOf("export const products");
+  const assignment = code.indexOf("=", declaration);
+  const arrayStart = code.indexOf("[", assignment);
+  const arrayEnd = code.lastIndexOf("]");
+  if (declaration < 0 || assignment < 0 || arrayStart < 0 || arrayEnd <= arrayStart) {
+    throw new Error("Не удалось прочитать каталог data/products.ts.");
+  }
+  return JSON.parse(code.slice(arrayStart, arrayEnd + 1));
+}
+
+const products = readInventory();
+const productById = new Map(products.map((product) => [product.slug, product]));
+
+function readJson(filePath, fallback) {
+  try {
+    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch (error) {
+    return fallback;
+  }
+}
+
+function writeJson(filePath, value) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+}
+
+function normalize(value) {
+  return String(value || "").toLocaleLowerCase("ru-RU").replaceAll("ё", "е").replace(/\s+/g, " ").trim();
+}
+
+function productDirectory(product) {
+  return path.join(publicProductsDir, String(product.brand || "other").toLowerCase());
+}
+
+function findProductPhoto(product) {
+  const directory = productDirectory(product);
+  for (const extension of extensionPriority) {
+    const filePath = path.join(directory, `${product.slug}${extension}`);
+    if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+      return { filePath, filename: path.basename(filePath) };
+    }
+  }
+  return null;
+}
+
+function getPublicPhotos() {
+  const photos = new Map();
+  for (const product of products) {
+    const photo = findProductPhoto(product);
+    if (photo) photos.set(product.slug, photo);
+  }
+  return photos;
+}
+
+function getJobs() {
+  const jobs = new Map();
+  for (const file of fs.readdirSync(jobsDir)) {
+    if (path.extname(file) !== ".json") continue;
+    const job = readJson(path.join(jobsDir, file), null);
+    if (job?.productId) jobs.set(job.productId, job);
+  }
+  return jobs;
+}
+
+function productPayload(product, publicPhotos, jobs) {
+  const photo = publicPhotos.get(product.slug) || null;
+  const job = jobs.get(product.slug) || null;
+  return {
+    id: product.slug,
+    inventoryId: product.id,
+    name: product.name,
+    category: product.category || "Каталог",
+    brand: product.brand || "",
+    section: product.section || "",
+    hasPhoto: Boolean(photo),
+    photoUrl: photo
+      ? `/catalog-photo/${encodeURIComponent(product.slug)}?v=${Math.round(fs.statSync(photo.filePath).mtimeMs)}`
+      : "",
+    pending: Boolean(job),
+    job: job
+      ? { ...job, previewUrl: `/preview/${encodeURIComponent(product.slug)}?v=${job.updatedAt || Date.now()}` }
+      : null,
+  };
+}
+
+function getProductsResponse(searchParams) {
+  const publicPhotos = getPublicPhotos();
+  const jobs = getJobs();
+  const query = normalize(searchParams.get("q"));
+  const mode = searchParams.get("mode") || "missing";
+  const matching = products.filter((product) => {
+    const hasPhoto = publicPhotos.has(product.slug);
+    const hasJob = jobs.has(product.slug);
+    if (mode === "missing" && hasPhoto) return false;
+    if (mode === "pending" && !hasJob) return false;
+    if (!query) return true;
+    return normalize([product.name, product.slug, product.brand, product.category, product.section].join(" ")).includes(query);
+  });
+
+  matching.sort((first, second) => {
+    const pendingDifference = Number(jobs.has(second.slug)) - Number(jobs.has(first.slug));
+    return pendingDifference || String(first.name).localeCompare(String(second.name), "ru");
+  });
+
+  return {
+    products: matching.slice(0, 150).map((product) => productPayload(product, publicPhotos, jobs)),
+    totalMatching: matching.length,
+    stats: {
+      total: products.length,
+      withPhoto: products.filter((product) => publicPhotos.has(product.slug)).length,
+      missing: products.filter((product) => !publicPhotos.has(product.slug)).length,
+      pending: jobs.size,
+    },
+  };
+}
+
+function sendJson(response, statusCode, value) {
+  const body = Buffer.from(JSON.stringify(value));
+  response.writeHead(statusCode, {
+    "Content-Type": "application/json; charset=utf-8",
+    "Content-Length": body.length,
+    "Cache-Control": "no-store",
+  });
+  response.end(body);
+}
+
+function sendFile(response, filePath, contentType, cache = false) {
+  if (!fs.existsSync(filePath) || !fs.statSync(filePath).isFile()) {
+    sendJson(response, 404, { error: "Файл не найден." });
+    return;
+  }
+  const data = fs.readFileSync(filePath);
+  response.writeHead(200, {
+    "Content-Type": contentType,
+    "Content-Length": data.length,
+    "Cache-Control": cache ? "public, max-age=3600" : "no-store",
+  });
+  response.end(data);
+}
+
+function getExtension(filename, contentType) {
+  const extension = path.extname(filename || "").toLowerCase();
+  if (allowedExtensions.has(extension)) return extension;
+  const byMime = {
+    "image/webp": ".webp",
+    "image/png": ".png",
+    "image/jpeg": ".jpg",
+    "image/avif": ".avif",
+  };
+  return byMime[String(contentType || "").split(";")[0]] || "";
+}
+
+function readBody(request) {
+  return new Promise((resolve, reject) => {
+    const declaredLength = Number(request.headers["content-length"] || 0);
+    if (declaredLength > maxUploadBytes) {
+      reject(new Error("Файл больше 30 МБ."));
+      return;
+    }
+    const chunks = [];
+    let total = 0;
+    request.on("data", (chunk) => {
+      total += chunk.length;
+      if (total > maxUploadBytes) {
+        reject(new Error("Файл больше 30 МБ."));
+        request.destroy();
+        return;
+      }
+      chunks.push(chunk);
+    });
+    request.on("end", () => resolve(Buffer.concat(chunks)));
+    request.on("error", reject);
+  });
+}
+
+function removeProductFiles(directory, productId) {
+  if (!fs.existsSync(directory)) return;
+  for (const file of fs.readdirSync(directory)) {
+    if (path.parse(file).name === productId) fs.rmSync(path.join(directory, file), { force: true });
+  }
+}
+
+function runPhotoPreparation(productId, rawPath, originalFilename) {
+  const python = findPython();
+  if (!python) throw new Error("Не найден модуль обработки изображений.");
+  const preparedPath = path.join(preparedDir, `${productId}.webp`);
+  const previewPath = path.join(previewsDir, `${productId}.webp`);
+  const metadataPath = path.join(jobsDir, `${productId}.json`);
+  const result = spawnSync(
+    python,
+    [
+      prepareScript,
+      "--input", rawPath,
+      "--prepared", preparedPath,
+      "--preview", previewPath,
+      "--metadata", metadataPath,
+      "--product-id", productId,
+    ],
+    { encoding: "utf8", maxBuffer: 4 * 1024 * 1024 },
+  );
+
+  if (result.error) throw result.error;
+  if (result.status !== 0) {
+    throw new Error((result.stderr || result.stdout || "Обработка фотографии завершилась с ошибкой.").trim());
+  }
+
+  const metadata = readJson(metadataPath, {});
+  const job = { ...metadata, productId, originalFilename, rawFile: path.basename(rawPath), updatedAt: Date.now() };
+  writeJson(metadataPath, job);
+  return job;
+}
+
+function reprocessDraftJobs() {
+  for (const filename of fs.readdirSync(jobsDir)) {
+    if (path.extname(filename).toLowerCase() !== ".json") continue;
+    const metadataPath = path.join(jobsDir, filename);
+    const job = readJson(metadataPath, null);
+    if (!job || !job.productId || !job.rawFile || job.processorVersion === photoProcessorVersion) continue;
+    const rawPath = path.join(inboxDir, path.basename(job.rawFile));
+    if (!fs.existsSync(rawPath)) continue;
+    try {
+      runPhotoPreparation(job.productId, rawPath, job.originalFilename || job.rawFile);
+    } catch (error) {
+      console.error(`Не удалось повторно обработать ${job.productId}:`, error.message || error);
+    }
+  }
+}
+
+async function handleUpload(request, response, url) {
+  const productId = url.searchParams.get("productId") || "";
+  const filename = url.searchParams.get("filename") || "photo";
+  if (!productById.has(productId)) {
+    sendJson(response, 404, { error: "Товар не найден." });
+    return;
+  }
+  const extension = getExtension(filename, request.headers["content-type"]);
+  if (!extension) {
+    sendJson(response, 415, { error: "Поддерживаются PNG, JPG, WebP и AVIF." });
+    return;
+  }
+
+  try {
+    const body = await readBody(request);
+    if (!body.length) throw new Error("Файл пустой.");
+    removeProductFiles(inboxDir, productId);
+    removeProductFiles(preparedDir, productId);
+    removeProductFiles(previewsDir, productId);
+    const rawPath = path.join(inboxDir, `${productId}${extension}`);
+    fs.writeFileSync(rawPath, body);
+    const job = runPhotoPreparation(productId, rawPath, filename);
+    sendJson(response, 200, {
+      job: { ...job, previewUrl: `/preview/${encodeURIComponent(productId)}?v=${job.updatedAt}` },
+      product: productPayload(productById.get(productId), getPublicPhotos(), new Map([[productId, job]])),
+    });
+  } catch (error) {
+    sendJson(response, 500, { error: error.message || "Не удалось обработать фотографию." });
+  }
+}
+
+function archiveExistingOriginals(productId) {
+  const existing = fs.readdirSync(originalsDir).filter((file) => path.parse(file).name === productId);
+  if (!existing.length) return;
+  const archiveDir = path.join(historyDir, productId, new Date().toISOString().replace(/[:.]/g, "-"));
+  fs.mkdirSync(archiveDir, { recursive: true });
+  for (const file of existing) {
+    const sourcePath = path.join(originalsDir, file);
+    fs.copyFileSync(sourcePath, path.join(archiveDir, file));
+    fs.rmSync(sourcePath, { force: true });
+  }
+}
+
+function publishJob(productId) {
+  const jobPath = path.join(jobsDir, `${productId}.json`);
+  const job = readJson(jobPath, null);
+  const product = productById.get(productId);
+  if (!job || !product) throw new Error("Черновик фотографии не найден.");
+  if (job.status !== "ready") {
+    throw new Error("Фотография не готова: исправьте предупреждения и загрузите подготовленный файл повторно.");
+  }
+  const rawPath = path.join(inboxDir, job.rawFile);
+  const previewPath = path.join(previewsDir, `${productId}.webp`);
+  if (![rawPath, previewPath].every(fs.existsSync)) {
+    throw new Error("Не хватает файлов черновика. Загрузите фотографию повторно.");
+  }
+
+  archiveExistingOriginals(productId);
+  const originalName = `${productId}${path.extname(rawPath).toLowerCase()}`;
+  fs.copyFileSync(rawPath, path.join(originalsDir, originalName));
+
+  const targetDirectory = productDirectory(product);
+  fs.mkdirSync(targetDirectory, { recursive: true });
+  removeProductFiles(targetDirectory, productId);
+  fs.copyFileSync(previewPath, path.join(targetDirectory, `${productId}.webp`));
+
+  removeProductFiles(inboxDir, productId);
+  removeProductFiles(preparedDir, productId);
+  removeProductFiles(previewsDir, productId);
+  fs.rmSync(jobPath, { force: true });
+  return { productId, photoUrl: `/catalog-photo/${encodeURIComponent(productId)}?v=${Date.now()}` };
+}
+
+function discardJob(productId) {
+  removeProductFiles(inboxDir, productId);
+  removeProductFiles(preparedDir, productId);
+  removeProductFiles(previewsDir, productId);
+  fs.rmSync(path.join(jobsDir, `${productId}.json`), { force: true });
+}
+
+function gitResult(git, args) {
+  return spawnSync(git, args, {
+    cwd: rootDir,
+    encoding: "utf8",
+    windowsHide: true,
+  });
+}
+
+function gitError(result, fallback) {
+  return String(result.stderr || result.stdout || fallback).trim();
+}
+
+function deployProductPhotos() {
+  const git = findGit();
+  if (!git) throw new Error("Git не найден. Откройте Codex и повторите публикацию.");
+
+  const branch = gitResult(git, ["branch", "--show-current"]);
+  if (branch.status !== 0) throw new Error(gitError(branch, "Не удалось определить ветку проекта."));
+  if (branch.stdout.trim() !== "main") {
+    throw new Error(`Публикация остановлена: открыта ветка ${branch.stdout.trim() || "без имени"}, а нужна main.`);
+  }
+
+  const publishPaths = [
+    "public/products",
+    "components/SiteHeader.tsx",
+    "components/SiteFooter.tsx",
+    "app/layout.tsx",
+    "app/thanks/page.tsx",
+    "public/logo-galaktika-v3.png",
+    "public/preview-v2.jpg",
+    "public/favicon-v2.png",
+    "public/apple-touch-icon-v2.png",
+  ];
+  const add = gitResult(git, ["add", "--", ...publishPaths]);
+  if (add.status !== 0) throw new Error(gitError(add, "Не удалось подготовить изменения к публикации."));
+
+  const diff = gitResult(git, ["diff", "--cached", "--quiet", "--", ...publishPaths]);
+  if (diff.status !== 0 && diff.status !== 1) throw new Error(gitError(diff, "Не удалось проверить изменения сайта."));
+
+  const changed = diff.status === 1;
+  if (changed) {
+    const commit = gitResult(git, ["commit", "-m", "Обновлены материалы сайта", "--", ...publishPaths]);
+    if (commit.status !== 0) throw new Error(gitError(commit, "Не удалось сохранить изменения сайта."));
+  }
+
+  const push = gitResult(git, ["push", "origin", "main"]);
+  if (push.status !== 0) throw new Error(gitError(push, "Не удалось отправить фотографии на сайт."));
+  return { ok: true, changed };
+}
+
+function openBrowser() {
+  if (process.env.GALAKTIKA_PHOTO_NO_OPEN === "1" || process.argv.includes("--no-open")) return;
+  const url = `http://${host}:${port}/`;
+  const child = spawn("cmd", ["/c", "start", "", url], {
+    detached: true,
+    stdio: "ignore",
+    windowsHide: true,
+  });
+  child.unref();
+}
+
+async function handleRequest(request, response) {
+  const url = new URL(request.url, `http://${host}:${port}`);
+
+  if (request.method === "GET" && url.pathname === "/api/products") {
+    sendJson(response, 200, getProductsResponse(url.searchParams));
+    return;
+  }
+  if (request.method === "GET" && url.pathname === "/api/health") {
+    sendJson(response, 200, { ok: true, products: products.length });
+    return;
+  }
+  if (request.method === "POST" && url.pathname === "/api/upload") {
+    await handleUpload(request, response, url);
+    return;
+  }
+  if (request.method === "POST" && url.pathname === "/api/publish") {
+    try {
+      const productId = url.searchParams.get("productId") || "";
+      sendJson(response, 200, publishJob(productId));
+    } catch (error) {
+      sendJson(response, 500, { error: error.message || "Не удалось опубликовать фотографию." });
+    }
+    return;
+  }
+  if (request.method === "POST" && url.pathname === "/api/discard") {
+    const productId = url.searchParams.get("productId") || "";
+    discardJob(productId);
+    sendJson(response, 200, { ok: true });
+    return;
+  }
+  if (request.method === "POST" && url.pathname === "/api/deploy") {
+    try {
+      sendJson(response, 200, deployProductPhotos());
+    } catch (error) {
+      sendJson(response, 500, { error: error.message || "Не удалось опубликовать фотографии на сайте." });
+    }
+    return;
+  }
+
+  const previewMatch = url.pathname.match(/^\/preview\/([a-z0-9-]+)$/i);
+  if (request.method === "GET" && previewMatch) {
+    sendFile(response, path.join(previewsDir, `${previewMatch[1]}.webp`), "image/webp");
+    return;
+  }
+  const photoMatch = url.pathname.match(/^\/catalog-photo\/([a-z0-9-]+)$/i);
+  if (request.method === "GET" && photoMatch) {
+    const product = productById.get(photoMatch[1]);
+    const photo = product ? findProductPhoto(product) : null;
+    if (!photo) {
+      sendJson(response, 404, { error: "Фото не найдено." });
+      return;
+    }
+    const mimeExtension = path.extname(photo.filePath).slice(1).replace("jpg", "jpeg");
+    sendFile(response, photo.filePath, `image/${mimeExtension}`, true);
+    return;
+  }
+
+  const staticFiles = {
+    "/": ["photo-manager.html", "text/html; charset=utf-8"],
+    "/photo-manager.html": ["photo-manager.html", "text/html; charset=utf-8"],
+    "/photo-manager.css": ["photo-manager.css", "text/css; charset=utf-8"],
+    "/photo-manager.js": ["photo-manager.js", "text/javascript; charset=utf-8"],
+    "/galaktika-logo.png": ["public/logo-galaktika.png", "image/png"],
+  };
+  const staticFile = staticFiles[url.pathname];
+  if (request.method === "GET" && staticFile) {
+    sendFile(response, path.join(rootDir, staticFile[0]), staticFile[1]);
+    return;
+  }
+
+  sendJson(response, 404, { error: "Страница не найдена." });
+}
+
+const server = http.createServer((request, response) => {
+  handleRequest(request, response).catch((error) => {
+    sendJson(response, 500, { error: error.message || "Внутренняя ошибка." });
+  });
+});
+
+reprocessDraftJobs();
+
+server.on("error", (error) => {
+  if (error.code === "EADDRINUSE") {
+    openBrowser();
+    process.exit(0);
+  }
+  console.error(error);
+  process.exit(1);
+});
+
+server.listen(port, host, () => {
+  console.log(`Фотоменеджер запущен: http://${host}:${port}/`);
+  console.log("Не закрывайте это окно, пока работаете с фотографиями.");
+  openBrowser();
+});

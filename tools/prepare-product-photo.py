@@ -1,0 +1,190 @@
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import sys
+from pathlib import Path
+
+import numpy as np
+from PIL import Image
+
+
+CANVAS_SIZE = 1200
+OBJECT_SIZE = 1000
+ALPHA_THRESHOLD = 32
+PROCESSOR_VERSION = 6
+AI_RUNTIME_DIR = Path(__file__).resolve().parent / "photo-ai-runtime"
+AI_MODELS_DIR = Path(__file__).resolve().parent / "photo-ai-models"
+AI_MODEL = "isnet-general-use"
+
+
+def alpha_bbox(image: Image.Image) -> tuple[int, int, int, int] | None:
+    alpha = image.getchannel("A")
+    visible = alpha.point(lambda value: 255 if value >= ALPHA_THRESHOLD else 0)
+    return visible.getbbox()
+
+
+def has_transparent_background(image: Image.Image) -> bool:
+    alpha = image.getchannel("A")
+    minimum, maximum = alpha.getextrema()
+    if minimum >= ALPHA_THRESHOLD or maximum < ALPHA_THRESHOLD:
+        return False
+
+    width, height = image.size
+    top = alpha.crop((0, 0, width, 1)).getextrema()[0]
+    bottom = alpha.crop((0, height - 1, width, height)).getextrema()[0]
+    left = alpha.crop((0, 0, 1, height)).getextrema()[0]
+    right = alpha.crop((width - 1, 0, width, height)).getextrema()[0]
+    return min(top, bottom, left, right) < ALPHA_THRESHOLD
+
+
+def has_damaged_transparency(image: Image.Image) -> bool:
+    rgba = np.asarray(image.convert("RGBA"), dtype=np.int16)
+    alpha = rgba[:, :, 3]
+    transparent = alpha < ALPHA_THRESHOLD
+    if float(np.mean(transparent)) < 0.05:
+        return False
+
+    rgb = rgba[:, :, :3]
+    border_rgb = np.concatenate((rgb[0], rgb[-1], rgb[:, 0], rgb[:, -1]))
+    border_alpha = np.concatenate((alpha[0], alpha[-1], alpha[:, 0], alpha[:, -1]))
+    transparent_border = border_rgb[border_alpha < ALPHA_THRESHOLD]
+    if not len(transparent_border):
+        transparent_border = border_rgb
+    background = np.median(transparent_border, axis=0)
+    if float(np.mean(background)) < 220.0:
+        return False
+    distance = np.sqrt(np.sum((rgb - background) ** 2, axis=2))
+
+    bbox = alpha_bbox(image)
+    if bbox is None:
+        return False
+    left, top, right, bottom = bbox
+    suspicious = transparent[top:bottom, left:right] & (distance[top:bottom, left:right] > 70.0)
+    minimum_pixels = max(200, int((right - left) * (bottom - top) * 0.01))
+    return int(np.count_nonzero(suspicious)) >= minimum_pixels
+
+
+def remove_background_ai(image: Image.Image) -> Image.Image:
+    runtime_dir = AI_RUNTIME_DIR
+    models_dir = AI_MODELS_DIR
+    bundle_root = Path(__file__).resolve().parents[2]
+    if not runtime_dir.exists():
+        runtime_dir = bundle_root / "photo-ai-runtime"
+    if not models_dir.exists():
+        models_dir = bundle_root / "photo-ai-models"
+    if not runtime_dir.exists() or not models_dir.exists():
+        raise RuntimeError("Модуль распознавания фона не установлен.")
+
+    runtime_path = str(runtime_dir)
+    if runtime_path not in sys.path:
+        sys.path.insert(0, runtime_path)
+    os.environ["U2NET_HOME"] = str(models_dir)
+
+    from rembg import new_session, remove
+
+    session = new_session(AI_MODEL)
+    return remove(image, session=session).convert("RGBA")
+
+
+def normalize_product(image: Image.Image) -> tuple[Image.Image, tuple[int, int]]:
+    bbox = alpha_bbox(image)
+    if bbox is None:
+        return Image.new("RGBA", (CANVAS_SIZE, CANVAS_SIZE), (0, 0, 0, 0)), (0, 0)
+
+    cropped = image.crop(bbox)
+    scale = min(OBJECT_SIZE / cropped.width, OBJECT_SIZE / cropped.height)
+    target_size = (
+        max(1, round(cropped.width * scale)),
+        max(1, round(cropped.height * scale)),
+    )
+    resized = cropped.resize(target_size, Image.Resampling.LANCZOS)
+    canvas = Image.new("RGBA", (CANVAS_SIZE, CANVAS_SIZE), (0, 0, 0, 0))
+    position = ((CANVAS_SIZE - resized.width) // 2, (CANVAS_SIZE - resized.height) // 2)
+    canvas.alpha_composite(resized, position)
+    return canvas, target_size
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Center a prepared transparent product photo.")
+    parser.add_argument("--input", required=True, type=Path)
+    parser.add_argument("--prepared", required=True, type=Path)
+    parser.add_argument("--preview", required=True, type=Path)
+    parser.add_argument("--metadata", required=True, type=Path)
+    parser.add_argument("--product-id", required=True)
+    return parser.parse_args()
+
+
+def main() -> int:
+    args = parse_args()
+    warnings: list[str] = []
+
+    with Image.open(args.input) as original:
+        source_size = original.size
+        source = original.convert("RGBA")
+
+    source_transparent = has_transparent_background(source)
+    damaged_transparency = source_transparent and has_damaged_transparency(source)
+    background_removed = False
+    processing_error = ""
+    if not source_transparent:
+        try:
+            source = remove_background_ai(source)
+            background_removed = has_transparent_background(source)
+        except Exception as error:
+            processing_error = str(error)
+
+    result_transparent = has_transparent_background(source)
+    bbox = alpha_bbox(source)
+    if bbox is None:
+        warnings.append("Изображение пустое или полностью прозрачное.")
+    if damaged_transparency:
+        warnings.append(
+            "Прозрачность исходника повреждена: вместе с фоном удалены части товара или упаковки. "
+            "Загрузите исходный JPG/PNG без прозрачности — менеджер сам удалит фон."
+        )
+    if processing_error:
+        warnings.append(f"Не удалось запустить распознавание предмета: {processing_error}")
+    if not result_transparent:
+        warnings.append("Фон не удалось удалить автоматически. Попробуйте другое изображение или прозрачный PNG/WebP.")
+    if min(source_size) < 600:
+        warnings.append("Низкое разрешение исходника. Используйте изображение не меньше 600 px.")
+    if bbox and (bbox[0] == 0 or bbox[1] == 0 or bbox[2] == source.width or bbox[3] == source.height):
+        warnings.append("Товар касается края изображения. Проверьте, что он не обрезан.")
+
+    normalized, object_size = normalize_product(source)
+    args.prepared.parent.mkdir(parents=True, exist_ok=True)
+    args.preview.parent.mkdir(parents=True, exist_ok=True)
+    args.metadata.parent.mkdir(parents=True, exist_ok=True)
+    normalized.save(args.prepared, format="WEBP", lossless=True, method=4, exact=True)
+    normalized.save(args.preview, format="WEBP", lossless=True, method=4, exact=True)
+
+    status = "review" if warnings else "ready"
+    metadata = {
+        "productId": args.product_id,
+        "processorVersion": PROCESSOR_VERSION,
+        "status": status,
+        "sourceWidth": source_size[0],
+        "sourceHeight": source_size[1],
+        "sourceTransparent": source_transparent,
+        "backgroundRemoved": background_removed,
+        "backgroundRemovalMethod": (
+            "damaged-source" if damaged_transparency
+            else "ai" if background_removed and not source_transparent
+            else "source"
+        ),
+        "transparentResult": result_transparent,
+        "canvasWidth": CANVAS_SIZE,
+        "canvasHeight": CANVAS_SIZE,
+        "objectWidth": object_size[0],
+        "objectHeight": object_size[1],
+        "warnings": warnings,
+    }
+    args.metadata.write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(json.dumps(metadata, ensure_ascii=False))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
