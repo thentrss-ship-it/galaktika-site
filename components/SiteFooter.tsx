@@ -1,4 +1,5 @@
 const TELEGRAM_URL = "https://t.me/Galaxy_Stan";
+const TELEGRAM_GROUP_URL = "https://t.me/galaxy_distr";
 
 const navLinks = [
   { label: "Каталог", href: "/catalog" },
@@ -57,6 +58,15 @@ export default function SiteFooter() {
                 className="rounded-[20px] border border-white/10 bg-black/35 px-6 py-4 text-center text-sm font-black text-zinc-200 transition hover:border-cyan-400/40 hover:bg-white/[0.06] hover:text-white"
               >
                 Перейти в каталог
+              </a>
+
+              <a
+                href={TELEGRAM_GROUP_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-[20px] border border-cyan-400/25 bg-cyan-400/10 px-6 py-4 text-center text-sm font-black text-cyan-100 transition hover:border-cyan-300/50 hover:bg-cyan-400/15"
+              >
+                Telegram-группа
               </a>
             </div>
           </div>
@@ -138,6 +148,16 @@ export default function SiteFooter() {
               >
                 Написать
                 <span>✈</span>
+              </a>
+
+              <a
+                href={TELEGRAM_GROUP_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-3 flex items-center justify-between rounded-[20px] border border-cyan-400/25 bg-cyan-400/10 px-5 py-4 text-sm font-black text-cyan-100 transition hover:border-cyan-300/50 hover:bg-cyan-400/15"
+              >
+                Вступить в группу
+                <span>→</span>
               </a>
             </div>
           </div>

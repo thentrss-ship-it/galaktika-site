@@ -1,7 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
-import { reachGoal } from "../components/YandexMetrika";
+import { useEffect, useState } from "react";
 import SiteHeader from "../components/SiteHeader";
 import SiteFooter from "../components/SiteFooter";
 
@@ -9,18 +8,6 @@ const TELEGRAM_URL = "https://t.me/Galaxy_Stan";
 
 export default function GalaktikaVapeSite() {
   const [isAdult, setIsAdult] = useState(false);
-  const [isLeadOpen, setIsLeadOpen] = useState(false);
-  const [leadSent, setLeadSent] = useState(false);
-  const [leadError, setLeadError] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const [form, setForm] = useState({
-    name: "",
-    phone: "",
-    city: "",
-    shop: "",
-    telegram: "",
-  });
 
   useEffect(() => {
     const accepted = localStorage.getItem("adult-confirmed");
@@ -36,46 +23,7 @@ export default function GalaktikaVapeSite() {
   };
 
   const openLead = () => {
-    setLeadSent(false);
-    setLeadError("");
-    setIsLeadOpen(true);
-  };
-
-  const closeLead = () => {
-    setIsLeadOpen(false);
-    setLeadSent(false);
-    setLeadError("");
-  };
-
-  const sendLead = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-    setLeadError("");
-
-    try {
-      const response = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-
-      if (!response.ok) {
-        throw new Error("Lead request failed");
-      }
-
-      reachGoal("lead_sent", { source: "home" });
-      setLeadSent(true);
-
-      window.setTimeout(() => {
-        window.location.href = "/thanks";
-      }, 350);
-    } catch {
-      setLeadError(
-        "Не удалось отправить заявку. Проверьте интернет или напишите менеджеру в Telegram."
-      );
-    } finally {
-      setLoading(false);
-    }
+    window.open(TELEGRAM_URL, "_blank", "noopener,noreferrer");
   };
 
   const stats = [
@@ -269,8 +217,8 @@ export default function GalaktikaVapeSite() {
     {
       number: "01",
       icon: "✍️",
-      title: "Оставляете заявку",
-      text: "Указываете город, формат магазина и удобный способ связи.",
+      title: "Пишете менеджеру",
+      text: "Переходите в Telegram и сразу обсуждаете прайс, наличие и условия.",
       accent:
         "border-cyan-400/35 bg-cyan-400/10 text-cyan-200 shadow-cyan-500/10",
     },
@@ -327,128 +275,6 @@ export default function GalaktikaVapeSite() {
               >
                 Мне есть 18 лет
               </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {isLeadOpen && (
-        <div className="fixed inset-0 z-[998] flex items-center justify-center bg-black/80 px-6 text-white backdrop-blur-xl">
-          <div className="relative w-full max-w-xl overflow-hidden rounded-[36px] border border-cyan-400/25 bg-zinc-950 p-8 shadow-[0_0_90px_rgba(34,211,238,0.25)]">
-            <div className="absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-cyan-500/20 blur-3xl" />
-            <div className="absolute -bottom-24 right-0 h-64 w-64 rounded-full bg-violet-500/20 blur-3xl" />
-
-            <button
-              onClick={closeLead}
-              className="absolute right-5 top-5 z-10 text-3xl text-zinc-500 transition hover:text-white"
-              aria-label="Закрыть форму"
-            >
-              ×
-            </button>
-
-            <div className="relative">
-              {!leadSent ? (
-                <>
-                  <div className="mb-4 text-sm uppercase tracking-[0.25em] text-cyan-300">
-                    B2B ACCESS
-                  </div>
-
-                  <h2 className="mb-4 text-4xl font-black leading-tight">
-                    Получите доступ к оптовым ценам
-                  </h2>
-
-                  <p className="mb-8 leading-relaxed text-zinc-400">
-                    Оставьте данные — менеджер отправит актуальное наличие,
-                    цены, новинки и условия сотрудничества.
-                  </p>
-
-                  <form onSubmit={sendLead} className="space-y-4">
-                    <input
-                      required
-                      placeholder="Имя *"
-                      value={form.name}
-                      onChange={(e) =>
-                        setForm({ ...form, name: e.target.value })
-                      }
-                      className="w-full rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-white outline-none transition-colors placeholder:text-zinc-500 focus:border-cyan-400"
-                    />
-
-                    <input
-                      required
-                      placeholder="Телефон *"
-                      value={form.phone}
-                      onChange={(e) =>
-                        setForm({ ...form, phone: e.target.value })
-                      }
-                      className="w-full rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-white outline-none transition-colors placeholder:text-zinc-500 focus:border-cyan-400"
-                    />
-
-                    <input
-                      required
-                      placeholder="Город *"
-                      value={form.city}
-                      onChange={(e) =>
-                        setForm({ ...form, city: e.target.value })
-                      }
-                      className="w-full rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-white outline-none transition-colors placeholder:text-zinc-500 focus:border-cyan-400"
-                    />
-
-                    <input
-                      placeholder="Название магазина"
-                      value={form.shop}
-                      onChange={(e) =>
-                        setForm({ ...form, shop: e.target.value })
-                      }
-                      className="w-full rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-white outline-none transition-colors placeholder:text-zinc-500 focus:border-cyan-400"
-                    />
-
-                    <input
-                      placeholder="Telegram"
-                      value={form.telegram}
-                      onChange={(e) =>
-                        setForm({ ...form, telegram: e.target.value })
-                      }
-                      className="w-full rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-white outline-none transition-colors placeholder:text-zinc-500 focus:border-cyan-400"
-                    />
-
-                    {leadError && (
-                      <div className="rounded-2xl border border-red-400/25 bg-red-500/10 px-5 py-4 text-sm font-bold leading-relaxed text-red-100">
-                        {leadError}
-                      </div>
-                    )}
-
-                    <button
-                      disabled={loading}
-                      className="w-full rounded-2xl bg-gradient-to-r from-violet-600 via-blue-500 to-cyan-400 py-5 text-lg font-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(34,211,238,0.45)] disabled:opacity-60 disabled:hover:scale-100"
-                    >
-                      {loading
-                        ? "Отправляем..."
-                        : "Получить доступ к оптовым ценам"}
-                    </button>
-                  </form>
-                </>
-              ) : (
-                <div className="py-10 text-center">
-                  <div className="mb-6 text-6xl">✅</div>
-
-                  <h2 className="mb-4 text-4xl font-black">
-                    Заявка отправлена
-                  </h2>
-
-                  <p className="mb-8 text-zinc-400">
-                    Менеджер получил заявку и скоро свяжется с вами.
-                  </p>
-
-                  <a
-                    href={TELEGRAM_URL}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex rounded-2xl bg-gradient-to-r from-violet-600 via-blue-500 to-cyan-400 px-8 py-4 font-bold transition hover:scale-105"
-                  >
-                    Написать в Telegram
-                  </a>
-                </div>
-              )}
             </div>
           </div>
         </div>
@@ -883,7 +709,7 @@ export default function GalaktikaVapeSite() {
                   </div>
 
                   <h2 className="max-w-xl text-3xl font-black leading-tight md:text-5xl">
-                    От заявки до первой отгрузки — без сложного онбординга
+                    От первого сообщения до первой отгрузки — без сложного онбординга
                   </h2>
 
                   <p className="mt-5 max-w-xl text-lg leading-relaxed text-zinc-400">
@@ -1012,8 +838,8 @@ export default function GalaktikaVapeSite() {
                   Готовы к сотрудничеству?
                 </h2>
                 <p className="mt-3 max-w-2xl text-base leading-relaxed text-zinc-300 md:text-lg">
-                  Оставьте заявку — отправим актуальный прайс, наличие и поможем
-                  собрать первый оптовый заказ под формат вашего магазина.
+                  Напишите менеджеру в Telegram — отправим актуальный прайс,
+                  наличие и поможем собрать первый оптовый заказ под формат вашего магазина.
                 </p>
               </div>
 

@@ -3,6 +3,7 @@ import SiteHeader from "../../components/SiteHeader";
 import SiteFooter from "../../components/SiteFooter";
 
 const TELEGRAM_URL = 'https://t.me/Galaxy_Stan';
+const TELEGRAM_GROUP_URL = 'https://t.me/galaxy_distr';
 
 export const metadata: Metadata = {
   title: 'Контакты ГАЛАКТИКА — оптовые поставки для магазинов',
@@ -105,6 +106,15 @@ export default function ContactsPage() {
                 >
                   Перейти в каталог
                 </a>
+
+                <a
+                  href={TELEGRAM_GROUP_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-[22px] border border-cyan-400/25 bg-cyan-400/10 px-7 py-5 text-center text-base font-black text-cyan-100 transition hover:border-cyan-300/50 hover:bg-cyan-400/15"
+                >
+                  Telegram-группа
+                </a>
               </div>
             </div>
 
@@ -134,6 +144,20 @@ export default function ContactsPage() {
                       className="mt-1 inline-flex text-3xl font-black text-cyan-200 transition hover:text-cyan-100"
                     >
                       Telegram
+                    </a>
+                  </div>
+
+                  <div className="h-px bg-white/10" />
+
+                  <div>
+                    <div className="text-sm font-bold text-zinc-500">Новости и новинки</div>
+                    <a
+                      href={TELEGRAM_GROUP_URL}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-1 inline-flex text-2xl font-black text-cyan-200 transition hover:text-cyan-100"
+                    >
+                      Группа ГАЛАКТИКИ
                     </a>
                   </div>
 

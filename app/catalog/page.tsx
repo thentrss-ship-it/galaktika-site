@@ -2,9 +2,8 @@
 
 // GALAXY CATALOG UX FIX 2026-06-17: toggle filters, active filter chips, stronger no-photo fallback.
 
-import { FormEvent, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { products, type Product } from '../../data/products';
-import { reachGoal } from '../../components/YandexMetrika';
 import SiteHeader from "../../components/SiteHeader";
 import SiteFooter from "../../components/SiteFooter";
 
@@ -434,7 +433,7 @@ function ProductPreviewModal({
             </h2>
 
             <p className="mt-5 leading-relaxed text-zinc-400">
-              Полное название позиции сохранится в заявке менеджеру. Запросите оптовую цену, наличие и кратность заказа по этой позиции.
+              Полное название позиции подставится в сообщение менеджеру в Telegram. Уточните оптовую цену, наличие и кратность заказа по этой позиции.
             </p>
 
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
@@ -651,15 +650,10 @@ function RequestDrawerModal({
 
 export default function CatalogPage() {
   const [isAdult, setIsAdult] = useState(false);
-  const [isLeadOpen, setIsLeadOpen] = useState(false);
-  const [leadSent, setLeadSent] = useState(false);
-  const [leadError, setLeadError] = useState('');
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [selectedProducts, setSelectedProducts] = useState<Product[]>([]);
   const [previewProduct, setPreviewProduct] = useState<Product | null>(null);
   const [isRequestPanelOpen, setIsRequestPanelOpen] = useState(false);
   const [requestRestored, setRequestRestored] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [urlReady, setUrlReady] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
 
@@ -670,14 +664,6 @@ export default function CatalogPage() {
   const [status, setStatus] = useState('Все');
   const [sort, setSort] = useState('Умная сортировка');
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
-
-  const [form, setForm] = useState({
-    name: '',
-    phone: '',
-    city: '',
-    shop: '',
-    telegram: '',
-  });
 
   useEffect(() => {
     const accepted = localStorage.getItem('adult-confirmed');
@@ -806,19 +792,25 @@ export default function CatalogPage() {
 
   const openLead = (product?: Product) => {
     setPreviewProduct(null);
-    setSelectedProduct(product ?? null);
-    setLeadSent(false);
-    setLeadError('');
-    setIsLeadOpen(true);
+    const requestedProducts = product ? [product] : selectedProducts;
+    const productList = requestedProducts.length
+      ? `\n\nИнтересующие товары:\n${requestedProducts
+          .map((item, index) => `${index + 1}. ${item.name}`)
+          .join('\n')}`
+      : '';
+    const message = `Здравствуйте! Хочу получить оптовый прайс и уточнить наличие.${productList}`;
+
+    window.open(
+      `${TELEGRAM_URL}?text=${encodeURIComponent(message)}`,
+      '_blank',
+      'noopener,noreferrer'
+    );
   };
 
   const openRequestLead = () => {
     setPreviewProduct(null);
     setIsRequestPanelOpen(false);
-    setSelectedProduct(null);
-    setLeadSent(false);
-    setLeadError('');
-    setIsLeadOpen(true);
+    openLead();
   };
 
   const toggleRequestProduct = (product: Product) => {
@@ -847,89 +839,6 @@ export default function CatalogPage() {
       setIsRequestPanelOpen(false);
     }
   }, [selectedProducts.length]);
-
-  const closeLead = () => {
-    setIsLeadOpen(false);
-    setLeadSent(false);
-    setLeadError('');
-    setSelectedProduct(null);
-  };
-
-  const sendLead = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-    setLeadError('');
-
-    try {
-      const response = await fetch('/api/lead', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...form,
-          product: selectedProduct
-            ? {
-                id: selectedProduct.id,
-                brand: selectedProduct.brand,
-                category: selectedProduct.category,
-                name: selectedProduct.name,
-                slug: selectedProduct.slug,
-                section: selectedProduct.section,
-              }
-            : null,
-          products: selectedProduct
-            ? [
-                {
-                  id: selectedProduct.id,
-                  brand: selectedProduct.brand,
-                  category: selectedProduct.category,
-                  name: selectedProduct.name,
-                  slug: selectedProduct.slug,
-                  section: selectedProduct.section,
-                },
-              ]
-            : selectedProducts.map((item) => ({
-                id: item.id,
-                brand: item.brand,
-                category: item.category,
-                name: item.name,
-                slug: item.slug,
-                section: item.section,
-              })),
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Lead request failed');
-      }
-
-      reachGoal('lead_sent', {
-        source: 'catalog',
-        productsCount: selectedProduct ? 1 : selectedProducts.length,
-      });
-
-      if (selectedProduct || selectedProducts.length > 0) {
-        reachGoal('catalog_product_request_sent', {
-          productsCount: selectedProduct ? 1 : selectedProducts.length,
-        });
-      }
-
-      if (selectedProduct || selectedProducts.length > 0) {
-        localStorage.removeItem(REQUEST_STORAGE_KEY);
-      }
-
-      setLeadSent(true);
-
-      window.setTimeout(() => {
-        window.location.href = '/thanks';
-      }, 350);
-    } catch {
-      setLeadError(
-        'Не удалось отправить заявку. Проверьте интернет или напишите менеджеру в Telegram.'
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const filtered = useMemo(() => {
     const q = normalizeSearch(query);
@@ -1133,154 +1042,6 @@ export default function CatalogPage() {
               >
                 Мне есть 18 лет
               </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {isLeadOpen && (
-        <div className="fixed inset-0 z-[998] flex items-center justify-center bg-black/80 px-6 text-white backdrop-blur-xl">
-          <div className="relative w-full max-w-xl overflow-hidden rounded-[36px] border border-cyan-400/25 bg-zinc-950 p-8 shadow-[0_0_90px_rgba(34,211,238,0.25)]">
-            <div className="absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-cyan-500/20 blur-3xl" />
-            <div className="absolute -bottom-24 right-0 h-64 w-64 rounded-full bg-violet-500/20 blur-3xl" />
-
-            <button
-              onClick={closeLead}
-              className="absolute right-5 top-5 z-10 text-3xl text-zinc-500 transition hover:text-white"
-              aria-label="Закрыть форму"
-            >
-              ×
-            </button>
-
-            <div className="relative">
-              {!leadSent ? (
-                <>
-                  <div className="mb-4 text-sm uppercase tracking-[0.25em] text-cyan-300">
-                    B2B ACCESS
-                  </div>
-
-                  <h2 className="mb-4 text-4xl font-black leading-tight">
-                    {selectedProduct || selectedProducts.length > 0 ? 'Запросить оптовую цену' : 'Получите доступ к оптовым ценам'}
-                  </h2>
-
-                  <p className="mb-6 leading-relaxed text-zinc-400">
-                    {selectedProduct
-                      ? 'Оставьте данные — менеджер пришлёт цену, наличие и условия по выбранной позиции.'
-                      : selectedProducts.length > 0
-                        ? 'Оставьте данные — менеджер пришлёт цены и наличие по выбранным позициям.'
-                        : 'Оставьте данные — менеджер отправит актуальное наличие, цены, новинки и условия сотрудничества.'}
-                  </p>
-
-                  {selectedProduct && (
-                    <div className="mb-6 overflow-hidden rounded-[24px] border border-cyan-400/20 bg-cyan-400/10 p-4 shadow-[0_0_35px_rgba(34,211,238,0.10)]">
-                      <div className="mb-2 text-xs font-black uppercase tracking-[0.2em] text-cyan-200/70">
-                        Выбранный товар
-                      </div>
-                      <div className="text-lg font-black leading-tight text-white">
-                        {selectedProduct.name}
-                      </div>
-                      <div className="mt-2 flex flex-wrap gap-2 text-xs font-bold text-zinc-300">
-                        <span className="rounded-full border border-white/10 bg-black/35 px-3 py-1">
-                          {selectedProduct.brand}
-                        </span>
-                        <span className="rounded-full border border-white/10 bg-black/35 px-3 py-1">
-                          {selectedProduct.category}
-                        </span>
-                        <span className="rounded-full border border-white/10 bg-black/35 px-3 py-1">
-                          {selectedProduct.section}
-                        </span>
-                      </div>
-                    </div>
-                  )}
-
-                  {!selectedProduct && selectedProducts.length > 0 && (
-                    <div className="mb-6 overflow-hidden rounded-[24px] border border-cyan-400/20 bg-cyan-400/10 p-4 shadow-[0_0_35px_rgba(34,211,238,0.10)]">
-                      <div className="mb-3 flex items-center justify-between gap-3">
-                        <div className="text-xs font-black uppercase tracking-[0.2em] text-cyan-200/70">
-                          Товары в запросе
-                        </div>
-                        <div className="rounded-full border border-cyan-300/20 bg-black/35 px-3 py-1 text-xs font-black text-cyan-100">
-                          {selectedProducts.length} поз.
-                        </div>
-                      </div>
-
-                      <div className="max-h-48 space-y-2 overflow-y-auto pr-1">
-                        {selectedProducts.map((item) => (
-                          <div key={item.id} className="rounded-2xl border border-white/10 bg-black/35 p-3">
-                            <div className="text-sm font-black leading-tight text-white">{item.name}</div>
-                            <div className="mt-1 text-xs text-zinc-400">
-                              {item.brand} · {item.category} · {item.section}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  <form onSubmit={sendLead} className="space-y-4">
-                    <input
-                      required
-                      placeholder="Имя *"
-                      value={form.name}
-                      onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      className="w-full rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-white outline-none transition-colors placeholder:text-zinc-500 focus:border-cyan-400"
-                    />
-                    <input
-                      required
-                      placeholder="Телефон *"
-                      value={form.phone}
-                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                      className="w-full rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-white outline-none transition-colors placeholder:text-zinc-500 focus:border-cyan-400"
-                    />
-                    <input
-                      required
-                      placeholder="Город *"
-                      value={form.city}
-                      onChange={(e) => setForm({ ...form, city: e.target.value })}
-                      className="w-full rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-white outline-none transition-colors placeholder:text-zinc-500 focus:border-cyan-400"
-                    />
-                    <input
-                      placeholder="Название магазина"
-                      value={form.shop}
-                      onChange={(e) => setForm({ ...form, shop: e.target.value })}
-                      className="w-full rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-white outline-none transition-colors placeholder:text-zinc-500 focus:border-cyan-400"
-                    />
-                    <input
-                      placeholder="Telegram"
-                      value={form.telegram}
-                      onChange={(e) => setForm({ ...form, telegram: e.target.value })}
-                      className="w-full rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-white outline-none transition-colors placeholder:text-zinc-500 focus:border-cyan-400"
-                    />
-
-                    {leadError && (
-                      <div className="rounded-2xl border border-red-400/25 bg-red-500/10 px-5 py-4 text-sm font-bold leading-relaxed text-red-100">
-                        {leadError}
-                      </div>
-                    )}
-
-                    <button
-                      disabled={loading}
-                      className="w-full rounded-2xl bg-gradient-to-r from-violet-600 via-blue-500 to-cyan-400 py-5 text-lg font-black transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(34,211,238,0.45)] disabled:opacity-60 disabled:hover:scale-100"
-                    >
-                      {loading ? 'Отправляем...' : 'Получить доступ к оптовым ценам'}
-                    </button>
-                  </form>
-                </>
-              ) : (
-                <div className="py-10 text-center">
-                  <div className="mb-6 text-6xl">✅</div>
-                  <h2 className="mb-4 text-4xl font-black">Заявка отправлена</h2>
-                  <p className="mb-8 text-zinc-400">{selectedProduct || selectedProducts.length > 0 ? 'Менеджер получил запрос по выбранным позициям и скоро свяжется с вами.' : 'Менеджер получил заявку и скоро свяжется с вами.'}</p>
-                  <a
-                    href={TELEGRAM_URL}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex rounded-2xl bg-gradient-to-r from-violet-600 via-blue-500 to-cyan-400 px-8 py-4 font-bold transition hover:scale-105"
-                  >
-                    Написать в Telegram
-                  </a>
-                </div>
-              )}
             </div>
           </div>
         </div>
@@ -1711,7 +1472,7 @@ export default function CatalogPage() {
             <div className="relative flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
               <div>
                 <h2 className="text-3xl font-black md:text-4xl">Нужен актуальный оптовый прайс?</h2>
-                <p className="mt-3 max-w-2xl leading-relaxed text-zinc-300">Оставьте заявку — менеджер отправит наличие, цены и поможет собрать заказ под формат вашего магазина.</p>
+                <p className="mt-3 max-w-2xl leading-relaxed text-zinc-300">Напишите менеджеру в Telegram — он отправит наличие, цены и поможет собрать заказ под формат вашего магазина.</p>
               </div>
               <button onClick={() => openLead()} className="w-full rounded-[20px] bg-gradient-to-r from-violet-600 via-blue-500 to-cyan-400 px-10 py-5 text-lg font-black shadow-[0_0_45px_rgba(34,211,238,0.25)] transition hover:scale-[1.03] lg:w-auto">Получить оптовый прайс ✈</button>
             </div>

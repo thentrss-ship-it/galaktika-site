@@ -12,6 +12,7 @@ type SiteHeaderProps = {
 };
 
 const TELEGRAM_URL = "https://t.me/Galaxy_Stan";
+const TELEGRAM_GROUP_URL = "https://t.me/galaxy_distr";
 
 const navItems: Array<{
   label: string;
@@ -53,6 +54,11 @@ const navItems: Array<{
     href: "/contacts",
     key: "contacts",
     description: "Связь с менеджером",
+  },
+  {
+    label: "TG-группа",
+    href: TELEGRAM_GROUP_URL,
+    description: "Новости, новинки и наличие",
   },
 ];
 
