@@ -1,5 +1,5 @@
 const TELEGRAM_URL = "https://t.me/Galaxy_Stan";
-const TELEGRAM_GROUP_URL = "https://t.me/galaxy_distr";
+const TELEGRAM_CHANNEL_URL = "https://t.me/galaxy_distr";
 
 const navLinks = [
   { label: "Каталог", href: "/catalog" },
@@ -42,7 +42,7 @@ export default function SiteFooter() {
               </p>
             </div>
 
-            <div className="grid gap-3 sm:flex lg:justify-end">
+            <div className="grid gap-3 sm:flex sm:flex-wrap lg:justify-end">
               <a
                 href={TELEGRAM_URL}
                 target="_blank"
@@ -61,12 +61,15 @@ export default function SiteFooter() {
               </a>
 
               <a
-                href={TELEGRAM_GROUP_URL}
+                href={TELEGRAM_CHANNEL_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-[20px] border border-cyan-400/25 bg-cyan-400/10 px-6 py-4 text-center text-sm font-black text-cyan-100 transition hover:border-cyan-300/50 hover:bg-cyan-400/15"
+                className="group inline-flex items-center justify-center gap-3 rounded-[20px] border border-sky-400/30 bg-gradient-to-r from-sky-500/15 to-cyan-400/10 px-6 py-4 text-center text-sm font-black text-sky-100 shadow-[0_0_26px_rgba(14,165,233,0.10)] transition hover:-translate-y-0.5 hover:border-sky-300/55 hover:shadow-[0_0_38px_rgba(14,165,233,0.20)]"
               >
-                Telegram-группа
+                <span>Telegram-канал</span>
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-sky-400 text-xs text-slate-950 shadow-[0_0_18px_rgba(56,189,248,0.40)] transition group-hover:rotate-12">
+                  ↗
+                </span>
               </a>
             </div>
           </div>
@@ -151,13 +154,20 @@ export default function SiteFooter() {
               </a>
 
               <a
-                href={TELEGRAM_GROUP_URL}
+                href={TELEGRAM_CHANNEL_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-3 flex items-center justify-between rounded-[20px] border border-cyan-400/25 bg-cyan-400/10 px-5 py-4 text-sm font-black text-cyan-100 transition hover:border-cyan-300/50 hover:bg-cyan-400/15"
+                className="group mt-3 flex items-center justify-between gap-4 rounded-[20px] border border-sky-400/30 bg-gradient-to-r from-sky-500/15 via-cyan-400/10 to-violet-500/10 px-5 py-4 text-sky-100 shadow-[0_0_28px_rgba(14,165,233,0.10)] transition hover:-translate-y-0.5 hover:border-sky-300/55 hover:shadow-[0_0_38px_rgba(14,165,233,0.20)]"
               >
-                Вступить в группу
-                <span>→</span>
+                <span>
+                  <span className="block text-sm font-black">Telegram-канал</span>
+                  <span className="mt-1 block text-[11px] font-bold tracking-wide text-sky-200/60">
+                    @galaxy_distr · новости и новинки
+                  </span>
+                </span>
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-sky-400 text-sm text-slate-950 shadow-[0_0_20px_rgba(56,189,248,0.38)] transition group-hover:rotate-12">
+                  ↗
+                </span>
               </a>
             </div>
           </div>
