@@ -12,13 +12,15 @@ type SiteHeaderProps = {
 };
 
 const TELEGRAM_URL = "https://t.me/Galaxy_Stan";
-const TELEGRAM_GROUP_URL = "https://t.me/galaxy_distr";
+const TELEGRAM_CHANNEL_URL = "https://t.me/galaxy_distr";
 
 const navItems: Array<{
   label: string;
   href: string;
   key?: ActivePage;
   description: string;
+  external?: boolean;
+  accent?: boolean;
 }> = [
   {
     label: "Главная",
@@ -56,9 +58,11 @@ const navItems: Array<{
     description: "Связь с менеджером",
   },
   {
-    label: "TG-группа",
-    href: TELEGRAM_GROUP_URL,
+    label: "Telegram-канал",
+    href: TELEGRAM_CHANNEL_URL,
     description: "Новости, новинки и наличие",
+    external: true,
+    accent: true,
   },
 ];
 
@@ -121,13 +125,22 @@ export default function SiteHeader({
                 <a
                   key={item.label}
                   href={item.href}
+                  target={item.external ? "_blank" : undefined}
+                  rel={item.external ? "noreferrer" : undefined}
                   className={
-                    isActive
+                    item.accent
+                      ? "group inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-sky-400/25 bg-gradient-to-r from-sky-500/15 to-cyan-400/5 px-3 py-2 text-sky-100 shadow-[0_0_24px_rgba(14,165,233,0.10)] transition hover:-translate-y-0.5 hover:border-sky-300/45 hover:bg-sky-400/15 hover:shadow-[0_0_32px_rgba(14,165,233,0.20)]"
+                      : isActive
                       ? "whitespace-nowrap text-cyan-300 drop-shadow-[0_0_18px_rgba(34,211,238,0.35)]"
                       : "whitespace-nowrap transition hover:text-cyan-300 hover:drop-shadow-[0_0_18px_rgba(34,211,238,0.25)]"
                   }
                 >
-                  {item.label}
+                  <span>{item.label}</span>
+                  {item.accent && (
+                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-sky-400 text-[11px] text-slate-950 shadow-[0_0_16px_rgba(56,189,248,0.45)] transition group-hover:rotate-12">
+                      ↗
+                    </span>
+                  )}
                 </a>
               );
             })}
@@ -203,9 +216,13 @@ export default function SiteHeader({
                   <a
                     key={item.label}
                     href={item.href}
+                    target={item.external ? "_blank" : undefined}
+                    rel={item.external ? "noreferrer" : undefined}
                     onClick={closeMobileMenu}
                     className={
-                      isActive
+                      item.accent
+                        ? "group rounded-[22px] border border-sky-400/30 bg-gradient-to-r from-sky-500/15 via-cyan-400/10 to-violet-500/10 px-4 py-3.5 text-sky-100 shadow-[0_0_34px_rgba(14,165,233,0.13)] transition hover:border-sky-300/50 hover:bg-sky-400/15"
+                        : isActive
                         ? "group rounded-[22px] border border-cyan-400/30 bg-gradient-to-r from-cyan-400/16 to-violet-500/10 px-4 py-3.5 text-cyan-100 shadow-[0_0_30px_rgba(34,211,238,0.12)]"
                         : "group rounded-[22px] border border-white/10 bg-white/[0.045] px-4 py-3.5 text-white/88 transition hover:border-cyan-400/30 hover:bg-white/[0.07] hover:text-cyan-100"
                     }
@@ -222,7 +239,9 @@ export default function SiteHeader({
 
                       <span
                         className={
-                          isActive
+                          item.accent
+                            ? "flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-sky-400 text-slate-950 shadow-[0_0_22px_rgba(56,189,248,0.32)] transition group-hover:rotate-12"
+                            : isActive
                             ? "flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl border border-cyan-300/25 bg-cyan-400/15 text-cyan-100"
                             : "flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-black/30 text-zinc-500 transition group-hover:border-cyan-400/25 group-hover:text-cyan-100"
                         }
