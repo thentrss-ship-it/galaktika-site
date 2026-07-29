@@ -3,7 +3,7 @@ import SiteHeader from "../../components/SiteHeader";
 import SiteFooter from "../../components/SiteFooter";
 
 const TELEGRAM_URL = 'https://t.me/Galaxy_Stan';
-const TELEGRAM_GROUP_URL = 'https://t.me/galaxy_distr';
+const TELEGRAM_CHANNEL_URL = 'https://t.me/galaxy_distr';
 
 export const metadata: Metadata = {
   title: 'Контакты ГАЛАКТИКА — оптовые поставки для магазинов',
@@ -89,7 +89,7 @@ export default function ContactsPage() {
                 Свяжитесь с менеджером, чтобы получить оптовый прайс, наличие и условия отгрузки для вашего магазина или сети.
               </p>
 
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
                   href={TELEGRAM_URL}
                   target="_blank"
@@ -108,12 +108,15 @@ export default function ContactsPage() {
                 </a>
 
                 <a
-                  href={TELEGRAM_GROUP_URL}
+                  href={TELEGRAM_CHANNEL_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="rounded-[22px] border border-cyan-400/25 bg-cyan-400/10 px-7 py-5 text-center text-base font-black text-cyan-100 transition hover:border-cyan-300/50 hover:bg-cyan-400/15"
+                  className="group inline-flex items-center justify-center gap-3 rounded-[22px] border border-sky-400/30 bg-gradient-to-r from-sky-500/15 via-cyan-400/10 to-violet-500/10 px-7 py-5 text-center text-base font-black text-sky-100 shadow-[0_0_34px_rgba(14,165,233,0.12)] transition hover:-translate-y-0.5 hover:border-sky-300/55 hover:shadow-[0_0_48px_rgba(14,165,233,0.22)]"
                 >
-                  Telegram-группа
+                  <span>Наш Telegram-канал</span>
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-sky-400 text-sm text-slate-950 shadow-[0_0_20px_rgba(56,189,248,0.42)] transition group-hover:rotate-12">
+                    ↗
+                  </span>
                 </a>
               </div>
             </div>
@@ -152,12 +155,20 @@ export default function ContactsPage() {
                   <div>
                     <div className="text-sm font-bold text-zinc-500">Новости и новинки</div>
                     <a
-                      href={TELEGRAM_GROUP_URL}
+                      href={TELEGRAM_CHANNEL_URL}
                       target="_blank"
                       rel="noreferrer"
-                      className="mt-1 inline-flex text-2xl font-black text-cyan-200 transition hover:text-cyan-100"
+                      className="group mt-3 flex items-center justify-between gap-4 rounded-[20px] border border-sky-400/25 bg-gradient-to-r from-sky-500/15 to-cyan-400/[0.06] p-4 text-sky-100 shadow-[0_0_28px_rgba(14,165,233,0.10)] transition hover:-translate-y-0.5 hover:border-sky-300/50 hover:shadow-[0_0_38px_rgba(14,165,233,0.18)]"
                     >
-                      Группа ГАЛАКТИКИ
+                      <span>
+                        <span className="block text-lg font-black">Telegram-канал ГАЛАКТИКИ</span>
+                        <span className="mt-1 block text-xs font-bold tracking-wide text-sky-200/60">
+                          @galaxy_distr
+                        </span>
+                      </span>
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-sky-400 text-sm text-slate-950 shadow-[0_0_22px_rgba(56,189,248,0.38)] transition group-hover:rotate-12">
+                        ↗
+                      </span>
                     </a>
                   </div>
 
