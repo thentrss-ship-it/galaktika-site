@@ -1,5 +1,7 @@
 export type Product = {
   id: number;
+  sourceId?: string;
+  sourceName?: string;
   brand: string;
   category: string;
   name: string;

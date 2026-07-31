@@ -3,7 +3,7 @@
 // GALAXY CATALOG UX FIX 2026-06-17: toggle filters, active filter chips, stronger no-photo fallback.
 
 import { useEffect, useMemo, useState } from 'react';
-import { products, type Product } from '../../data/products';
+import { products as fallbackProducts, type Product } from '../../data/products';
 import SiteHeader from "../../components/SiteHeader";
 import SiteFooter from "../../components/SiteFooter";
 
@@ -85,8 +85,6 @@ const sortProducts = (items: Product[], mode: string) => {
   );
 };
 
-const brands = ['Все', ...Array.from(new Set(products.map((p) => p.brand)))];
-const categories = ['Все', ...Array.from(new Set(products.map((p) => p.category)))];
 const statuses = ['Все', 'Хиты', 'Новинки', 'В наличии'];
 const sortOptions = ['Умная сортировка', 'Сначала хиты', 'Сначала новинки', 'Бренд и серия', 'По названию'];
 
@@ -649,6 +647,7 @@ function RequestDrawerModal({
 }
 
 export default function CatalogPage() {
+  const [products, setProducts] = useState<Product[]>(fallbackProducts);
   const [isAdult, setIsAdult] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState<Product[]>([]);
   const [previewProduct, setPreviewProduct] = useState<Product | null>(null);
@@ -664,6 +663,38 @@ export default function CatalogPage() {
   const [status, setStatus] = useState('Все');
   const [sort, setSort] = useState('Умная сортировка');
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const brands = useMemo(
+    () => ['Все', ...Array.from(new Set(products.map((product) => product.brand)))],
+    [products]
+  );
+  const categories = useMemo(
+    () => ['Все', ...Array.from(new Set(products.map((product) => product.category)))],
+    [products]
+  );
+
+  useEffect(() => {
+    let cancelled = false;
+
+    fetch('/api/catalog', { cache: 'no-store' })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Catalog request failed: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((nextProducts) => {
+        if (!cancelled && Array.isArray(nextProducts) && nextProducts.length > 0) {
+          setProducts(nextProducts);
+        }
+      })
+      .catch((error) => {
+        console.error('Catalog update fallback:', error);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     const accepted = localStorage.getItem('adult-confirmed');
