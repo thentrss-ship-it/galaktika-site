@@ -900,7 +900,7 @@ export default function CatalogPage() {
     });
 
     return sortProducts(result, sort);
-  }, [query, brand, category, section, status, sort]);
+  }, [products, query, brand, category, section, status, sort]);
 
   const visibleProducts = filtered.slice(0, visibleCount);
 
@@ -989,7 +989,7 @@ export default function CatalogPage() {
       .filter(Boolean);
 
     return ['Все', ...Array.from(new Set(items))];
-  }, [brand, category, status]);
+  }, [products, brand, category, status]);
 
   const quickSections = useMemo(() => {
     const availableSections = sectionOptions.filter((item) => item !== 'Все');
