@@ -5,6 +5,8 @@ import SiteHeader from "../components/SiteHeader";
 import SiteFooter from "../components/SiteFooter";
 
 const TELEGRAM_URL = "https://t.me/Galaxy_Stan";
+const PRICE_BOT_URL = "https://t.me/galaxysai_bot?start=site";
+const TELEGRAM_GROUP_URL = "https://t.me/galaxy_distr";
 
 export default function GalaktikaVapeSite() {
   const [isAdult, setIsAdult] = useState(false);
@@ -281,7 +283,7 @@ export default function GalaktikaVapeSite() {
       )}
 
       <main className="min-h-screen overflow-hidden bg-black text-white">
-        <SiteHeader active="home" onLead={openLead} />
+        <SiteHeader active="home" />
 <section className="relative min-h-[800px] overflow-hidden bg-black px-5 pb-12 pt-24 lg:px-6 lg:pt-24">
           <div
             className="absolute left-1/2 top-0 h-full w-full max-w-[1780px] -translate-x-1/2 bg-cover bg-center"
@@ -353,13 +355,33 @@ export default function GalaktikaVapeSite() {
               </div>
 
               <div className="mt-9 flex flex-wrap gap-4">
-                <button
-                  onClick={openLead}
+                <a
+                  href={PRICE_BOT_URL}
+                  target="_blank"
+                  rel="noreferrer"
                   className="group relative overflow-hidden rounded-[20px] bg-gradient-to-r from-violet-600 via-blue-500 to-cyan-400 px-8 py-5 text-lg font-black shadow-[0_0_45px_rgba(34,211,238,0.28)] transition hover:scale-[1.03] hover:shadow-[0_0_65px_rgba(34,211,238,0.4)]"
                 >
                   <span className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent transition duration-700 group-hover:translate-x-[100%]" />
                   <span className="relative">Получить оптовый прайс ✈</span>
-                </button>
+                </a>
+
+                <a
+                  href={TELEGRAM_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-[20px] border border-cyan-400/35 bg-cyan-400/10 px-8 py-5 text-lg font-bold text-cyan-100 transition hover:border-cyan-300/65 hover:bg-cyan-400/15"
+                >
+                  Менеджер →
+                </a>
+
+                <a
+                  href={TELEGRAM_GROUP_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-[20px] border border-violet-400/35 bg-violet-400/10 px-8 py-5 text-lg font-bold text-violet-100 transition hover:border-violet-300/65 hover:bg-violet-400/15"
+                >
+                  Telegram-группа →
+                </a>
 
                 <a
                   href="/catalog"
@@ -718,13 +740,15 @@ export default function GalaktikaVapeSite() {
                   </p>
 
                   <div className="mt-8 flex flex-wrap gap-4">
-                    <button
-                      onClick={openLead}
+                    <a
+                      href={PRICE_BOT_URL}
+                      target="_blank"
+                      rel="noreferrer"
                       className="group relative overflow-hidden rounded-[20px] bg-gradient-to-r from-violet-600 via-blue-500 to-cyan-400 px-8 py-5 text-lg font-black shadow-[0_0_45px_rgba(34,211,238,0.25)] transition hover:scale-[1.03] hover:shadow-[0_0_70px_rgba(34,211,238,0.38)]"
                     >
                       <span className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent transition duration-700 group-hover:translate-x-[100%]" />
                       <span className="relative">Получить оптовый прайс ✈</span>
-                    </button>
+                    </a>
 
                     <a
                       href={TELEGRAM_URL}
@@ -844,13 +868,15 @@ export default function GalaktikaVapeSite() {
               </div>
 
               <div className="w-full shrink-0 lg:w-auto">
-                <button
-                  onClick={openLead}
+                <a
+                  href={PRICE_BOT_URL}
+                  target="_blank"
+                  rel="noreferrer"
                   className="group relative w-full overflow-hidden rounded-[22px] bg-gradient-to-r from-violet-600 via-blue-500 to-cyan-400 px-10 py-5 text-lg font-black shadow-[0_0_50px_rgba(34,211,238,0.28)] transition hover:scale-[1.03] hover:shadow-[0_0_75px_rgba(34,211,238,0.42)] lg:w-auto"
                 >
                   <span className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent transition duration-700 group-hover:translate-x-[100%]" />
                   <span className="relative">Получить оптовый прайс ✈</span>
-                </button>
+                </a>
 
                 <div className="mt-3 text-center text-xs text-zinc-400">
                   ⊙ Ответим в течение 5 минут
