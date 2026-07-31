@@ -3,7 +3,7 @@ import SiteHeader from "../../components/SiteHeader";
 import SiteFooter from "../../components/SiteFooter";
 
 const TELEGRAM_URL = 'https://t.me/Galaxy_Stan';
-const TELEGRAM_CHANNEL_URL = 'https://t.me/galaxy_distr';
+const TELEGRAM_GROUP_URL = 'https://t.me/galaxy_distr';
 
 export const metadata: Metadata = {
   title: 'Контакты ГАЛАКТИКА — оптовые поставки для магазинов',
@@ -65,7 +65,7 @@ const steps = [
 export default function ContactsPage() {
   return (
     <main className="min-h-screen overflow-hidden bg-black text-white">
-        <SiteHeader active="contacts" ctaText="Написать в Telegram" />
+        <SiteHeader active="contacts" ctaText="Написать менеджеру" ctaHref={TELEGRAM_URL} />
 <section className="relative overflow-hidden px-5 pb-16 pt-28 lg:px-6 lg:pb-24 lg:pt-36">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_12%,rgba(34,211,238,0.16),transparent_30%),radial-gradient(circle_at_80%_10%,rgba(139,92,246,0.18),transparent_34%),radial-gradient(circle_at_50%_70%,rgba(14,165,233,0.08),transparent_38%)]" />
         <div className="absolute inset-x-0 top-0 h-[620px] bg-gradient-to-b from-cyan-950/15 via-black to-black" />
@@ -89,7 +89,7 @@ export default function ContactsPage() {
                 Свяжитесь с менеджером, чтобы получить оптовый прайс, наличие и условия отгрузки для вашего магазина или сети.
               </p>
 
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
                   href={TELEGRAM_URL}
                   target="_blank"
@@ -108,15 +108,12 @@ export default function ContactsPage() {
                 </a>
 
                 <a
-                  href={TELEGRAM_CHANNEL_URL}
+                  href={TELEGRAM_GROUP_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="group inline-flex items-center justify-center gap-3 rounded-[22px] border border-sky-400/30 bg-gradient-to-r from-sky-500/15 via-cyan-400/10 to-violet-500/10 px-7 py-5 text-center text-base font-black text-sky-100 shadow-[0_0_34px_rgba(14,165,233,0.12)] transition hover:-translate-y-0.5 hover:border-sky-300/55 hover:shadow-[0_0_48px_rgba(14,165,233,0.22)]"
+                  className="rounded-[22px] border border-cyan-400/25 bg-cyan-400/10 px-7 py-5 text-center text-base font-black text-cyan-100 transition hover:border-cyan-300/50 hover:bg-cyan-400/15"
                 >
-                  <span>Наш Telegram-канал</span>
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-sky-400 text-sm text-slate-950 shadow-[0_0_20px_rgba(56,189,248,0.42)] transition group-hover:rotate-12">
-                    ↗
-                  </span>
+                  Telegram-группа
                 </a>
               </div>
             </div>
@@ -155,20 +152,12 @@ export default function ContactsPage() {
                   <div>
                     <div className="text-sm font-bold text-zinc-500">Новости и новинки</div>
                     <a
-                      href={TELEGRAM_CHANNEL_URL}
+                      href={TELEGRAM_GROUP_URL}
                       target="_blank"
                       rel="noreferrer"
-                      className="group mt-3 flex items-center justify-between gap-4 rounded-[20px] border border-sky-400/25 bg-gradient-to-r from-sky-500/15 to-cyan-400/[0.06] p-4 text-sky-100 shadow-[0_0_28px_rgba(14,165,233,0.10)] transition hover:-translate-y-0.5 hover:border-sky-300/50 hover:shadow-[0_0_38px_rgba(14,165,233,0.18)]"
+                      className="mt-1 inline-flex text-2xl font-black text-cyan-200 transition hover:text-cyan-100"
                     >
-                      <span>
-                        <span className="block text-lg font-black">Telegram-канал ГАЛАКТИКИ</span>
-                        <span className="mt-1 block text-xs font-bold tracking-wide text-sky-200/60">
-                          @galaxy_distr
-                        </span>
-                      </span>
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-sky-400 text-sm text-slate-950 shadow-[0_0_22px_rgba(56,189,248,0.38)] transition group-hover:rotate-12">
-                        ↗
-                      </span>
+                      Группа ГАЛАКТИКИ
                     </a>
                   </div>
 

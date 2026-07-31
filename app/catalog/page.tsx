@@ -1104,7 +1104,7 @@ export default function CatalogPage() {
       )}
 
       <main className="min-h-screen overflow-hidden bg-black text-white">
-        <SiteHeader active="catalog" onLead={() => openLead()} />
+        <SiteHeader active="catalog" />
 <section className="relative overflow-hidden px-5 pb-16 pt-28 lg:px-6 lg:pt-32">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_12%,rgba(34,211,238,0.16),transparent_30%),radial-gradient(circle_at_80%_10%,rgba(139,92,246,0.18),transparent_34%),radial-gradient(circle_at_50%_65%,rgba(14,165,233,0.08),transparent_38%)]" />
           <div className="absolute inset-x-0 top-0 h-[620px] bg-gradient-to-b from-cyan-950/15 via-black to-black" />

@@ -51,10 +51,14 @@ const navItems: Array<{
     description: "Популярные бренды",
   },
   {
-    label: "Контакты",
-    href: "/contacts",
-    key: "contacts",
-    description: "Связь с менеджером",
+    label: "Прайс-бот",
+    href: PRICE_BOT_URL,
+    description: "Получить актуальный прайс",
+  },
+  {
+    label: "Менеджер",
+    href: TELEGRAM_URL,
+    description: "Личная связь в Telegram",
   },
   {
     label: "TG-группа",
