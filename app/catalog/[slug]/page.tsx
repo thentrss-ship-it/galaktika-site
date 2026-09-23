@@ -1,4 +1,5 @@
 import { products } from '../../../data/products';
+import { productImageKeySet } from '../../../data/productImageManifest';
 
 type ProductPageProps = {
   params: {
@@ -26,7 +27,10 @@ export default function ProductPage({ params }: ProductPageProps) {
     );
   }
 
-  const imageSrc = `/products/${product.brand.toLowerCase()}/${product.slug}.webp`;
+  const brandKey = product.brand.toLowerCase();
+  const imageSrc = productImageKeySet.has(`${brandKey}/${product.slug}`)
+    ? `/products/${brandKey}/${product.slug}.webp`
+    : null;
 
   const telegramText = encodeURIComponent(
     `Здравствуйте!
@@ -58,11 +62,25 @@ ${product.name}
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.18),transparent_55%)]" />
               <div className="absolute bottom-16 left-1/2 h-16 w-56 -translate-x-1/2 rounded-full bg-cyan-400/20 blur-3xl" />
 
-              <img
-                src={imageSrc}
-                alt={product.name}
-                className="relative z-10 mx-auto max-h-[520px] w-full object-contain drop-shadow-[0_35px_55px_rgba(0,0,0,0.75)]"
-              />
+              {imageSrc ? (
+                <img
+                  src={imageSrc}
+                  alt={product.name}
+                  className="relative z-10 mx-auto max-h-[520px] w-full object-contain drop-shadow-[0_35px_55px_rgba(0,0,0,0.75)]"
+                />
+              ) : (
+                <div className="relative z-10 flex min-h-[420px] flex-col items-center justify-center text-center">
+                  <div className="flex h-32 w-32 items-center justify-center rounded-[36px] border border-white/15 bg-black/55 text-5xl font-black text-cyan-100 shadow-[0_0_70px_rgba(34,211,238,0.20)]">
+                    {product.brand.slice(0, 2).toUpperCase()}
+                  </div>
+                  <div className="mt-6 text-sm font-black uppercase tracking-[0.24em] text-white/80">
+                    Фото скоро
+                  </div>
+                  <div className="mx-auto mt-2 max-w-[260px] text-sm leading-relaxed text-white/45">
+                    Товар уже можно добавить в запрос и уточнить наличие у менеджера
+                  </div>
+                </div>
+              )}
             </div>
 
             <div>

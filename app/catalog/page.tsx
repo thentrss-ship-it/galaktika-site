@@ -4,6 +4,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { products as fallbackProducts, type Product } from '../../data/products';
+import { productImageKeySet } from '../../data/productImageManifest';
 import SiteHeader from "../../components/SiteHeader";
 import SiteFooter from "../../components/SiteFooter";
 
@@ -21,8 +22,12 @@ const normalizeSearch = (value: string) =>
     .replace(/\s+/g, ' ')
     .trim();
 
-const productImage = (product: Product) =>
-  `/products/${product.brand.toLowerCase()}/${product.slug}.webp`;
+const productImage = (product: Product) => {
+  const brand = product.brand.toLowerCase();
+  const key = `${brand}/${product.slug}`;
+
+  return productImageKeySet.has(key) ? `/products/${brand}/${product.slug}.webp` : null;
+};
 
 const cleanProductName = (product: Product) => {
   const brandPattern = product.brand.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -226,6 +231,7 @@ function ProductTile({
 
   const brandAccent = accentByBrand[brandKey] ?? 'from-cyan-400/25 via-violet-500/10 to-blue-500/20 border-cyan-400/25 text-cyan-100';
   const displayName = cleanProductName(product);
+  const imageSrc = productImage(product);
 
   return (
     <div className={`group relative overflow-hidden rounded-[30px] border bg-black shadow-2xl transition duration-500 hover:-translate-y-2 hover:border-cyan-400/35 hover:shadow-[0_0_80px_rgba(34,211,238,0.18)] ${isInRequest ? 'border-cyan-400/45 shadow-[0_0_70px_rgba(34,211,238,0.22)]' : 'border-white/10'}`}>
@@ -268,9 +274,9 @@ function ProductTile({
           </div>
         )}
 
-        {!imageFailed ? (
+        {!imageFailed && imageSrc ? (
           <img
-            src={productImage(product)}
+            src={imageSrc}
             alt={product.name}
             loading="lazy"
             onError={(event) => {
@@ -367,6 +373,7 @@ function ProductPreviewModal({
 }) {
   const [imageFailed, setImageFailed] = useState(false);
   const displayName = cleanProductName(product);
+  const imageSrc = productImage(product);
 
   return (
     <div className="fixed inset-0 z-[997] flex items-center justify-center bg-black/82 px-4 py-6 text-white backdrop-blur-2xl">
@@ -389,9 +396,9 @@ function ProductPreviewModal({
             <div className="absolute bottom-16 left-1/2 h-4 w-64 -translate-x-1/2 rounded-full bg-cyan-200/20 blur-md" />
             <div className="absolute bottom-20 left-1/2 h-px w-72 -translate-x-1/2 bg-gradient-to-r from-transparent via-cyan-200/70 to-transparent" />
 
-            {!imageFailed ? (
+            {!imageFailed && imageSrc ? (
               <img
-                src={productImage(product)}
+                src={imageSrc}
                 alt={product.name}
                 loading="lazy"
                 onError={(event) => {
@@ -498,6 +505,7 @@ function RequestItemRow({
 }) {
   const [imageFailed, setImageFailed] = useState(false);
   const displayName = cleanProductName(product);
+  const imageSrc = productImage(product);
 
   return (
     <div className="group grid gap-3 rounded-[24px] border border-white/10 bg-black/42 p-3 transition hover:border-cyan-400/25 hover:bg-white/[0.045] sm:grid-cols-[86px_1fr_auto] sm:items-center">
@@ -508,9 +516,9 @@ function RequestItemRow({
         aria-label={`Открыть товар ${product.name}`}
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_48%,rgba(34,211,238,0.20),transparent_38%)]" />
-        {!imageFailed ? (
+        {!imageFailed && imageSrc ? (
           <img
-            src={productImage(product)}
+            src={imageSrc}
             alt={product.name}
             loading="lazy"
             onError={(event) => {
