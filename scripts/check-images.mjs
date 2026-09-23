@@ -5,6 +5,7 @@ const productsFile = path.join(process.cwd(), "data", "products.ts");
 const text = fs.readFileSync(productsFile, "utf8");
 
 const matches = [...text.matchAll(/"brand":\s*"([^"]+)"[\s\S]*?"slug":\s*"([^"]+)"/g)];
+const imageExtensions = [".webp", ".png", ".jpg", ".jpeg"];
 
 let missing = 0;
 
@@ -12,11 +13,14 @@ for (const match of matches) {
   const brand = match[1].toLowerCase();
   const slug = match[2];
 
-  const imagePath = path.join(process.cwd(), "public", "products", brand, `${slug}.webp`);
+  const imageDir = path.join(process.cwd(), "public", "products", brand);
+  const hasImage = imageExtensions.some((extension) =>
+    fs.existsSync(path.join(imageDir, `${slug}${extension}`))
+  );
 
-  if (!fs.existsSync(imagePath)) {
+  if (!hasImage) {
     missing++;
-    console.log(`❌ ${brand}/${slug}.webp`);
+    console.log(`❌ ${brand}/${slug}`);
   }
 }
 

@@ -4,7 +4,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { products as fallbackProducts, type Product } from '../../data/products';
-import { productImageKeySet } from '../../data/productImageManifest';
+import { productImagePathMap } from '../../data/productImageManifest';
 import SiteHeader from "../../components/SiteHeader";
 import SiteFooter from "../../components/SiteFooter";
 
@@ -26,7 +26,7 @@ const productImage = (product: Product) => {
   const brand = product.brand.toLowerCase();
   const key = `${brand}/${product.slug}`;
 
-  return productImageKeySet.has(key) ? `/products/${brand}/${product.slug}.webp` : null;
+  return productImagePathMap[key] ?? null;
 };
 
 const cleanProductName = (product: Product) => {

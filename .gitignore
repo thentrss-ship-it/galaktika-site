@@ -5,5 +5,6 @@ node_modules/
 work/
 __pycache__/
 *.pyc
+*.tsbuildinfo
 tools/photo-ai-runtime/
 tools/photo-ai-models/
