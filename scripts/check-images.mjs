@@ -5,7 +5,7 @@ const productsFile = path.join(process.cwd(), "data", "products.ts");
 const text = fs.readFileSync(productsFile, "utf8");
 
 const matches = [...text.matchAll(/"brand":\s*"([^"]+)"[\s\S]*?"slug":\s*"([^"]+)"/g)];
-const imageExtensions = [".webp", ".png", ".jpg", ".jpeg"];
+const imageExtensions = [".webp", ".png", ".jpg", ".jpeg", ".avif"];
 
 let missing = 0;
 

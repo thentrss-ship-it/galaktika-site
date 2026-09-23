@@ -464,6 +464,111 @@ const items = [
     url: "https://store.geekvape.com/cdn/shop/products/GeekvapeWenaxH1-_16_de56b26b-29be-49bd-823b-187d12a1e85d.jpg?v=1650881282&width=900",
     file: "public/products/geekvape/geekvape-kartridzh-geek-vape-wenax-h1-1-4ohm-2-5ml-pod-black-3-sht.jpg",
   },
+  {
+    source: "Smoant official website",
+    url: "https://smoant.com/images/products/levin-pk-cartridge/detail-05.webp",
+    file: "public/products/smoant/smoant-kartridzh-smoant-levin-pro-0-6o-2-sht.webp",
+  },
+  {
+    source: "Smoant official website",
+    url: "https://smoant.com/images/products/levin-pk-cartridge/detail-06.webp",
+    file: "public/products/smoant/smoant-kartridzh-smoant-levin-pro-0-8o-2-sht.webp",
+  },
+  {
+    source: "Smoant official website",
+    url: "https://smoant.com/images/products/levin-pk-cartridge/detail-07.webp",
+    file: "public/products/smoant/smoant-kartridzh-smoant-levin-pro-1-0o-2-sht.webp",
+  },
+  {
+    source: "Smoant official website",
+    url: "https://smoant.com/images/products/pasito-3/11.avif",
+    file: "public/products/smoant/smoant-kartridzh-smoant-pasito-iii-7-ml-bez-isparitelia.avif",
+  },
+  {
+    source: "Smoant official website",
+    url: "https://smoant.com/images/products/pasito-mini-cartridge/detail-01.jpg",
+    file: "public/products/smoant/smoant-kartridzh-smoant-pasito-mini-3-5ml-bez-isparitelia.jpg",
+  },
+  {
+    source: "Smoant official website",
+    url: "https://smoant.com/images/products/pasito-2-cartridge/detail-07.jpg",
+    file: "public/products/smoant/smoant-adapter-smoant-pasito-2-perekhodnik-dlia-isparitelei-pasito.jpg",
+  },
+  {
+    source: "Smoant official website",
+    url: "https://smoant.com/images/products/k-1-coil/detail-03.avif",
+    file: "public/products/smoant/smoant-isparitel-smoant-k1-mesh-0-3-ohm-coil-pasito-2-knight-80-3-sht.avif",
+  },
+  {
+    source: "Smoant official website",
+    url: "https://smoant.com/images/products/k-1-coil/detail-03.avif",
+    file: "public/products/smoant/smoant-isparitel-smoant-k3-half-dtl-0-6-ohm-coil-pasito-2-knight-80-3sht.avif",
+  },
+  {
+    source: "Smoant official website",
+    url: "https://smoant.com/images/products/battlestar-baby-ni80/detail-05.jpg",
+    file: "public/products/smoant/smoant-isparitel-smoant-mesh-0-6-om-battlestar-baby-charon-baby-veer-3sht.jpg",
+  },
+  {
+    source: "Smoant official website",
+    url: "https://smoant.com/images/products/battlestar-baby-ni80/detail-05.jpg",
+    file: "public/products/smoant/smoant-isparitel-smoant-ni80-coil-1-2-om-battlestar-baby-charon-baby-veer-3sht.jpg",
+  },
+  {
+    source: "Smoant official website",
+    url: "https://smoant.com/images/products/p-1-coil/detail-02.avif",
+    file: "public/products/smoant/smoant-isparitel-smoant-p-2-mesh-0-8-om-pasito-mini-3sht.avif",
+  },
+  {
+    source: "Smoant official website",
+    url: "https://smoant.com/images/products/p-1-coil/detail-02.avif",
+    file: "public/products/smoant/smoant-isparitel-smoant-p-3-mesh-1-0-om-pasito-mini-3sht.avif",
+  },
+  {
+    source: "Smoant official website",
+    url: "https://smoant.com/images/products/pasito-rba/detail-03.jpg",
+    file: "public/products/smoant/smoant-isparitel-smoant-pasito-mtl-ni80-pasito-knight-80-upak-3-sht.jpg",
+  },
+  {
+    source: "Smoant official website",
+    url: "https://smoant.com/images/products/s-1-coil/detail-06.webp",
+    file: "public/products/smoant/smoant-isparitel-smoant-s1-0-4-om-santi-charon-baby-plus-3sht.webp",
+  },
+  {
+    source: "Smoant official website",
+    url: "https://smoant.com/images/products/s-1-coil/detail-06.webp",
+    file: "public/products/smoant/smoant-isparitel-smoant-s2-0-6-om-santi-charon-baby-plus-3sht.webp",
+  },
+  {
+    source: "Smoant official website",
+    url: "https://smoant.com/images/products/s-1-coil/detail-06.webp",
+    file: "public/products/smoant/smoant-isparitel-smoant-s3-1-2-om-santi-charon-baby-plus-3sht.webp",
+  },
+  {
+    source: "Smoant official website",
+    url: "https://smoant.com/images/products/s-1-coil/detail-07.webp",
+    file: "public/products/smoant/smoant-isparitel-smoant-s4-0-35-om-santi-charon-baby-plus-3sht.webp",
+  },
+  {
+    source: "Smoant official website",
+    url: "https://smoant.com/images/products/s-1-coil/detail-07.webp",
+    file: "public/products/smoant/smoant-isparitel-smoant-s5-0-55-om-santi-charon-baby-plus-3sht.webp",
+  },
+  {
+    source: "Smoant official website",
+    url: "https://smoant.com/images/products/s-1-coil/detail-07.webp",
+    file: "public/products/smoant/smoant-isparitel-smoant-s6-1-1-om-santi-charon-baby-plus-3sht.webp",
+  },
+  {
+    source: "Smoant official website",
+    url: "https://smoant.com/images/products/k-1-coil/detail-03.avif",
+    file: "public/products/smoant/smoant-obsluzhivaemaia-baza-smoant-pasito-2-knight-80-k-rba.avif",
+  },
+  {
+    source: "Smoant official website",
+    url: "https://smoant.com/images/products/pasito-rba/detail-04.jpg",
+    file: "public/products/smoant/smoant-obsluzhivaemaia-baza-smoant-pasito-rba-single-coil-0-5-1-0ohm.jpg",
+  },
 ];
 
 for (const item of items) {
