@@ -404,6 +404,66 @@ const items = [
     url: "https://store.geekvape.com/cdn/shop/files/Geekvape_Q_Cartridge_Pod_3pcs_packQ_1.2_Cartridge-2ML-1.2.png?v=1775208565&width=600",
     file: "public/products/geekvape/geekvape-kartridzh-geek-vape-q-1-2-side-fill-2ml-3-sht.png",
   },
+  {
+    source: "Geekvape official store",
+    url: "https://store.geekvape.com/cdn/shop/files/Iron_Black_H45_Aegis_Hero_2_cartridge.png?v=1775208756&width=900",
+    file: "public/products/geekvape/geekvape-kartridzh-geekvape-hero-5-dark-6-5ml-up-1-sht.png",
+  },
+  {
+    source: "Geekvape official store",
+    url: "https://store.geekvape.com/cdn/shop/files/Pure_White_H45_Aegis_Hero_2_cartridge.png?v=1775208756&width=900",
+    file: "public/products/geekvape/geekvape-kartridzh-geekvape-hero-5-white-6-5ml-up-1-sht.png",
+  },
+  {
+    source: "Geekvape official store",
+    url: "https://store.geekvape.com/cdn/shop/products/H45_Aegis_Hero_2_cartridge_green.png?v=1775208756&width=900",
+    file: "public/products/geekvape/geekvape-kartridzh-geekvape-h45-crystal-green-4ml-2-sht.png",
+  },
+  {
+    source: "Geekvape official store",
+    url: "https://store.geekvape.com/cdn/shop/files/Geekvape_H45_Aegis_Hero_2_Empty_cartridge_4ml_2pcs_pack.png?v=1775208756&width=900",
+    file: "public/products/geekvape/geekvape-kartridzh-s-isparitelem-geekvape-h45-0-4o-5ml-2-sht.png",
+  },
+  {
+    source: "Geekvape official store",
+    url: "https://store.geekvape.com/cdn/shop/files/Geekvape_H45_Aegis_Hero_2_Empty_cartridge_4ml_2pcs_pack.png?v=1775208756&width=900",
+    file: "public/products/geekvape/geekvape-kartridzh-s-isparitelem-geekvape-h45-0-6o-5ml-2-sht.png",
+  },
+  {
+    source: "Geekvape official store",
+    url: "https://store.geekvape.com/cdn/shop/products/GeekvapeAegisNANOKit-_10_9da51525-ab1d-4616-a9c1-43af6f291ada.jpg?v=1620269071&width=900",
+    file: "public/products/geekvape/geekvape-kartridzh-geekvape-aegis-nano-pod-1-2o-2ml-black-2-sht.jpg",
+  },
+  {
+    source: "Geekvape official store",
+    url: "https://store.geekvape.com/cdn/shop/products/GeekvapeAegisNANOKit-_9_50695628-573a-49bf-8adb-e09cdcb8a502.jpg?v=1775208934&width=900",
+    file: "public/products/geekvape/geekvape-kartridzh-geekvape-n-aegis-nano-2-pod-0-6o-2ml-2-sht.jpg",
+  },
+  {
+    source: "Geekvape official store",
+    url: "https://store.geekvape.com/cdn/shop/files/AEGISFORCECartridge.png?v=1764662141&width=900",
+    file: "public/products/geekvape/geekvape-kartridzh-geek-vape-aegis-force-2-sht.png",
+  },
+  {
+    source: "Geekvape official store",
+    url: "https://store.geekvape.com/cdn/shop/products/Geekvapeonepodkit-_10_9972982f-6b4f-40d1-b57b-c0c6cfa3ffd2.jpg?v=1634788607&width=900",
+    file: "public/products/geekvape/geekvape-kartridzh-geek-vape-aegis-one-pod-1-2o-3-sht.jpg",
+  },
+  {
+    source: "Geekvape official store",
+    url: "https://store.geekvape.com/cdn/shop/products/Sonder-U-pod2.jpg?v=1656993186&width=900",
+    file: "public/products/geekvape/geekvape-kartridzh-geek-vape-u-1-1o-2ml-3-sht.jpg",
+  },
+  {
+    source: "Geekvape official store",
+    url: "https://store.geekvape.com/cdn/shop/products/GeekvapeWenaxH1-_16_de56b26b-29be-49bd-823b-187d12a1e85d.jpg?v=1650881282&width=900",
+    file: "public/products/geekvape/geekvape-kartridzh-geek-vape-wenax-h1-0-7ohm-2-5ml-pod-black-3-sht.jpg",
+  },
+  {
+    source: "Geekvape official store",
+    url: "https://store.geekvape.com/cdn/shop/products/GeekvapeWenaxH1-_16_de56b26b-29be-49bd-823b-187d12a1e85d.jpg?v=1650881282&width=900",
+    file: "public/products/geekvape/geekvape-kartridzh-geek-vape-wenax-h1-1-4ohm-2-5ml-pod-black-3-sht.jpg",
+  },
 ];
 
 for (const item of items) {
