@@ -1,4 +1,10 @@
 export const productImagePathMap: Record<string, string> = {
+  "geekvape/geekvape-geekvape-hero-5-kit-iron-black": "/products/geekvape/geekvape-geekvape-hero-5-kit-iron-black.webp",
+  "geekvape/geekvape-geekvape-hero-5-kit-lightning-yellow": "/products/geekvape/geekvape-geekvape-hero-5-kit-lightning-yellow.webp",
+  "geekvape/geekvape-geekvape-hero-5-kit-pure-white": "/products/geekvape/geekvape-geekvape-hero-5-kit-pure-white.webp",
+  "geekvape/geekvape-geekvape-hero-5-kit-quantum-cyan": "/products/geekvape/geekvape-geekvape-hero-5-kit-quantum-cyan.webp",
+  "geekvape/geekvape-geekvape-hero-5-kit-racing-blue": "/products/geekvape/geekvape-geekvape-hero-5-kit-racing-blue.webp",
+  "geekvape/geekvape-geekvape-hero-5-kit-speed-red": "/products/geekvape/geekvape-geekvape-hero-5-kit-speed-red.webp",
   "geekvape/geekvape-isparitel-geekvape-b-0-15o-boost-version-5sht": "/products/geekvape/geekvape-isparitel-geekvape-b-0-15o-boost-version-5sht.png",
   "geekvape/geekvape-isparitel-geekvape-b-0-2o-boost-version-5sht": "/products/geekvape/geekvape-isparitel-geekvape-b-0-2o-boost-version-5sht.png",
   "geekvape/geekvape-isparitel-geekvape-b-0-3o-boost-version-5sht": "/products/geekvape/geekvape-isparitel-geekvape-b-0-3o-boost-version-5sht.png",
@@ -150,6 +156,7 @@ export const productImagePathMap: Record<string, string> = {
   "smoant/smoant-nabor-smoant-pasito-3-space-gray": "/products/smoant/smoant-nabor-smoant-pasito-3-space-gray.webp",
   "smoant/smoant-obsluzhivaemaia-baza-smoant-pasito-2-knight-80-k-rba": "/products/smoant/smoant-obsluzhivaemaia-baza-smoant-pasito-2-knight-80-k-rba.avif",
   "smoant/smoant-obsluzhivaemaia-baza-smoant-pasito-rba-single-coil-0-5-1-0ohm": "/products/smoant/smoant-obsluzhivaemaia-baza-smoant-pasito-rba-single-coil-0-5-1-0ohm.jpg",
+  "smoant/smoant-smoant-pasito-2-kit-carbon-fiber": "/products/smoant/smoant-smoant-pasito-2-kit-carbon-fiber.jpg",
   "vaporesso/vaporesso-isparitel-vaporesso-gti-0-15-om-mesh-coil-5sht": "/products/vaporesso/vaporesso-isparitel-vaporesso-gti-0-15-om-mesh-coil-5sht.png",
   "vaporesso/vaporesso-isparitel-vaporesso-gti-0-2-om-mesh-coil-5sht": "/products/vaporesso/vaporesso-isparitel-vaporesso-gti-0-2-om-mesh-coil-5sht.png",
   "vaporesso/vaporesso-isparitel-vaporesso-gti-0-4-om-mesh-coil-5sht": "/products/vaporesso/vaporesso-isparitel-vaporesso-gti-0-4-om-mesh-coil-5sht.png",
@@ -260,6 +267,13 @@ export const productImagePathMap: Record<string, string> = {
   "vaporesso/vaporesso-nabor-vaporesso-xros-pro-2-2000mah-kit-sunlight-blue": "/products/vaporesso/vaporesso-nabor-vaporesso-xros-pro-2-2000mah-kit-sunlight-blue.png",
   "vaporesso/vaporesso-nabor-vaporesso-xros-pro-2-2000mah-kit-sunlight-red": "/products/vaporesso/vaporesso-nabor-vaporesso-xros-pro-2-2000mah-kit-sunlight-red.png",
   "vaporesso/vaporesso-nabor-vaporesso-xros-pro-2-2000mah-kit-sunlight-silver": "/products/vaporesso/vaporesso-nabor-vaporesso-xros-pro-2-2000mah-kit-sunlight-silver.png",
+  "vaporesso/vaporesso-vaporesso-xros-5-mini-kit-black": "/products/vaporesso/vaporesso-vaporesso-xros-5-mini-kit-black.webp",
+  "vaporesso/vaporesso-vaporesso-xros-5-mini-kit-flowing-blue": "/products/vaporesso/vaporesso-vaporesso-xros-5-mini-kit-flowing-blue.webp",
+  "vaporesso/vaporesso-vaporesso-xros-5-mini-kit-flowing-green": "/products/vaporesso/vaporesso-vaporesso-xros-5-mini-kit-flowing-green.webp",
+  "vaporesso/vaporesso-vaporesso-xros-5-mini-kit-flowing-pink": "/products/vaporesso/vaporesso-vaporesso-xros-5-mini-kit-flowing-pink.webp",
+  "vaporesso/vaporesso-vaporesso-xros-5-mini-kit-pastel-crystal": "/products/vaporesso/vaporesso-vaporesso-xros-5-mini-kit-pastel-crystal.webp",
+  "vaporesso/vaporesso-vaporesso-xros-5-mini-kit-purple": "/products/vaporesso/vaporesso-vaporesso-xros-5-mini-kit-purple.webp",
+  "vaporesso/vaporesso-vaporesso-xros-5-mini-kit-rose-red": "/products/vaporesso/vaporesso-vaporesso-xros-5-mini-kit-rose-red.webp",
   "voopoo/voopoo-isparitel-voopoo-ito-m0-coil-0-5-om-5sht": "/products/voopoo/voopoo-isparitel-voopoo-ito-m0-coil-0-5-om-5sht.webp",
   "voopoo/voopoo-isparitel-voopoo-ito-m1-coil-0-7-om-5sht": "/products/voopoo/voopoo-isparitel-voopoo-ito-m1-coil-0-7-om-5sht.jpg",
   "voopoo/voopoo-isparitel-voopoo-ito-m2-coil-1-0-om-5sht": "/products/voopoo/voopoo-isparitel-voopoo-ito-m2-coil-1-0-om-5sht.webp",
@@ -357,7 +371,8 @@ export const productImagePathMap: Record<string, string> = {
   "voopoo/voopoo-nabor-voopoo-vmate-pro-2-pod-1500mah-kit-navy-blue": "/products/voopoo/voopoo-nabor-voopoo-vmate-pro-2-pod-1500mah-kit-navy-blue.webp",
   "voopoo/voopoo-nabor-voopoo-vmate-pro-2-pod-1500mah-kit-neon": "/products/voopoo/voopoo-nabor-voopoo-vmate-pro-2-pod-1500mah-kit-neon.webp",
   "voopoo/voopoo-nabor-voopoo-vmate-pro-2-pod-1500mah-kit-space-grey": "/products/voopoo/voopoo-nabor-voopoo-vmate-pro-2-pod-1500mah-kit-space-grey.webp",
-  "voopoo/voopoo-nabor-voopoo-vmate-pro-900mah-pod-kit-rosy": "/products/voopoo/voopoo-nabor-voopoo-vmate-pro-900mah-pod-kit-rosy.webp"
+  "voopoo/voopoo-nabor-voopoo-vmate-pro-900mah-pod-kit-rosy": "/products/voopoo/voopoo-nabor-voopoo-vmate-pro-900mah-pod-kit-rosy.webp",
+  "voopoo/voopoo-voopoo-vmate-pro-2-pod-1500mah-kit-gilt-black": "/products/voopoo/voopoo-voopoo-vmate-pro-2-pod-1500mah-kit-gilt-black.webp"
 };
 
 export const productImageKeySet = new Set<string>(Object.keys(productImagePathMap));
