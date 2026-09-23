@@ -279,6 +279,86 @@ const items = [
     url: "https://cdn.shopify.com/s/files/1/0071/4758/5626/files/LUXEX2-0.8.png?v=1783425317",
     file: "public/products/vaporesso/vaporesso-kartridzh-vaporesso-luxe-x-0-8o-5ml-corex-2-0-2-sht.png",
   },
+  {
+    source: "VOOPOO official store",
+    url: "https://img-va.myshopline.com/image/store/1747294110724/ITO-M1-3_1000x.jpg?h=1000&q=80&w=1000",
+    file: "public/products/voopoo/voopoo-isparitel-voopoo-ito-m1-coil-0-7-om-5sht.jpg",
+  },
+  {
+    source: "VOOPOO official store",
+    url: "https://img-va.myshopline.com/image/store/1747294110724/ITO-M1-2_1000x.jpg?h=1000&q=80&w=1000",
+    file: "public/products/voopoo/voopoo-isparitel-voopoo-ito-m3-coil-1-2-om-5sht.jpg",
+  },
+  {
+    source: "VOOPOO official website",
+    url: "https://sen.voopoo.com.cn/www-voopoo/static/dist/images/product/detail/argus-cartridges/ARGUS-Top-Fill-Cartridge-0.4.png?v=7cf428a6c2",
+    file: "public/products/voopoo/voopoo-kartridzh-voopoo-argus-top-fill-0-4o-2ml-3-sht.png",
+  },
+  {
+    source: "VOOPOO official website",
+    url: "https://sen.voopoo.com.cn/www-voopoo/static/dist/images/product/detail/argus-cartridges/ARGUS-pod-Cartridge-2.png?v=b1905cdc1a",
+    file: "public/products/voopoo/voopoo-kartridzh-voopoo-argus-pod-1-2o-2ml-3-sht.png",
+  },
+  {
+    source: "VOOPOO official website",
+    url: "https://sen.voopoo.com.cn/www-voopoo/static/dist/images/platform/pnp/coil/PnP-VM4.png?v=d896cba28f",
+    file: "public/products/voopoo/voopoo-isparitel-voopoo-pnp-vm4-mesh-0-6-om-vinci-vinci-r-x-drag-x-s-navi-doric-60-5sht.png",
+  },
+  {
+    source: "VOOPOO official website",
+    url: "https://sen.voopoo.com.cn/www-voopoo/static/dist/images/platform/pnp/coil/PnP-VM5.png?v=64ae6e571a",
+    file: "public/products/voopoo/voopoo-isparitel-voopoo-pnp-vm5-mesh-0-2-om-vinci-vinci-r-x-drag-x-s-navi-doric-60-5sht.png",
+  },
+  {
+    source: "VOOPOO official website",
+    url: "https://sen.voopoo.com.cn/www-voopoo/static/dist/images/page/dm1.png?v=d4213d3625",
+    file: "public/products/voopoo/voopoo-isparitel-voopoo-tpp-dm1-0-15-om-drag-3-drag-x-plus-3sht.png",
+  },
+  {
+    source: "VOOPOO official website",
+    url: "https://sen.voopoo.com.cn/www-voopoo/static/dist/images/page/dm2.png?v=bf69321f25",
+    file: "public/products/voopoo/voopoo-isparitel-voopoo-tpp-dm2-0-2-om-drag-3-drag-x-plus-3sht.png",
+  },
+  {
+    source: "VOOPOO official website",
+    url: "https://sen.voopoo.com.cn/www-voopoo/static/dist/images/page/dm3.png?v=46abae4d75",
+    file: "public/products/voopoo/voopoo-isparitel-voopoo-tpp-dm3-0-15-om-drag-3-drag-x-plus-3sht.png",
+  },
+  {
+    source: "VOOPOO official website",
+    url: "https://sen.voopoo.com.cn/www-voopoo/static/dist/images/page/dm4.png?v=79c384b54a",
+    file: "public/products/voopoo/voopoo-isparitel-voopoo-tpp-dm4-0-3-om-drag-3-drag-x-plus-3sht.png",
+  },
+  {
+    source: "VOOPOO official store",
+    url: "https://img-va.myshopline.com/image/store/1747294110724/Vinci-Series-V2-Cartridge-0-8.jpg?h=700&w=700",
+    file: "public/products/voopoo/voopoo-kartridzh-voopoo-vinci-series-v2-pod-0-8o-3-sht.jpg",
+  },
+  {
+    source: "VOOPOO official store",
+    url: "https://img-va.myshopline.com/image/store/1747294110724/Vinci-Series-V2-Cartridge-1-2.jpg?h=700&w=700",
+    file: "public/products/voopoo/voopoo-kartridzh-voopoo-vinci-series-v2-pod-1-2o-3-sht.jpg",
+  },
+  {
+    source: "VOOPOO official store",
+    url: "https://img-va.myshopline.com/image/store/1747294110724/0-7-5.jpg?w=600&h=600",
+    file: "public/products/voopoo/voopoo-kartridzh-voopoo-vmate-top-fill-v-thru-pro-0-7o-3ml-2-sht.jpg",
+  },
+  {
+    source: "VOOPOO official website",
+    url: "https://www.voopoo.com/static/dist/images/platform/pnp/pod/PnP-MTL-Pod.png",
+    file: "public/products/voopoo/voopoo-kartridzh-voopoo-bez-isparitelia-pnp-mtl-pod-2ml-2-sht.png",
+  },
+  {
+    source: "VOOPOO official website",
+    url: "https://www.voopoo.com/static/dist/images/platform/pnp/pod/PnP-Pod-II.png",
+    file: "public/products/voopoo/voopoo-kartridzh-voopoo-bez-isparitelia-pnp-pod-ii-5ml-2-sht.png",
+  },
+  {
+    source: "Vaporesso official store",
+    url: "https://store.vaporesso.com/cdn/shop/files/13-8.png?v=1717567256&width=550",
+    file: "public/products/vaporesso/vaporesso-kartridzh-vaporesso-xtra-2ml-0-8o-2-sht.png",
+  },
 ];
 
 for (const item of items) {
