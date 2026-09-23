@@ -359,6 +359,51 @@ const items = [
     url: "https://store.vaporesso.com/cdn/shop/files/13-8.png?v=1717567256&width=550",
     file: "public/products/vaporesso/vaporesso-kartridzh-vaporesso-xtra-2ml-0-8o-2-sht.png",
   },
+  {
+    source: "Geekvape official store",
+    url: "https://cdn.shopify.com/s/files/1/0507/3708/6660/files/b015_2048x2048.png?v=1768380622",
+    file: "public/products/geekvape/geekvape-isparitel-geekvape-b-0-15o-boost-version-5sht.png",
+  },
+  {
+    source: "Geekvape official store",
+    url: "https://cdn.shopify.com/s/files/1/0507/3708/6660/files/B_Series_Coil_Boost.png?v=1775209023",
+    file: "public/products/geekvape/geekvape-isparitel-geekvape-b-0-2o-boost-version-5sht.png",
+  },
+  {
+    source: "Geekvape official store",
+    url: "https://cdn.shopify.com/s/files/1/0507/3708/6660/files/B_Series_Coil_Boost.png?v=1775209023",
+    file: "public/products/geekvape/geekvape-isparitel-geekvape-b-0-3o-boost-version-5sht.png",
+  },
+  {
+    source: "Geekvape official store",
+    url: "https://cdn.shopify.com/s/files/1/0507/3708/6660/files/B_Series_Coil_Boost.png?v=1775209023",
+    file: "public/products/geekvape/geekvape-isparitel-geekvape-b-0-4o-boost-version-5sht.png",
+  },
+  {
+    source: "Geekvape official store",
+    url: "https://cdn.shopify.com/s/files/1/0507/3708/6660/files/B_Series_Coil_Boost.png?v=1775209023",
+    file: "public/products/geekvape/geekvape-isparitel-geekvape-b-0-6o-boost-version-5sht.png",
+  },
+  {
+    source: "Geekvape official store",
+    url: "https://store.geekvape.com/cdn/shop/files/Geekvape_Q_Cartridge_Pod_3pcs_pack-Q_0.4_Cartridge-3ML-0.4.png?v=1775208565&width=600",
+    file: "public/products/geekvape/geekvape-kartridzh-geek-vape-q-0-4-side-fill-3-ml-3-sht.png",
+  },
+  {
+    source: "Geekvape official store",
+    url: "https://store.geekvape.com/cdn/shop/files/Geekvape_Q_Cartridge_Pod_3pcs_pack-Q_0.6_Cartridge-3ML-0.6.png?v=1775208565&width=600",
+    file: "public/products/geekvape/geekvape-kartridzh-geek-vape-q-0-6-side-fill-3ml-3-sht.png",
+  },
+  {
+    source: "Geekvape official store",
+    url: "https://store.geekvape.com/cdn/shop/files/Geekvape_Q_Cartridge_Pod_3pcs_pack-Q_0.8_Cartridge-3ML-0.8.png?v=1775208565&width=600",
+    file: "public/products/geekvape/geekvape-kartridzh-geek-vape-q-0-8-side-fill-3ml-3-sht.png",
+  },
+  {
+    source: "Geekvape official store",
+    url: "https://store.geekvape.com/cdn/shop/files/Geekvape_Q_Cartridge_Pod_3pcs_packQ_1.2_Cartridge-2ML-1.2.png?v=1775208565&width=600",
+    file: "public/products/geekvape/geekvape-kartridzh-geek-vape-q-1-2-side-fill-2ml-3-sht.png",
+  },
 ];
 
 for (const item of items) {
