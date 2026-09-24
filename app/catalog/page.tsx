@@ -5,6 +5,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { products as fallbackProducts, type Product } from '../../data/products';
 import { productImagePathMap } from '../../data/productImageManifest';
+import { productPreviewPathMap } from '../../data/productPreviewManifest';
 import SiteHeader from "../../components/SiteHeader";
 import SiteFooter from "../../components/SiteFooter";
 
@@ -26,7 +27,7 @@ const productImage = (product: Product) => {
   const brand = product.brand.toLowerCase();
   const key = `${brand}/${product.slug}`;
 
-  return productImagePathMap[key] ?? null;
+  return productPreviewPathMap[key] ?? productImagePathMap[key] ?? null;
 };
 
 const cleanProductName = (product: Product) => {
@@ -283,7 +284,7 @@ function ProductTile({
               event.currentTarget.style.display = 'none';
               setImageFailed(true);
             }}
-            className="relative z-10 mx-auto h-full w-full scale-110 object-contain p-3 transition duration-700 group-hover:scale-[1.18]"
+            className="relative z-10 mx-auto h-full w-full object-contain p-0 drop-shadow-[0_28px_55px_rgba(0,0,0,0.45)] transition duration-700 group-hover:scale-[1.04]"
           />
         ) : (
           <BrandFallbackVisual brand={product.brand} />
@@ -405,7 +406,7 @@ function ProductPreviewModal({
                   event.currentTarget.style.display = 'none';
                   setImageFailed(true);
                 }}
-                className="relative z-10 mx-auto h-full min-h-[360px] w-full object-contain p-3 drop-shadow-[0_28px_60px_rgba(34,211,238,0.12)]"
+                className="relative z-10 mx-auto h-full min-h-[360px] w-full object-contain p-0 drop-shadow-[0_28px_60px_rgba(34,211,238,0.12)]"
               />
             ) : (
               <BrandFallbackVisual brand={product.brand} large />
@@ -525,7 +526,7 @@ function RequestItemRow({
               event.currentTarget.style.display = 'none';
               setImageFailed(true);
             }}
-            className="relative z-10 h-full w-full object-contain p-2 transition duration-500 group-hover:scale-110"
+            className="relative z-10 h-full w-full object-contain p-0 transition duration-500 group-hover:scale-105"
           />
         ) : (
           <BrandFallbackVisual brand={product.brand} compact />

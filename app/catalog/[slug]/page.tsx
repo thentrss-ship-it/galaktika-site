@@ -1,5 +1,6 @@
 import { products } from '../../../data/products';
 import { productImagePathMap } from '../../../data/productImageManifest';
+import { productPreviewPathMap } from '../../../data/productPreviewManifest';
 
 type ProductPageProps = {
   params: {
@@ -28,7 +29,8 @@ export default function ProductPage({ params }: ProductPageProps) {
   }
 
   const brandKey = product.brand.toLowerCase();
-  const imageSrc = productImagePathMap[`${brandKey}/${product.slug}`] ?? null;
+  const imageKey = `${brandKey}/${product.slug}`;
+  const imageSrc = productPreviewPathMap[imageKey] ?? productImagePathMap[imageKey] ?? null;
 
   const telegramText = encodeURIComponent(
     `Здравствуйте!
