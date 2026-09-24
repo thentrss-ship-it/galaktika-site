@@ -469,14 +469,14 @@ export const productImagePathMap: Record<string, string> = {
   "voopoo/voopoo-nabor-voopoo-vmate-pro-2-pod-1500mah-kit-neon": "/products/voopoo/voopoo-nabor-voopoo-vmate-pro-2-pod-1500mah-kit-neon.webp",
   "voopoo/voopoo-nabor-voopoo-vmate-pro-2-pod-1500mah-kit-space-grey": "/products/voopoo/voopoo-nabor-voopoo-vmate-pro-2-pod-1500mah-kit-space-grey.webp",
   "voopoo/voopoo-nabor-voopoo-vmate-pro-900mah-pod-kit-rosy": "/products/voopoo/voopoo-nabor-voopoo-vmate-pro-900mah-pod-kit-rosy.webp",
-  "voopoo/voopoo-voopoo-vmate-max-2-pod-kit-blue": "/products/voopoo/voopoo-voopoo-vmate-max-2-pod-kit-blue.webp",
-  "voopoo/voopoo-voopoo-vmate-max-2-pod-kit-brown": "/products/voopoo/voopoo-voopoo-vmate-max-2-pod-kit-brown.webp",
-  "voopoo/voopoo-voopoo-vmate-max-2-pod-kit-denim-blue": "/products/voopoo/voopoo-voopoo-vmate-max-2-pod-kit-denim-blue.webp",
-  "voopoo/voopoo-voopoo-vmate-max-2-pod-kit-green": "/products/voopoo/voopoo-voopoo-vmate-max-2-pod-kit-green.webp",
-  "voopoo/voopoo-voopoo-vmate-max-2-pod-kit-luxury-black": "/products/voopoo/voopoo-voopoo-vmate-max-2-pod-kit-luxury-black.webp",
-  "voopoo/voopoo-voopoo-vmate-max-2-pod-kit-pink": "/products/voopoo/voopoo-voopoo-vmate-max-2-pod-kit-pink.webp",
-  "voopoo/voopoo-voopoo-vmate-max-2-pod-kit-purple": "/products/voopoo/voopoo-voopoo-vmate-max-2-pod-kit-purple.webp",
-  "voopoo/voopoo-voopoo-vmate-max-2-pod-kit-silver": "/products/voopoo/voopoo-voopoo-vmate-max-2-pod-kit-silver.webp",
+  "voopoo/voopoo-voopoo-vmate-max-2-pod-kit-blue": "/products/voopoo/voopoo-voopoo-vmate-max-2-pod-kit-blue.png",
+  "voopoo/voopoo-voopoo-vmate-max-2-pod-kit-brown": "/products/voopoo/voopoo-voopoo-vmate-max-2-pod-kit-brown.png",
+  "voopoo/voopoo-voopoo-vmate-max-2-pod-kit-denim-blue": "/products/voopoo/voopoo-voopoo-vmate-max-2-pod-kit-denim-blue.png",
+  "voopoo/voopoo-voopoo-vmate-max-2-pod-kit-green": "/products/voopoo/voopoo-voopoo-vmate-max-2-pod-kit-green.png",
+  "voopoo/voopoo-voopoo-vmate-max-2-pod-kit-luxury-black": "/products/voopoo/voopoo-voopoo-vmate-max-2-pod-kit-luxury-black.png",
+  "voopoo/voopoo-voopoo-vmate-max-2-pod-kit-pink": "/products/voopoo/voopoo-voopoo-vmate-max-2-pod-kit-pink.png",
+  "voopoo/voopoo-voopoo-vmate-max-2-pod-kit-purple": "/products/voopoo/voopoo-voopoo-vmate-max-2-pod-kit-purple.png",
+  "voopoo/voopoo-voopoo-vmate-max-2-pod-kit-silver": "/products/voopoo/voopoo-voopoo-vmate-max-2-pod-kit-silver.png",
   "voopoo/voopoo-voopoo-vmate-pro-2-pod-1500mah-kit-gilt-black": "/products/voopoo/voopoo-voopoo-vmate-pro-2-pod-1500mah-kit-gilt-black.webp"
 };
 

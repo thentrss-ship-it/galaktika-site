@@ -63,18 +63,32 @@ def color_distance(a: tuple[int, int, int], b: tuple[int, int, int]) -> float:
     )
 
 
+def background_variance(samples: list[tuple[int, int, int]], color: tuple[int, int, int]) -> float:
+    return sum(color_distance(pixel, color) for pixel in samples) / max(1, len(samples))
+
+
 def is_light_background(samples: list[tuple[int, int, int]], color: tuple[int, int, int]) -> bool:
     brightness = sum(color) / 3
-    variance = sum(color_distance(pixel, color) for pixel in samples) / max(1, len(samples))
+    variance = background_variance(samples, color)
     return brightness > 205 and variance < 55
 
 
-def remove_connected_light_background(image: Image.Image) -> Image.Image:
+def is_removable_edge_background(
+    samples: list[tuple[int, int, int]],
+    color: tuple[int, int, int],
+    allow_colored_background: bool,
+) -> bool:
+    variance = background_variance(samples, color)
+    return is_light_background(samples, color) or (allow_colored_background and variance < 42)
+
+
+def remove_connected_background(image: Image.Image, allow_colored_background: bool) -> Image.Image:
     rgba = image.convert("RGBA")
     samples = edge_samples(rgba)
     bg = median_color(samples)
+    light_background = is_light_background(samples, bg)
 
-    if not is_light_background(samples, bg):
+    if not is_removable_edge_background(samples, bg, allow_colored_background):
         return rgba
 
     width, height = rgba.size
@@ -95,7 +109,9 @@ def remove_connected_light_background(image: Image.Image) -> Image.Image:
             return True
         brightness = (r + g + b) / 3
         saturation = max(r, g, b) - min(r, g, b)
-        return color_distance((r, g, b), bg) < 52 or (brightness > 238 and saturation < 36)
+        edge_match = color_distance((r, g, b), bg) < 58
+        pale_match = light_background and brightness > 238 and saturation < 36
+        return edge_match or pale_match
 
     while queue:
         x, y = queue.popleft()
@@ -156,10 +172,11 @@ def normalize_image(source: Path, destination: Path) -> None:
             Image.Resampling.LANCZOS,
         )
 
-    if has_real_alpha(image):
+    allow_colored_background = any(token in source.name for token in ("upbox", "upox"))
+    if has_real_alpha(image) and not allow_colored_background:
         prepared = image
     else:
-        prepared = remove_connected_light_background(image)
+        prepared = remove_connected_background(image, allow_colored_background)
 
     bbox = alpha_bbox(prepared)
     if bbox:
@@ -178,7 +195,7 @@ def normalize_image(source: Path, destination: Path) -> None:
         max_width = int(CANVAS_SIZE * 0.70)
         max_height = int(CANVAS_SIZE * 0.76)
 
-    scale = min(max_width / content.width, max_height / content.height, 1.0)
+    scale = min(max_width / content.width, max_height / content.height)
     target = (
         max(1, round(content.width * scale)),
         max(1, round(content.height * scale)),
