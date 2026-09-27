@@ -18,10 +18,86 @@ const normalizeSearch = (value: string) =>
     .toLowerCase()
     .replace(/ё/g, 'е')
     .replace(/,/g, '.')
+    .replace(/[Ωω]/g, ' ohm ')
+    .replace(/ohms?/g, 'ohm')
     .replace(/ом/g, 'ohm')
     .replace(/[^a-zа-я0-9.\s]/gi, ' ')
     .replace(/\s+/g, ' ')
     .trim();
+
+const canonicalSectionLabel = (section: string) => {
+  const normalized = normalizeSearch(section);
+  const isCartridgeSection = normalized.includes('картридж');
+
+  if (isCartridgeSection) {
+    return section;
+  }
+
+  if (normalized.includes('xros 5 mini')) {
+    return 'XROS 5 MINI';
+  }
+
+  if (normalized.includes('xros 5 nano')) {
+    return 'XROS 5 NANO 1600mAh';
+  }
+
+  if (normalized === 'xros 5' || normalized.startsWith('xros 5 kit')) {
+    return 'XROS 5';
+  }
+
+  if (normalized.includes('hero 5')) {
+    return 'Hero 5';
+  }
+
+  if (normalized.includes('sonder q2')) {
+    return 'Sonder Q2';
+  }
+
+  if (normalized.includes('wenax q2')) {
+    return 'Wenax Q2';
+  }
+
+  if (normalized.includes('vibe nano pro')) {
+    return 'VIBE NANO PRO';
+  }
+
+  if (normalized.includes('vibe se 2')) {
+    return 'VIBE SE 2';
+  }
+
+  return section;
+};
+
+const sectionMatchesProduct = (product: Product, selectedSection: string) => {
+  if (selectedSection === 'Все') {
+    return true;
+  }
+
+  const selectedCanonical = canonicalSectionLabel(selectedSection);
+  const productCanonical = canonicalSectionLabel(product.section);
+
+  if (productCanonical === selectedCanonical) {
+    return true;
+  }
+
+  if (product.category !== 'Устройства') {
+    return false;
+  }
+
+  const selectedText = normalizeSearch(selectedCanonical);
+  const productText = normalizeSearch([product.name, product.section].join(' '));
+
+  if (selectedCanonical === 'XROS 5') {
+    return (
+      productText.includes('xros 5') &&
+      !productText.includes('xros 5 mini') &&
+      !productText.includes('xros 5 nano') &&
+      !productText.includes('xros pro')
+    );
+  }
+
+  return productText.includes(selectedText);
+};
 
 const productImage = (product: Product) => {
   const brand = product.brand.toLowerCase();
@@ -223,50 +299,40 @@ function ProductTile({
 
   const brandKey = product.brand.toLowerCase();
   const accentByBrand: Record<string, string> = {
-    vaporesso: 'from-cyan-400/25 via-blue-500/10 to-violet-500/20 border-cyan-400/25 text-cyan-100',
-    geekvape: 'from-orange-400/25 via-amber-500/10 to-red-500/20 border-orange-400/25 text-orange-100',
-    voopoo: 'from-yellow-400/25 via-amber-500/10 to-orange-500/20 border-yellow-400/25 text-yellow-100',
-    smoant: 'from-yellow-300/25 via-orange-500/10 to-amber-500/20 border-yellow-300/25 text-yellow-100',
-    rincoe: 'from-emerald-400/25 via-cyan-500/10 to-blue-500/20 border-emerald-400/25 text-emerald-100',
+    vaporesso: 'from-cyan-400/12 via-slate-950 to-blue-500/10 border-cyan-400/18 text-cyan-100',
+    geekvape: 'from-sky-400/10 via-slate-950 to-cyan-500/10 border-cyan-400/18 text-cyan-100',
+    voopoo: 'from-amber-300/10 via-slate-950 to-cyan-500/8 border-cyan-400/16 text-cyan-100',
+    smoant: 'from-emerald-300/10 via-slate-950 to-cyan-500/8 border-cyan-400/16 text-cyan-100',
+    rincoe: 'from-emerald-400/12 via-slate-950 to-blue-500/10 border-emerald-400/18 text-emerald-100',
   };
 
-  const brandAccent = accentByBrand[brandKey] ?? 'from-cyan-400/25 via-violet-500/10 to-blue-500/20 border-cyan-400/25 text-cyan-100';
+  const brandAccent = accentByBrand[brandKey] ?? 'from-cyan-400/10 via-slate-950 to-blue-500/10 border-cyan-400/16 text-cyan-100';
   const displayName = cleanProductName(product);
   const imageSrc = productImage(product);
 
   return (
-    <div className={`group relative overflow-hidden rounded-[30px] border bg-black shadow-2xl transition duration-500 hover:-translate-y-2 hover:border-cyan-400/35 hover:shadow-[0_0_80px_rgba(34,211,238,0.18)] ${isInRequest ? 'border-cyan-400/45 shadow-[0_0_70px_rgba(34,211,238,0.22)]' : 'border-white/10'}`}>
-      <div className="absolute -right-24 -top-24 h-56 w-56 rounded-full bg-cyan-500/10 blur-3xl transition group-hover:bg-cyan-400/16" />
-      <div className="absolute -bottom-28 left-0 h-56 w-56 rounded-full bg-violet-500/10 blur-3xl transition group-hover:bg-violet-400/16" />
-      <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
+    <div className={`group relative flex h-full flex-col overflow-hidden rounded-[20px] border bg-zinc-950/92 shadow-[0_14px_44px_rgba(0,0,0,0.32)] transition duration-300 hover:-translate-y-0.5 hover:border-cyan-400/30 ${isInRequest ? 'border-cyan-400/45 shadow-[0_0_38px_rgba(34,211,238,0.18)]' : 'border-white/10'}`}>
 
       <button
         type="button"
         onClick={() => onPreview(product)}
-        className={`relative block aspect-[4/4.35] w-full overflow-hidden rounded-b-[28px] border-b bg-gradient-to-br text-left ${brandAccent}`}
+        className={`relative block h-[212px] w-full overflow-hidden border-b bg-gradient-to-br text-left sm:h-[220px] xl:h-[226px] ${brandAccent}`}
         aria-label={`Открыть товар ${product.name}`}
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_46%,rgba(34,211,238,0.18),transparent_32%),radial-gradient(circle_at_80%_18%,rgba(139,92,246,0.16),transparent_26%)]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/25 to-black/20" />
-        <div className="absolute left-1/2 top-[55%] h-24 w-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-300/18 blur-2xl" />
-        <div className="absolute bottom-8 left-1/2 h-3 w-44 -translate-x-1/2 rounded-full bg-cyan-200/20 blur-md" />
-        <div className="absolute bottom-10 left-1/2 h-px w-48 -translate-x-1/2 bg-gradient-to-r from-transparent via-cyan-200/70 to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_48%,rgba(34,211,238,0.12),transparent_34%)]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/25 to-black/12" />
+        <div className="absolute bottom-8 left-1/2 h-px w-40 -translate-x-1/2 bg-gradient-to-r from-transparent via-cyan-200/50 to-transparent" />
 
-        <div className="absolute left-4 top-4 z-20 flex flex-wrap gap-2">
-          {product.isHit && (
+        <div className="absolute left-3 top-3 z-20 flex flex-wrap gap-2">
+          {product.isHit ? (
             <span className="rounded-full border border-cyan-400/25 bg-black/55 px-3 py-1 text-[10px] font-black uppercase tracking-[0.12em] text-cyan-200 backdrop-blur-xl">
               Хит
             </span>
-          )}
-          {product.isNew && (
+          ) : product.isNew ? (
             <span className="rounded-full border border-violet-400/25 bg-black/55 px-3 py-1 text-[10px] font-black uppercase tracking-[0.12em] text-violet-200 backdrop-blur-xl">
               New
             </span>
-          )}
-        </div>
-
-        <div className="absolute right-4 top-4 z-20 rounded-full border border-white/10 bg-black/45 px-3 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-white/55 backdrop-blur-xl">
-          #{product.id}
+          ) : null}
         </div>
 
         {isInRequest && (
@@ -284,14 +350,14 @@ function ProductTile({
               event.currentTarget.style.display = 'none';
               setImageFailed(true);
             }}
-            className="relative z-10 mx-auto h-full w-full object-contain p-0 drop-shadow-[0_28px_55px_rgba(0,0,0,0.45)] transition duration-700 group-hover:scale-[1.04]"
+            className="relative z-10 mx-auto h-full w-full object-contain p-4 drop-shadow-[0_22px_42px_rgba(0,0,0,0.44)] transition duration-500 group-hover:scale-[1.015]"
           />
         ) : (
           <BrandFallbackVisual brand={product.brand} />
         )}
       </button>
 
-      <div className="relative flex min-h-[272px] flex-col p-4">
+      <div className="relative flex min-h-[248px] flex-1 flex-col p-4">
         <div className="mb-3 flex items-center justify-between gap-3">
           <span
             className={`rounded-full border px-3 py-1 text-[10px] font-black ${
@@ -302,56 +368,50 @@ function ProductTile({
           >
             {product.inStock ? '● в наличии' : 'по запросу'}
           </span>
-          <span className="truncate text-[10px] font-black uppercase tracking-[0.16em] text-cyan-200/65">
+          <span className="truncate text-[10px] font-black uppercase tracking-[0.14em] text-cyan-200/60">
             {product.brand}
           </span>
         </div>
 
-        <div className="mb-3 flex flex-wrap gap-2 text-[11px] font-bold text-zinc-500">
-          <span className="rounded-full border border-white/10 bg-white/[0.035] px-2.5 py-1">
+        <div className="mb-3 flex min-h-[38px] content-start flex-wrap gap-2 overflow-hidden text-[11px] font-semibold text-zinc-500">
+          <span className="h-7 max-w-full truncate rounded-full border border-white/10 bg-white/[0.035] px-2.5 py-1">
             {product.category}
           </span>
-          <span className="rounded-full border border-white/10 bg-white/[0.035] px-2.5 py-1">
+          <span className="h-7 max-w-full truncate rounded-full border border-white/10 bg-white/[0.035] px-2.5 py-1">
             {product.section}
           </span>
         </div>
 
-        <button
-          type="button"
-          onClick={() => onPreview(product)}
-          className="line-clamp-3 text-left text-[15px] font-black leading-tight text-white transition hover:text-cyan-100"
-          title={product.name}
-        >
-          {displayName}
-        </button>
+        <div className="min-h-[54px]">
+          <button
+            type="button"
+            onClick={() => onPreview(product)}
+            className="line-clamp-3 text-left text-[14px] font-black leading-tight text-white transition hover:text-cyan-100"
+            title={product.name}
+          >
+            {displayName}
+          </button>
+        </div>
 
-        <div className="mt-auto pt-5">
+        <div className="mt-auto pt-4">
           <div className="grid gap-2">
             <button
-              onClick={() => onLead(product)}
-              className="group/btn relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-violet-600 via-blue-500 to-cyan-400 px-4 py-3.5 text-left text-sm font-black text-white shadow-[0_0_32px_rgba(34,211,238,0.18)] transition hover:scale-[1.02] hover:shadow-[0_0_45px_rgba(34,211,238,0.28)]"
-            >
-              <span className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent transition duration-700 group-hover/btn:translate-x-[100%]" />
-              <span className="relative flex items-center justify-between">
-                Получить цену
-                <span>→</span>
-              </span>
-            </button>
-
-            <button
               onClick={() => onToggleRequest(product)}
-              className={`w-full rounded-2xl border px-4 py-3 text-sm font-black transition ${
+              className={`w-full rounded-2xl px-4 py-3 text-sm font-black transition ${
                 isInRequest
-                  ? 'border-cyan-300/40 bg-cyan-400/15 text-cyan-100 shadow-[0_0_26px_rgba(34,211,238,0.14)]'
-                  : 'border-white/10 bg-white/[0.035] text-zinc-300 hover:border-cyan-400/35 hover:bg-white/[0.06] hover:text-white'
+                  ? 'border border-cyan-300/40 bg-cyan-400/15 text-cyan-100 shadow-[0_0_26px_rgba(34,211,238,0.14)]'
+                  : 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-[0_0_26px_rgba(34,211,238,0.16)] hover:shadow-[0_0_38px_rgba(34,211,238,0.24)]'
               }`}
             >
               {isInRequest ? '✓ В запросе' : '+ Добавить в запрос'}
             </button>
-          </div>
 
-          <div className="mt-3 text-center text-[11px] font-medium text-zinc-500">
-            Можно собрать запрос сразу по нескольким товарам
+            <button
+              onClick={() => onLead(product)}
+              className="w-full rounded-xl px-4 py-2 text-xs font-black text-zinc-400 transition hover:bg-white/[0.04] hover:text-white"
+            >
+              Получить цену →
+            </button>
           </div>
         </div>
       </div>
@@ -664,6 +724,7 @@ export default function CatalogPage() {
   const [requestRestored, setRequestRestored] = useState(false);
   const [urlReady, setUrlReady] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
+  const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
 
   const [query, setQuery] = useState('');
   const [brand, setBrand] = useState('Все');
@@ -715,7 +776,7 @@ export default function CatalogPage() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const allSections = Array.from(new Set(products.map((product) => product.section)));
+    const allSections = Array.from(new Set(products.map((product) => canonicalSectionLabel(product.section))));
 
     const nextQuery = params.get('q') ?? '';
     const nextBrand = params.get('brand') ?? 'Все';
@@ -883,15 +944,25 @@ export default function CatalogPage() {
   const filtered = useMemo(() => {
     const q = normalizeSearch(query);
     const searchWords = q.split(/\s+/).filter(Boolean);
+    const exactSearchRequired = searchWords.some(
+      (word) =>
+        /\d/.test(word) ||
+        ['mini', 'nano', 'pro', 'max', 'kit', 'pod', 'corex', 'gtx'].includes(word)
+    );
 
     const result = products.filter((product) => {
       const searchableText = normalizeSearch(
         [product.name, product.brand, product.category, product.section].join(' ')
       );
 
+      const matchedWordCount = searchWords.filter((word) => searchableText.includes(word)).length;
+      const minimumMatchedWords =
+        exactSearchRequired || searchWords.length < 3 ? searchWords.length : searchWords.length - 1;
+
       const matchesSearch =
         searchWords.length === 0 ||
-        searchWords.every((word) => searchableText.includes(word));
+        searchWords.every((word) => searchableText.includes(word)) ||
+        (!exactSearchRequired && matchedWordCount >= Math.max(1, minimumMatchedWords));
 
       const matchesStatus =
         status === 'Все' ||
@@ -903,7 +974,7 @@ export default function CatalogPage() {
         matchesSearch &&
         (brand === 'Все' || product.brand === brand) &&
         (category === 'Все' || product.category === category) &&
-        (section === 'Все' || product.section === section) &&
+        sectionMatchesProduct(product, section) &&
         matchesStatus
       );
     });
@@ -994,7 +1065,7 @@ export default function CatalogPage() {
           matchesStatus
         );
       })
-      .map((product) => product.section)
+      .map((product) => canonicalSectionLabel(product.section))
       .filter(Boolean);
 
     return ['Все', ...Array.from(new Set(items))];
@@ -1006,7 +1077,7 @@ export default function CatalogPage() {
     const orderedPriority = priority.filter((item) => availableSections.includes(item));
     const otherSections = availableSections.filter((item) => !orderedPriority.includes(item));
 
-    return [...orderedPriority, ...otherSections].slice(0, 14);
+    return [...orderedPriority, ...otherSections].slice(0, 8);
   }, [brand, sectionOptions]);
 
   const sectionBlockTitle = brand === 'Все' ? 'Серии и линейки' : `Серии ${brand}`;
@@ -1114,56 +1185,52 @@ export default function CatalogPage() {
 
       <main className="min-h-screen overflow-hidden bg-black text-white">
         <SiteHeader active="catalog" />
-<section className="relative overflow-hidden px-5 pb-16 pt-28 lg:px-6 lg:pt-32">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_12%,rgba(34,211,238,0.16),transparent_30%),radial-gradient(circle_at_80%_10%,rgba(139,92,246,0.18),transparent_34%),radial-gradient(circle_at_50%_65%,rgba(14,165,233,0.08),transparent_38%)]" />
-          <div className="absolute inset-x-0 top-0 h-[620px] bg-gradient-to-b from-cyan-950/15 via-black to-black" />
-          <div className="absolute left-1/2 top-24 h-80 w-[900px] -translate-x-1/2 rounded-full bg-cyan-500/10 blur-[110px]" />
+<section className="relative overflow-hidden px-4 pb-9 pt-[88px] sm:px-5 lg:px-6 lg:pt-28">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_10%,rgba(34,211,238,0.10),transparent_28%),radial-gradient(circle_at_82%_8%,rgba(139,92,246,0.10),transparent_30%)]" />
+          <div className="absolute inset-x-0 top-0 h-[420px] bg-gradient-to-b from-cyan-950/12 via-black to-black" />
 
           <div className="relative mx-auto max-w-7xl">
-            <a href="/" className="mb-8 inline-flex text-sm font-bold text-zinc-500 transition hover:text-cyan-300">
+            <a href="/" className="mb-4 inline-flex text-sm font-bold text-zinc-500 transition hover:text-cyan-300">
               ← На главную
             </a>
 
-            <div className="grid items-end gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="grid items-end gap-4 lg:grid-cols-[minmax(0,1fr)_340px]">
               <div>
-                <div className="mb-5 text-sm font-black uppercase tracking-[0.25em] text-cyan-300">B2B Catalog</div>
+                <div className="mb-2 text-xs font-black uppercase tracking-[0.22em] text-cyan-300">B2B Catalog</div>
 
-                <h1 className="max-w-4xl text-[48px] font-black uppercase leading-[0.94] tracking-tight sm:text-6xl md:text-7xl xl:text-[82px]">
-                  <span className="block text-white">Каталог</span>
-                  <span className="block bg-gradient-to-r from-cyan-300 via-sky-400 to-violet-400 bg-clip-text text-transparent">ГАЛАКТИКА</span>
+                <h1 className="max-w-4xl text-3xl font-black uppercase leading-[1.02] tracking-tight sm:text-4xl md:text-5xl">
+                  <span className="text-white">Каталог </span>
+                  <span className="bg-gradient-to-r from-cyan-300 via-sky-400 to-violet-400 bg-clip-text text-transparent">Галактика</span>
                 </h1>
 
-                <p className="mt-7 max-w-2xl text-lg font-medium leading-relaxed text-zinc-300 md:text-xl">
+                <p className="mt-3 max-w-2xl text-sm font-medium leading-relaxed text-zinc-400 md:text-base">
                   Оригинальные устройства, картриджи, испарители и аксессуары для магазинов, сетей и оптовых клиентов.
                 </p>
               </div>
 
-              <div className="relative overflow-hidden rounded-[32px] border border-cyan-400/18 bg-black/45 p-5 shadow-[0_0_80px_rgba(34,211,238,0.10)] backdrop-blur-2xl">
-                <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-violet-500/18 blur-3xl" />
-                <div className="absolute -bottom-24 left-0 h-64 w-64 rounded-full bg-cyan-500/14 blur-3xl" />
-
-                <div className="relative grid gap-3 sm:grid-cols-2">
-                  <div className="rounded-[22px] border border-white/10 bg-white/[0.035] p-5">
-                    <div className="text-3xl font-black text-cyan-200">{products.length}</div>
-                    <div className="mt-1 text-sm text-zinc-400">товаров в каталоге</div>
+              <div className="relative hidden overflow-hidden rounded-[18px] border border-white/10 bg-white/[0.028] p-3 backdrop-blur-xl lg:block">
+                <div className="relative grid gap-2 sm:grid-cols-2">
+                  <div className="rounded-2xl border border-white/10 bg-black/28 p-3">
+                    <div className="text-xl font-black text-cyan-200">{products.length}</div>
+                    <div className="mt-0.5 text-xs text-zinc-500">товаров</div>
                   </div>
-                  <div className="rounded-[22px] border border-white/10 bg-white/[0.035] p-5">
-                    <div className="text-3xl font-black text-white">{brands.length - 1}</div>
-                    <div className="mt-1 text-sm text-zinc-400">брендов в наличии</div>
+                  <div className="rounded-2xl border border-white/10 bg-black/28 p-3">
+                    <div className="text-xl font-black text-white">{brands.length - 1}</div>
+                    <div className="mt-0.5 text-xs text-zinc-500">брендов</div>
                   </div>
-                  <div className="rounded-[22px] border border-white/10 bg-white/[0.035] p-5">
-                    <div className="text-3xl font-black text-violet-200">{products.filter((item) => item.isHit).length}</div>
-                    <div className="mt-1 text-sm text-zinc-400">хитов продаж</div>
+                  <div className="rounded-2xl border border-white/10 bg-black/28 p-3">
+                    <div className="text-xl font-black text-violet-200">{products.filter((item) => item.isHit).length}</div>
+                    <div className="mt-0.5 text-xs text-zinc-500">хитов</div>
                   </div>
-                  <div className="rounded-[22px] border border-white/10 bg-white/[0.035] p-5">
-                    <div className="text-3xl font-black text-emerald-200">20к</div>
-                    <div className="mt-1 text-sm text-zinc-400">старт оптового заказа</div>
+                  <div className="rounded-2xl border border-white/10 bg-black/28 p-3">
+                    <div className="text-xl font-black text-emerald-200">20к</div>
+                    <div className="mt-0.5 text-xs text-zinc-500">старт заказа</div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="mt-10 rounded-[32px] border border-white/10 bg-black/55 p-4 shadow-[0_0_70px_rgba(34,211,238,0.08)] backdrop-blur-2xl">
+            <div className="mt-5 rounded-[20px] border border-white/10 bg-black/52 p-2 shadow-[0_0_36px_rgba(34,211,238,0.05)] backdrop-blur-2xl">
               <input
                 value={query}
                 onChange={(e) => {
@@ -1171,77 +1238,56 @@ export default function CatalogPage() {
                   setVisibleCount(PAGE_SIZE);
                 }}
                 placeholder="Что ищете? Например: XROS 5, Hero 5, GTX 0.8..."
-                className="h-16 w-full rounded-2xl border border-white/10 bg-white/[0.055] px-5 text-base font-bold text-white outline-none transition placeholder:text-zinc-600 focus:border-cyan-400/50"
+                className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.055] px-4 text-sm font-bold text-white outline-none transition placeholder:text-zinc-600 focus:border-cyan-400/50 sm:text-base"
               />
 
-              <div className="mt-3 grid gap-3 md:grid-cols-2 lg:grid-cols-5">
-                <select
-                  value={brand}
-                  onChange={(e) => chooseBrand(e.target.value)}
-                  className="h-14 rounded-2xl border border-white/10 bg-zinc-950 px-4 text-sm font-bold text-white outline-none transition focus:border-cyan-400/50"
+              <div className="mt-2 flex flex-col gap-2 px-1 pb-1 text-xs text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
+                <span className="hidden sm:inline">Быстрый поиск по названию, бренду, серии или сопротивлению.</span>
+                <button
+                  type="button"
+                  onClick={() => openLead()}
+                  className="rounded-xl border border-cyan-400/25 bg-cyan-400/10 px-4 py-2.5 text-xs font-black text-cyan-100 transition hover:border-cyan-300/50 hover:bg-cyan-400/15"
                 >
-                  {brands.map((item) => (
-                    <option key={item} value={item} className="bg-zinc-950">{item}</option>
-                  ))}
-                </select>
-
-                <select
-                  value={category}
-                  onChange={(e) => chooseCategory(e.target.value)}
-                  className="h-14 rounded-2xl border border-white/10 bg-zinc-950 px-4 text-sm font-bold text-white outline-none transition focus:border-cyan-400/50"
-                >
-                  {categories.map((item) => (
-                    <option key={item} value={item} className="bg-zinc-950">{item}</option>
-                  ))}
-                </select>
-
-                <select
-                  value={section}
-                  onChange={(e) => chooseSection(e.target.value)}
-                  className="h-14 rounded-2xl border border-white/10 bg-zinc-950 px-4 text-sm font-bold text-white outline-none transition focus:border-cyan-400/50"
-                >
-                  {sectionOptions.map((item) => (
-                    <option key={item} value={item} className="bg-zinc-950">
-                      {item === 'Все' ? 'Все серии' : item}
-                    </option>
-                  ))}
-                </select>
-
-                <select
-                  value={status}
-                  onChange={(e) => chooseStatus(e.target.value)}
-                  className="h-14 rounded-2xl border border-white/10 bg-zinc-950 px-4 text-sm font-bold text-white outline-none transition focus:border-cyan-400/50"
-                >
-                  {statuses.map((item) => (
-                    <option key={item} value={item} className="bg-zinc-950">{item}</option>
-                  ))}
-                </select>
-
-                <select
-                  value={sort}
-                  onChange={(e) => chooseSort(e.target.value)}
-                  className="h-14 rounded-2xl border border-white/10 bg-zinc-950 px-4 text-sm font-bold text-white outline-none transition focus:border-cyan-400/50"
-                >
-                  {sortOptions.map((item) => (
-                    <option key={item} value={item} className="bg-zinc-950">{item}</option>
-                  ))}
-                </select>
+                  Получить прайс →
+                </button>
               </div>
             </div>
 
-            <div className="mt-8 rounded-[30px] border border-white/10 bg-black/35 p-4 shadow-[0_0_55px_rgba(34,211,238,0.06)] backdrop-blur-xl md:p-5">
-              <div className="flex flex-col gap-5 xl:flex-row xl:items-start xl:justify-between">
+            <div className="mt-5 flex flex-col gap-3 rounded-[22px] border border-white/10 bg-white/[0.025] p-3 lg:hidden">
+              <button
+                type="button"
+                onClick={() => setIsMobileFiltersOpen((value) => !value)}
+                className="flex h-12 items-center justify-between rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-4 text-sm font-black text-cyan-100"
+              >
+                <span>{isMobileFiltersOpen ? 'Скрыть фильтры' : 'Фильтры и подбор'}</span>
+                <span>{isMobileFiltersOpen ? '↑' : '↓'}</span>
+              </button>
+
+              <div className="flex flex-wrap gap-2 text-xs font-black">
+                {brand !== 'Все' && <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-2 text-white">{brand}</span>}
+                {category !== 'Все' && <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-2 text-white">{category}</span>}
+                {section !== 'Все' && <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-2 text-white">{section}</span>}
+                {status !== 'Все' && <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-2 text-white">{status}</span>}
+                {brand === 'Все' && category === 'Все' && section === 'Все' && status === 'Все' && (
+                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-zinc-400">Все товары</span>
+                )}
+              </div>
+            </div>
+
+            <div className="mt-5 grid gap-5 lg:grid-cols-[280px_minmax(0,1fr)]">
+            <aside className={`${isMobileFiltersOpen ? 'block max-h-[72vh] overflow-y-auto' : 'hidden'} rounded-[22px] border border-white/10 bg-black/48 p-4 shadow-[0_0_42px_rgba(34,211,238,0.05)] backdrop-blur-xl lg:sticky lg:top-24 lg:block lg:max-h-[calc(100vh-120px)] lg:overflow-y-auto`}>
+              <div className="space-y-5">
                 <div className="min-w-0 flex-1">
                   <div className="mb-3 text-xs font-black uppercase tracking-[0.22em] text-cyan-300/70">
                     Бренды
                   </div>
 
-                  <div className="flex flex-wrap gap-3">
+                  <div className="grid grid-cols-2 gap-2">
                     {['Все', 'Vaporesso', 'Geekvape', 'Voopoo', 'Smoant', 'Rincoe'].map((item) => (
                       <button
                         key={item}
                         onClick={() => chooseBrand(item)}
-                        className={`rounded-full px-5 py-2 text-sm font-black transition ${
+                        className={`rounded-full px-4 py-2 text-xs font-black transition ${
                           brand === item
                             ? 'bg-gradient-to-r from-violet-600 via-blue-500 to-cyan-400 text-white shadow-[0_0_28px_rgba(34,211,238,0.20)]'
                             : 'border border-white/10 bg-white/[0.04] text-zinc-300 hover:border-cyan-400/40 hover:text-white'
@@ -1251,49 +1297,73 @@ export default function CatalogPage() {
                       </button>
                     ))}
                   </div>
+
+                  <select
+                    value={brand}
+                    onChange={(e) => chooseBrand(e.target.value)}
+                    className="mt-3 h-11 w-full rounded-xl border border-white/10 bg-zinc-950 px-3 text-sm font-bold text-white outline-none transition focus:border-cyan-400/50"
+                  >
+                    {brands.map((item) => (
+                      <option key={item} value={item} className="bg-zinc-950">{item === 'Все' ? 'Все бренды' : item}</option>
+                    ))}
+                  </select>
                 </div>
 
-                <div className="flex shrink-0 flex-wrap items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 text-sm text-zinc-500">
+                <div className="grid gap-2 rounded-2xl border border-white/10 bg-white/[0.035] p-3 text-sm text-zinc-500">
                   <span>
                     Найдено: <span className="font-black text-white">{filtered.length}</span>
                   </span>
-                  <span className="hidden h-4 w-px bg-white/10 sm:block" />
                   <span>
                     Показано: <span className="font-black text-white">{visibleProducts.length}</span>
                   </span>
-                  <span className="hidden h-4 w-px bg-white/10 sm:block" />
                   <span>
                     Сортировка: <span className="font-black text-white">{sort}</span>
                   </span>
                   {selectedProducts.length > 0 && (
                     <>
-                      <span className="hidden h-4 w-px bg-white/10 sm:block" />
                       <span>
                         В запросе: <span className="font-black text-cyan-200">{selectedProducts.length}</span>
                       </span>
                     </>
                   )}
 
-                  <button
-                    onClick={copyCatalogLink}
-                    className="font-bold text-cyan-300 transition hover:text-cyan-200"
-                  >
-                    {linkCopied ? 'Ссылка скопирована' : 'Скопировать ссылку'}
-                  </button>
+                  <div className="mt-1 flex flex-wrap gap-3 border-t border-white/10 pt-3 text-xs">
+                    <button
+                      onClick={copyCatalogLink}
+                      className="font-bold text-cyan-300 transition hover:text-cyan-200"
+                    >
+                      {linkCopied ? 'Ссылка скопирована' : 'Скопировать ссылку'}
+                    </button>
 
-                  <button onClick={resetFilters} className="font-bold text-cyan-300 transition hover:text-cyan-200">
-                    Сбросить
-                  </button>
+                    <button onClick={resetFilters} className="font-bold text-cyan-300 transition hover:text-cyan-200">
+                      Сбросить
+                    </button>
+                  </div>
                 </div>
+
+                <label className="block rounded-2xl border border-white/10 bg-white/[0.035] p-3">
+                  <span className="mb-2 block text-xs font-black uppercase tracking-[0.18em] text-zinc-500">
+                    Сортировка
+                  </span>
+                  <select
+                    value={sort}
+                    onChange={(e) => chooseSort(e.target.value)}
+                    className="h-11 w-full rounded-xl border border-white/10 bg-zinc-950 px-3 text-sm font-bold text-white outline-none transition focus:border-cyan-400/50"
+                  >
+                    {sortOptions.map((item) => (
+                      <option key={item} value={item} className="bg-zinc-950">{item}</option>
+                    ))}
+                  </select>
+                </label>
               </div>
 
-              <div className="mt-5 grid gap-4 xl:grid-cols-3">
-                <div className="rounded-[24px] border border-white/10 bg-white/[0.025] p-4">
+              <div className="mt-5 space-y-4">
+                <div className="rounded-[20px] border border-white/10 bg-white/[0.025] p-4">
                   <div className="mb-3 text-xs font-black uppercase tracking-[0.22em] text-violet-300/70">
                     Быстрый выбор
                   </div>
 
-                  <div className="flex flex-wrap gap-2">
+                  <div className="grid grid-cols-2 gap-2">
                     {['Все', 'Хиты', 'Новинки', 'В наличии'].map((item) => (
                       <button
                         key={item}
@@ -1310,7 +1380,7 @@ export default function CatalogPage() {
                   </div>
                 </div>
 
-                <div className="rounded-[24px] border border-white/10 bg-white/[0.025] p-4">
+                <div className="rounded-[20px] border border-white/10 bg-white/[0.025] p-4">
                   <div className="mb-3 text-xs font-black uppercase tracking-[0.22em] text-cyan-300/70">
                     Категории
                   </div>
@@ -1333,7 +1403,7 @@ export default function CatalogPage() {
                 </div>
 
                 {quickSections.length > 0 && (
-                  <div className="rounded-[24px] border border-white/10 bg-white/[0.025] p-4">
+                  <div className="rounded-[20px] border border-white/10 bg-white/[0.025] p-4">
                     <div className="mb-3">
                       <div className="text-xs font-black uppercase tracking-[0.22em] text-violet-300/70">
                         {sectionBlockTitle}
@@ -1369,17 +1439,29 @@ export default function CatalogPage() {
                         </button>
                       ))}
                     </div>
+
+                    <select
+                      value={section}
+                      onChange={(e) => chooseSection(e.target.value)}
+                      className="mt-3 h-11 w-full rounded-xl border border-white/10 bg-zinc-950 px-3 text-sm font-bold text-white outline-none transition focus:border-cyan-400/50"
+                    >
+                      {sectionOptions.map((item) => (
+                        <option key={item} value={item} className="bg-zinc-950">
+                          {item === 'Все' ? 'Все серии' : item}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                 )}
               </div>
 
-              <div className="mt-4 rounded-[24px] border border-white/10 bg-white/[0.025] p-4">
+              <div className="mt-4 rounded-[20px] border border-white/10 bg-white/[0.025] p-4">
                 <div className="mb-3 text-xs font-black uppercase tracking-[0.22em] text-zinc-500">
                   Популярные запросы
                 </div>
 
                 <div className="flex flex-wrap gap-2">
-                  {['XROS 5', 'XROS 5 Mini', 'Hero 5', 'Wenax Q2', 'VMATE', 'Pasito', 'GTX 0.8', 'COREX 3.0'].map((item) => (
+                  {['XROS 5', 'XROS 5 Mini', 'XROS 6', 'XROS 6 Mini', 'Hero 5', 'Wenax Q2', 'VMATE', 'Pasito', 'GTX 0.8', 'COREX 3.0'].map((item) => (
                     <button
                       key={item}
                       onClick={() => setPopularQuery(item)}
@@ -1394,7 +1476,35 @@ export default function CatalogPage() {
                   ))}
                 </div>
               </div>
-            </div>
+            </aside>
+            <div className="min-w-0">
+              <div className="flex flex-col gap-3 rounded-[22px] border border-white/10 bg-white/[0.025] p-4 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <div className="text-sm font-black text-white">
+                    {filtered.length} позиций найдено
+                  </div>
+                  <div className="mt-1 text-xs text-zinc-500">
+                    Сейчас показано {visibleProducts.length}. В запросе {selectedProducts.length}.
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    onClick={copyCatalogLink}
+                    className="rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2 text-xs font-black text-zinc-300 transition hover:border-cyan-400/35 hover:text-white"
+                  >
+                    {linkCopied ? 'Ссылка скопирована' : 'Скопировать ссылку'}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={resetFilters}
+                    className="rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2 text-xs font-black text-zinc-300 transition hover:border-cyan-400/35 hover:text-white"
+                  >
+                    Сбросить
+                  </button>
+                </div>
+              </div>
 
             {hasActiveFilters && (
               <div className="mt-5 rounded-[24px] border border-cyan-400/15 bg-cyan-400/[0.045] p-4 shadow-[0_0_45px_rgba(34,211,238,0.08)]">
@@ -1480,7 +1590,7 @@ export default function CatalogPage() {
               </div>
             )}
 
-            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+            <div className="mt-6 grid gap-5 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
               {visibleProducts.map((product) => (
                 <ProductTile
                   key={product.id}
@@ -1503,6 +1613,8 @@ export default function CatalogPage() {
                 </button>
               </div>
             )}
+            </div>
+            </div>
           </div>
         </section>
 
@@ -1519,41 +1631,42 @@ export default function CatalogPage() {
           </div>
         </section>
 {selectedProducts.length > 0 && (
-          <div className="fixed bottom-5 left-1/2 z-50 w-[calc(100%-24px)] max-w-4xl -translate-x-1/2 rounded-[24px] border border-cyan-400/25 bg-black/82 p-3 shadow-[0_0_55px_rgba(34,211,238,0.25)] backdrop-blur-2xl">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="fixed bottom-3 left-1/2 z-50 w-[calc(100%-18px)] max-w-3xl -translate-x-1/2 rounded-[18px] border border-cyan-400/25 bg-black/86 p-2 shadow-[0_0_45px_rgba(34,211,238,0.22)] backdrop-blur-2xl sm:bottom-5 sm:rounded-[22px] sm:p-3">
+            <div className="flex items-center justify-between gap-2">
               <button
                 type="button"
                 onClick={() => setIsRequestPanelOpen(true)}
-                className="flex min-w-0 items-center gap-3 rounded-[18px] text-left transition hover:bg-white/[0.035] sm:pr-3"
+                className="flex min-w-0 items-center gap-2 rounded-2xl text-left transition hover:bg-white/[0.035] sm:gap-3 sm:pr-3"
               >
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-r from-violet-600 to-cyan-400 text-lg font-black">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-r from-violet-600 to-cyan-400 text-base font-black sm:h-11 sm:w-11 sm:text-lg">
                   {selectedProducts.length}
                 </div>
                 <div className="min-w-0">
-                  <div className="font-black">Товары в запросе</div>
-                  <div className="truncate text-xs text-zinc-400">
+                  <div className="text-sm font-black sm:text-base">В запросе</div>
+                  <div className="hidden truncate text-xs text-zinc-400 sm:block">
                     {selectedProducts.slice(0, 2).map((item) => cleanProductName(item)).join(' · ')}
                     {selectedProducts.length > 2 ? ` + ещё ${selectedProducts.length - 2}` : ''}
                   </div>
                 </div>
               </button>
 
-              <div className="grid gap-2 sm:flex">
+              <div className="flex shrink-0 gap-2">
                 <button
                   onClick={() => setIsRequestPanelOpen(true)}
-                  className="rounded-2xl border border-cyan-400/25 bg-cyan-400/10 px-5 py-3 text-sm font-black text-cyan-100 transition hover:border-cyan-300/50 hover:bg-cyan-400/15"
+                  className="rounded-2xl border border-cyan-400/25 bg-cyan-400/10 px-3 py-3 text-xs font-black text-cyan-100 transition hover:border-cyan-300/50 hover:bg-cyan-400/15 sm:px-5 sm:text-sm"
                 >
-                  Посмотреть
+                  <span className="sm:hidden">Список</span>
+                  <span className="hidden sm:inline">Посмотреть</span>
                 </button>
                 <button
                   onClick={openRequestLead}
-                  className="rounded-2xl bg-gradient-to-r from-violet-600 via-blue-500 to-cyan-400 px-5 py-3 text-sm font-black shadow-[0_0_30px_rgba(34,211,238,0.22)] transition hover:scale-[1.02]"
+                  className="rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-500 px-4 py-3 text-xs font-black shadow-[0_0_30px_rgba(34,211,238,0.22)] transition hover:scale-[1.02] sm:px-5 sm:text-sm"
                 >
-                  Запросить цены →
+                  Отправить →
                 </button>
                 <button
                   onClick={clearRequestProducts}
-                  className="rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-3 text-sm font-black text-zinc-300 transition hover:border-cyan-400/35 hover:text-white"
+                  className="hidden rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-3 text-sm font-black text-zinc-300 transition hover:border-cyan-400/35 hover:text-white sm:block"
                 >
                   Очистить
                 </button>
@@ -1566,7 +1679,7 @@ export default function CatalogPage() {
           href={TELEGRAM_URL}
           target="_blank"
           rel="noreferrer"
-          className="fixed bottom-5 right-5 z-40 hidden rounded-full border border-cyan-400/25 bg-black/75 p-3 shadow-[0_0_28px_rgba(34,211,238,0.25)] backdrop-blur-xl transition hover:scale-105 md:block"
+          className={`${selectedProducts.length > 0 ? 'hidden' : 'hidden md:block'} fixed bottom-5 right-5 z-40 rounded-full border border-cyan-400/25 bg-black/75 p-3 shadow-[0_0_28px_rgba(34,211,238,0.25)] backdrop-blur-xl transition hover:scale-105`}
           aria-label="Написать в Telegram"
         >
           <div className="flex items-center gap-3">
