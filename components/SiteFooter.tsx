@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const TELEGRAM_URL = "https://t.me/Galaxy_Stan";
 const TELEGRAM_GROUP_URL = "https://t.me/galaxy_distr";
 const PRICE_BOT_URL = "https://t.me/galaxysai_bot?start=site";
@@ -80,9 +82,11 @@ export default function SiteFooter() {
             <a href="/" className="inline-flex items-center gap-3">
               <div className="relative h-12 w-14 shrink-0">
                 <div className="absolute inset-1 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 opacity-55 blur-xl" />
-                <img
+                <Image
                   src="/logo-galaktika-v3.png"
                   alt="ГАЛАКТИКА"
+                  width={56}
+                  height={48}
                   className="relative h-12 w-14 object-contain drop-shadow-[0_0_12px_rgba(34,211,238,0.35)]"
                 />
               </div>

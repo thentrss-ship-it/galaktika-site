@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 type ActivePage = "home" | "catalog" | "wholesale" | "delivery" | "contacts";
@@ -101,9 +102,12 @@ export default function SiteHeader({
           >
             <div className="relative h-12 w-14 shrink-0">
               <div className="absolute inset-1 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 opacity-55 blur-xl" />
-              <img
+              <Image
                 src="/logo-galaktika-v3.png"
                 alt="ГАЛАКТИКА"
+                width={56}
+                height={48}
+                priority={active === "home"}
                 className="relative h-12 w-14 object-contain drop-shadow-[0_0_12px_rgba(34,211,238,0.35)]"
               />
             </div>
