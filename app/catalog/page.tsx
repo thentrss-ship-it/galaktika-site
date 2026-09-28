@@ -13,6 +13,17 @@ const TELEGRAM_URL = 'https://t.me/Galaxy_Stan';
 const PAGE_SIZE = 60;
 const REQUEST_STORAGE_KEY = 'galaktika-catalog-request';
 
+const buildTelegramLeadHref = (requestedProducts: Product[] = []) => {
+  const productList = requestedProducts.length
+    ? `\n\nИнтересующие товары:\n${requestedProducts
+        .map((item, index) => `${index + 1}. ${item.name}`)
+        .join('\n')}`
+    : '';
+  const message = `Здравствуйте! Хочу получить оптовый прайс и уточнить наличие.${productList}`;
+
+  return `${TELEGRAM_URL}?text=${encodeURIComponent(message)}`;
+};
+
 const normalizeSearch = (value: string) =>
   value
     .toLowerCase()
@@ -309,6 +320,7 @@ function ProductTile({
   const brandAccent = accentByBrand[brandKey] ?? 'from-cyan-400/10 via-slate-950 to-blue-500/10 border-cyan-400/16 text-cyan-100';
   const displayName = cleanProductName(product);
   const imageSrc = productImage(product);
+  const leadHref = buildTelegramLeadHref([product]);
 
   return (
     <div className={`group relative flex h-full flex-col overflow-hidden rounded-[20px] border bg-zinc-950/92 shadow-[0_14px_44px_rgba(0,0,0,0.32)] transition duration-300 hover:-translate-y-0.5 hover:border-cyan-400/30 ${isInRequest ? 'border-cyan-400/45 shadow-[0_0_38px_rgba(34,211,238,0.18)]' : 'border-white/10'}`}>
@@ -406,12 +418,15 @@ function ProductTile({
               {isInRequest ? '✓ В запросе' : '+ Добавить в запрос'}
             </button>
 
-            <button
+            <a
+              href={leadHref}
+              target="_blank"
+              rel="noreferrer"
               onClick={() => onLead(product)}
               className="w-full rounded-xl px-4 py-2 text-xs font-black text-zinc-400 transition hover:bg-white/[0.04] hover:text-white"
             >
               Получить цену →
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -435,6 +450,7 @@ function ProductPreviewModal({
   const [imageFailed, setImageFailed] = useState(false);
   const displayName = cleanProductName(product);
   const imageSrc = productImage(product);
+  const leadHref = buildTelegramLeadHref([product]);
 
   return (
     <div className="fixed inset-0 z-[997] flex items-center justify-center bg-black/82 px-4 py-6 text-white backdrop-blur-2xl">
@@ -522,7 +538,10 @@ function ProductPreviewModal({
             </div>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              <button
+              <a
+                href={leadHref}
+                target="_blank"
+                rel="noreferrer"
                 onClick={() => onLead(product)}
                 className="group relative overflow-hidden rounded-[20px] bg-gradient-to-r from-violet-600 via-blue-500 to-cyan-400 px-6 py-5 text-left font-black shadow-[0_0_45px_rgba(34,211,238,0.24)] transition hover:scale-[1.02] hover:shadow-[0_0_65px_rgba(34,211,238,0.36)]"
               >
@@ -531,7 +550,7 @@ function ProductPreviewModal({
                   Получить цену
                   <span>→</span>
                 </span>
-              </button>
+              </a>
 
               <button
                 onClick={() => onToggleRequest(product)}
@@ -630,6 +649,7 @@ function RequestDrawerModal({
   productsInRequest,
   onClose,
   onSubmit,
+  submitHref,
   onRemove,
   onPreview,
   onClear,
@@ -637,6 +657,7 @@ function RequestDrawerModal({
   productsInRequest: Product[];
   onClose: () => void;
   onSubmit: () => void;
+  submitHref: string;
   onRemove: (productId: number) => void;
   onPreview: (product: Product) => void;
   onClear: () => void;
@@ -694,13 +715,16 @@ function RequestDrawerModal({
             </div>
 
             <div className="grid gap-2 sm:flex">
-              <button
+              <a
+                href={submitHref}
+                target="_blank"
+                rel="noreferrer"
                 onClick={onSubmit}
                 className="group relative overflow-hidden rounded-[20px] bg-gradient-to-r from-violet-600 via-blue-500 to-cyan-400 px-7 py-4 font-black shadow-[0_0_40px_rgba(34,211,238,0.24)] transition hover:scale-[1.02]"
               >
                 <span className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent transition duration-700 group-hover:translate-x-[100%]" />
                 <span className="relative">Запросить цены →</span>
-              </button>
+              </a>
               <button
                 onClick={onClear}
                 className="rounded-[20px] border border-white/10 bg-white/[0.035] px-7 py-4 font-black text-zinc-300 transition hover:border-cyan-400/35 hover:bg-white/[0.06] hover:text-white"
@@ -891,27 +915,13 @@ export default function CatalogPage() {
     setIsAdult(true);
   };
 
-  const openLead = (product?: Product) => {
+  const closeLeadSurfaces = () => {
     setPreviewProduct(null);
-    const requestedProducts = product ? [product] : selectedProducts;
-    const productList = requestedProducts.length
-      ? `\n\nИнтересующие товары:\n${requestedProducts
-          .map((item, index) => `${index + 1}. ${item.name}`)
-          .join('\n')}`
-      : '';
-    const message = `Здравствуйте! Хочу получить оптовый прайс и уточнить наличие.${productList}`;
-
-    window.open(
-      `${TELEGRAM_URL}?text=${encodeURIComponent(message)}`,
-      '_blank',
-      'noopener,noreferrer'
-    );
+    setIsRequestPanelOpen(false);
   };
 
   const openRequestLead = () => {
-    setPreviewProduct(null);
-    setIsRequestPanelOpen(false);
-    openLead();
+    closeLeadSurfaces();
   };
 
   const toggleRequestProduct = (product: Product) => {
@@ -940,6 +950,11 @@ export default function CatalogPage() {
       setIsRequestPanelOpen(false);
     }
   }, [selectedProducts.length]);
+
+  const requestLeadHref = useMemo(
+    () => buildTelegramLeadHref(selectedProducts),
+    [selectedProducts]
+  );
 
   const filtered = useMemo(() => {
     const q = normalizeSearch(query);
@@ -1163,7 +1178,7 @@ export default function CatalogPage() {
         <ProductPreviewModal
           product={previewProduct}
           onClose={() => setPreviewProduct(null)}
-          onLead={openLead}
+          onLead={closeLeadSurfaces}
           onToggleRequest={toggleRequestProduct}
           isInRequest={selectedProducts.some((item) => item.id === previewProduct.id)}
         />
@@ -1174,6 +1189,7 @@ export default function CatalogPage() {
           productsInRequest={selectedProducts}
           onClose={() => setIsRequestPanelOpen(false)}
           onSubmit={openRequestLead}
+          submitHref={requestLeadHref}
           onRemove={removeRequestProduct}
           onPreview={(product) => {
             setIsRequestPanelOpen(false);
@@ -1196,7 +1212,7 @@ export default function CatalogPage() {
 
             <div className="grid items-end gap-4 lg:grid-cols-[minmax(0,1fr)_340px]">
               <div>
-                <div className="mb-2 text-xs font-black uppercase tracking-[0.22em] text-cyan-300">B2B Catalog</div>
+                <div className="mb-2 text-xs font-black uppercase tracking-[0.22em] text-cyan-300">Оптовый каталог</div>
 
                 <h1 className="max-w-4xl text-3xl font-black uppercase leading-[1.02] tracking-tight sm:text-4xl md:text-5xl">
                   <span className="text-white">Каталог </span>
@@ -1243,13 +1259,15 @@ export default function CatalogPage() {
 
               <div className="mt-2 flex flex-col gap-2 px-1 pb-1 text-xs text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
                 <span className="hidden sm:inline">Быстрый поиск по названию, бренду, серии или сопротивлению.</span>
-                <button
-                  type="button"
-                  onClick={() => openLead()}
+                <a
+                  href={requestLeadHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={closeLeadSurfaces}
                   className="rounded-xl border border-cyan-400/25 bg-cyan-400/10 px-4 py-2.5 text-xs font-black text-cyan-100 transition hover:border-cyan-300/50 hover:bg-cyan-400/15"
                 >
                   Получить прайс →
-                </button>
+                </a>
               </div>
             </div>
 
@@ -1595,7 +1613,7 @@ export default function CatalogPage() {
                 <ProductTile
                   key={product.id}
                   product={product}
-                  onLead={openLead}
+                  onLead={closeLeadSurfaces}
                   onToggleRequest={toggleRequestProduct}
                   onPreview={setPreviewProduct}
                   isInRequest={selectedProducts.some((item) => item.id === product.id)}
@@ -1626,7 +1644,7 @@ export default function CatalogPage() {
                 <h2 className="text-3xl font-black md:text-4xl">Нужен актуальный оптовый прайс?</h2>
                 <p className="mt-3 max-w-2xl leading-relaxed text-zinc-300">Напишите менеджеру в Telegram — он отправит наличие, цены и поможет собрать заказ под формат вашего магазина.</p>
               </div>
-              <button onClick={() => openLead()} className="w-full rounded-[20px] bg-gradient-to-r from-violet-600 via-blue-500 to-cyan-400 px-10 py-5 text-lg font-black shadow-[0_0_45px_rgba(34,211,238,0.25)] transition hover:scale-[1.03] lg:w-auto">Получить оптовый прайс ✈</button>
+              <a href={requestLeadHref} target="_blank" rel="noreferrer" onClick={closeLeadSurfaces} className="w-full rounded-[20px] bg-gradient-to-r from-violet-600 via-blue-500 to-cyan-400 px-10 py-5 text-center text-lg font-black shadow-[0_0_45px_rgba(34,211,238,0.25)] transition hover:scale-[1.03] lg:w-auto">Получить оптовый прайс →</a>
             </div>
           </div>
         </section>
@@ -1652,19 +1670,24 @@ export default function CatalogPage() {
 
               <div className="flex shrink-0 gap-2">
                 <button
+                  type="button"
                   onClick={() => setIsRequestPanelOpen(true)}
                   className="rounded-2xl border border-cyan-400/25 bg-cyan-400/10 px-3 py-3 text-xs font-black text-cyan-100 transition hover:border-cyan-300/50 hover:bg-cyan-400/15 sm:px-5 sm:text-sm"
                 >
                   <span className="sm:hidden">Список</span>
                   <span className="hidden sm:inline">Посмотреть</span>
                 </button>
-                <button
+                <a
+                  href={requestLeadHref}
+                  target="_blank"
+                  rel="noreferrer"
                   onClick={openRequestLead}
                   className="rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-500 px-4 py-3 text-xs font-black shadow-[0_0_30px_rgba(34,211,238,0.22)] transition hover:scale-[1.02] sm:px-5 sm:text-sm"
                 >
                   Отправить →
-                </button>
+                </a>
                 <button
+                  type="button"
                   onClick={clearRequestProducts}
                   className="hidden rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-3 text-sm font-black text-zinc-300 transition hover:border-cyan-400/35 hover:text-white sm:block"
                 >

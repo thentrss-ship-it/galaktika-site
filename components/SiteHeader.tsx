@@ -21,6 +21,7 @@ const navItems: Array<{
   href: string;
   key?: ActivePage;
   description: string;
+  desktopClassName?: string;
 }> = [
   {
     label: "Главная",
@@ -50,11 +51,13 @@ const navItems: Array<{
     label: "Бренды",
     href: "/#brands",
     description: "Популярные бренды",
+    desktopClassName: "galaxy-nav-secondary",
   },
   {
     label: "Прайс-бот",
     href: PRICE_BOT_URL,
     description: "Получить актуальный прайс",
+    desktopClassName: "galaxy-nav-secondary",
   },
   {
     label: "Менеджер",
@@ -65,6 +68,7 @@ const navItems: Array<{
     label: "TG-группа",
     href: TELEGRAM_GROUP_URL,
     description: "Новости, новинки и наличие",
+    desktopClassName: "galaxy-nav-secondary",
   },
 ];
 
@@ -89,12 +93,12 @@ export default function SiteHeader({
   };
 
   const ctaClassName =
-    "group relative overflow-hidden rounded-[20px] bg-gradient-to-r from-violet-600 via-blue-500 to-cyan-400 px-6 py-3.5 text-sm font-black text-white shadow-[0_0_35px_rgba(34,211,238,0.28)] transition hover:scale-[1.03] hover:shadow-[0_0_55px_rgba(34,211,238,0.42)]";
+    "galaxy-header-cta group relative overflow-hidden rounded-[18px] bg-gradient-to-r from-violet-600 via-blue-500 to-cyan-400 px-5 py-3 text-sm font-black text-white shadow-[0_0_35px_rgba(34,211,238,0.28)] transition hover:scale-[1.03] hover:shadow-[0_0_55px_rgba(34,211,238,0.42)]";
 
   return (
     <>
       <header className="galaxy-site-header fixed left-0 right-0 top-0 z-[999] border-b border-white/10 bg-black/82 text-white shadow-[0_18px_60px_rgba(0,0,0,0.45)] backdrop-blur-2xl">
-        <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between gap-6 px-5 lg:px-6">
+        <div className="mx-auto flex h-[76px] max-w-[1500px] items-center justify-between gap-5 px-4 lg:px-6">
           <a
             href="/"
             onClick={closeMobileMenu}
@@ -130,11 +134,11 @@ export default function SiteHeader({
                 <a
                   key={item.label}
                   href={item.href}
-                  className={
+                  className={`${item.desktopClassName ?? ""} ${
                     isActive
-                      ? "whitespace-nowrap text-cyan-300 drop-shadow-[0_0_18px_rgba(34,211,238,0.35)]"
-                      : "whitespace-nowrap transition hover:text-cyan-300 hover:drop-shadow-[0_0_18px_rgba(34,211,238,0.25)]"
-                  }
+                      ? "text-cyan-300 drop-shadow-[0_0_18px_rgba(34,211,238,0.35)]"
+                      : "transition hover:text-cyan-300 hover:drop-shadow-[0_0_18px_rgba(34,211,238,0.25)]"
+                  }`}
                 >
                   {item.label}
                 </a>
@@ -270,7 +274,13 @@ export default function SiteHeader({
       <style>{`
         .galaxy-desktop-nav {
           display: flex;
-          gap: 26px;
+          gap: 24px;
+          min-width: 0;
+        }
+
+        .galaxy-desktop-nav a {
+          flex-shrink: 0;
+          white-space: nowrap;
         }
 
         .galaxy-mobile-menu-button {
@@ -322,6 +332,22 @@ export default function SiteHeader({
           }
         }
 
+        @media (max-width: 1340px) {
+          .galaxy-desktop-nav {
+            gap: 16px;
+            font-size: 13px;
+          }
+
+          .galaxy-nav-secondary {
+            display: none;
+          }
+
+          .galaxy-header-cta {
+            padding-left: 18px;
+            padding-right: 18px;
+          }
+        }
+
         @media (max-width: 1023px) {
           .galaxy-desktop-nav {
             display: none;
@@ -335,6 +361,9 @@ export default function SiteHeader({
         @media (max-width: 640px) {
           .galaxy-site-header > div {
             height: 64px;
+            gap: 10px;
+            padding-left: 12px;
+            padding-right: 12px;
           }
 
           .galaxy-mobile-menu-panel {
@@ -353,6 +382,20 @@ export default function SiteHeader({
 
           .galaxy-cta-mobile-text {
             display: inline;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .galaxy-header-cta {
+            display: none;
+          }
+
+          .galaxy-site-header a[href="/"] {
+            min-width: 0;
+          }
+
+          .galaxy-site-header a[href="/"] > div:last-child {
+            max-width: 190px;
           }
         }
       `}</style>
