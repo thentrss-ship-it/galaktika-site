@@ -12,6 +12,16 @@ const staticAssetCache = [
 ];
 
 const nextConfig = {
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.galaxyopt.ru" }],
+        destination: "https://galaxyopt.ru/:path*",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return staticAssetCache.map((source) => ({
       source,
