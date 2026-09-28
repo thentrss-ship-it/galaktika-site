@@ -6,7 +6,7 @@ const TELEGRAM_URL = "https://t.me/Galaxy_Stan";
 const SITE_URL = "https://galaxyopt.ru";
 
 export const metadata: Metadata = {
-  title: "Доставка и условия оптового заказа | ГАЛАКТИКА",
+  title: "Доставка и условия оптового заказа",
   description:
     "Доставка оптовых заказов ГАЛАКТИКА: склад в Москве, отправка по России, минимальный заказ от 20 000 ₽, связь с менеджером в Telegram.",
   alternates: {

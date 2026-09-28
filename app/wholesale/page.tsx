@@ -5,7 +5,7 @@ import SiteFooter from "../../components/SiteFooter";
 const TELEGRAM_URL = 'https://t.me/Galaxy_Stan';
 
 export const metadata: Metadata = {
-  title: 'Оптовый заказ — ГАЛАКТИКА',
+  title: 'Оптовый заказ',
   description:
     'Как сделать оптовый заказ в ГАЛАКТИКЕ: связь с менеджером в Telegram, прайс, подбор товаров, минимальный заказ от 20 000 ₽, отгрузка из Москвы и доставка по России.',
   alternates: {

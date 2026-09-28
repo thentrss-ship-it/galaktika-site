@@ -1,12 +1,56 @@
+import type { Metadata } from 'next';
 import { products } from '../../../data/products';
 import { productImagePathMap } from '../../../data/productImageManifest';
 import { productPreviewPathMap } from '../../../data/productPreviewManifest';
+
+const SITE_URL = 'https://galaxyopt.ru';
 
 type ProductPageProps = {
   params: Promise<{
     slug: string;
   }>;
 };
+
+export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const product = products.find((item) => item.slug === slug);
+
+  if (!product) {
+    return {
+      title: 'Товар не найден',
+      alternates: {
+        canonical: `${SITE_URL}/catalog/${slug}`,
+      },
+    };
+  }
+
+  const brandKey = product.brand.toLowerCase();
+  const imageKey = `${brandKey}/${product.slug}`;
+  const imageSrc = productPreviewPathMap[imageKey] ?? productImagePathMap[imageKey] ?? '/preview-v2.jpg';
+  const absoluteImage = imageSrc.startsWith('http') ? imageSrc : `${SITE_URL}${imageSrc}`;
+
+  return {
+    title: product.name,
+    description: `${product.name}: оптовая цена, наличие и условия заказа у менеджера ГАЛАКТИКА.`,
+    alternates: {
+      canonical: `${SITE_URL}/catalog/${product.slug}`,
+    },
+    openGraph: {
+      title: product.name,
+      description: 'Оптовая цена, наличие и условия заказа у менеджера ГАЛАКТИКА.',
+      url: `${SITE_URL}/catalog/${product.slug}`,
+      siteName: 'ГАЛАКТИКА',
+      images: [
+        {
+          url: absoluteImage,
+          alt: product.name,
+        },
+      ],
+      locale: 'ru_RU',
+      type: 'website',
+    },
+  };
+}
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { slug } = await params;

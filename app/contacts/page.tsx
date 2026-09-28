@@ -6,7 +6,7 @@ const TELEGRAM_URL = 'https://t.me/Galaxy_Stan';
 const TELEGRAM_GROUP_URL = 'https://t.me/galaxy_distr';
 
 export const metadata: Metadata = {
-  title: 'Контакты ГАЛАКТИКА — оптовые поставки для магазинов',
+  title: 'Контакты',
   description:
     'Контакты ГАЛАКТИКА: оптовые поставки оригинальной продукции для вейп-шопов, табачных магазинов, сетей и оптовиков. Склад в Москве, отгрузка по России.',
   alternates: {
