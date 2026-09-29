@@ -2,7 +2,7 @@
 
 import Script from "next/script";
 
-const METRIKA_ID = process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID;
+const METRIKA_ID = process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID || "113166553";
 
 export function YandexMetrika() {
   if (!METRIKA_ID) {
