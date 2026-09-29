@@ -8,6 +8,7 @@ import SiteFooter from "../components/SiteFooter";
 const TELEGRAM_URL = "https://t.me/Galaxy_Stan";
 const PRICE_BOT_URL = "https://t.me/galaxysai_bot?start=site";
 const TELEGRAM_GROUP_URL = "https://t.me/galaxy_distr";
+const SITE_URL = "https://galaxyopt.ru";
 
 export default function GalaktikaVapeSite() {
   const [isAdult, setIsAdult] = useState(false);
@@ -27,6 +28,39 @@ export default function GalaktikaVapeSite() {
 
   const openLead = () => {
     window.open(TELEGRAM_URL, "_blank", "noopener,noreferrer");
+  };
+
+  const homeJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${SITE_URL}/#organization`,
+        name: "ГАЛАКТИКА",
+        url: SITE_URL,
+        logo: `${SITE_URL}/logo-galaktika-v3.png`,
+        sameAs: [TELEGRAM_GROUP_URL],
+        contactPoint: [
+          {
+            "@type": "ContactPoint",
+            contactType: "sales",
+            areaServed: "RU",
+            availableLanguage: ["ru"],
+            url: TELEGRAM_URL,
+          },
+        ],
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${SITE_URL}/#website`,
+        url: SITE_URL,
+        name: "ГАЛАКТИКА — оптовые поставки vape-продукции",
+        inLanguage: "ru-RU",
+        publisher: {
+          "@id": `${SITE_URL}/#organization`,
+        },
+      },
+    ],
   };
 
   const stats = [
@@ -254,6 +288,10 @@ export default function GalaktikaVapeSite() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
+      />
       {!isAdult && (
         <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/95 px-6 text-white backdrop-blur-xl">
           <div className="relative w-full max-w-md overflow-hidden rounded-[36px] border border-cyan-400/25 bg-zinc-950 p-10 text-center shadow-[0_0_80px_rgba(34,211,238,0.22)]">
@@ -434,7 +472,7 @@ export default function GalaktikaVapeSite() {
             <div className="mb-8 flex items-end justify-between gap-4">
               <div>
                 <div className="mb-3 text-sm font-black uppercase tracking-[0.22em] text-cyan-300">
-                  Premium brands
+                  Бренды в наличии
                 </div>
                 <h2 className="text-3xl font-black tracking-tight md:text-4xl">
                   Популярные бренды
@@ -491,7 +529,7 @@ export default function GalaktikaVapeSite() {
             <div className="mb-8 flex items-end justify-between gap-4">
               <div>
                 <div className="mb-3 text-sm font-black uppercase tracking-[0.22em] text-violet-300">
-                  Best sellers
+                  Часто заказывают
                 </div>
                 <h2 className="text-3xl font-black tracking-tight md:text-4xl">
                   Хиты продаж
@@ -558,7 +596,7 @@ export default function GalaktikaVapeSite() {
             <div className="mb-8 flex items-end justify-between gap-4">
               <div>
                 <div className="mb-3 text-sm font-black uppercase tracking-[0.22em] text-cyan-300">
-                  Product catalog
+                  Ассортимент
                 </div>
                 <h2 className="text-3xl font-black tracking-tight md:text-4xl">
                   Каталог продукции
@@ -627,7 +665,7 @@ export default function GalaktikaVapeSite() {
           <div className="relative mx-auto max-w-7xl">
             <div className="mb-10 max-w-3xl">
               <div className="mb-4 text-sm font-black uppercase tracking-[0.24em] text-cyan-300">
-                Why galaxy
+                Почему ГАЛАКТИКА
               </div>
               <h2 className="text-4xl font-black leading-tight tracking-tight md:text-6xl">
                 Почему магазины выбирают ГАЛАКТИКУ
@@ -659,7 +697,7 @@ export default function GalaktikaVapeSite() {
                 <div className="relative z-10 flex h-full min-h-[520px] flex-col justify-between p-7 md:p-10">
                   <div>
                     <div className="mb-6 inline-flex rounded-full border border-cyan-400/25 bg-cyan-400/10 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-cyan-200 backdrop-blur-xl">
-                      Supply system
+                      Система поставок
                     </div>
                     <h3 className="max-w-2xl text-4xl font-black leading-[1.02] md:text-6xl">
                       Оптовая закупка без хаоса и долгих переписок
@@ -743,7 +781,7 @@ export default function GalaktikaVapeSite() {
               <div className="relative grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
                 <div>
                   <div className="mb-4 text-sm font-black uppercase tracking-[0.24em] text-violet-300">
-                    Fast start
+                    Быстрый старт
                   </div>
 
                   <h2 className="max-w-xl text-3xl font-black leading-tight md:text-5xl">
@@ -872,7 +910,7 @@ export default function GalaktikaVapeSite() {
             <div className="relative flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
               <div>
                 <div className="mb-3 text-xs font-black uppercase tracking-[0.24em] text-cyan-300/80">
-                  Start partnership
+                  Начать сотрудничество
                 </div>
                 <h2 className="text-3xl font-black leading-tight md:text-4xl">
                   Готовы к сотрудничеству?

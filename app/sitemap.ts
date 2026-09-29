@@ -1,10 +1,11 @@
 import type { MetadataRoute } from "next";
+import { products } from "../data/products";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://galaxyopt.ru";
   const currentDate = new Date();
 
-  return [
+  const staticPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: currentDate,
@@ -36,4 +37,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
   ];
+
+  const productPages: MetadataRoute.Sitemap = products.map((product) => ({
+    url: `${baseUrl}/catalog/${product.slug}`,
+    lastModified: currentDate,
+    changeFrequency: "weekly",
+    priority: product.inStock ? 0.65 : 0.45,
+  }));
+
+  return [...staticPages, ...productPages];
 }

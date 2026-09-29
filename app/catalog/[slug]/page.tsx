@@ -76,6 +76,34 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const brandKey = product.brand.toLowerCase();
   const imageKey = `${brandKey}/${product.slug}`;
   const imageSrc = productPreviewPathMap[imageKey] ?? productImagePathMap[imageKey] ?? null;
+  const absoluteImage = imageSrc
+    ? imageSrc.startsWith('http')
+      ? imageSrc
+      : `${SITE_URL}${imageSrc}`
+    : `${SITE_URL}/preview-v2.jpg`;
+  const productJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    image: absoluteImage,
+    brand: {
+      '@type': 'Brand',
+      name: product.brand,
+    },
+    category: product.category,
+    url: `${SITE_URL}/catalog/${product.slug}`,
+    offers: {
+      '@type': 'Offer',
+      availability: product.inStock ? 'https://schema.org/InStock' : 'https://schema.org/PreOrder',
+      priceCurrency: 'RUB',
+      url: `${SITE_URL}/catalog/${product.slug}`,
+      seller: {
+        '@type': 'Organization',
+        name: 'ГАЛАКТИКА',
+        url: SITE_URL,
+      },
+    },
+  };
 
   const telegramText = encodeURIComponent(
     `Здравствуйте!
@@ -91,6 +119,10 @@ ${product.name}
 
   return (
     <main className="min-h-screen bg-black text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
       <section className="relative overflow-hidden px-5 py-28">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_20%,rgba(217,70,239,0.18),transparent_35%),radial-gradient(circle_at_80%_55%,rgba(34,211,238,0.14),transparent_35%)]" />
 

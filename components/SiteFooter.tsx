@@ -35,7 +35,7 @@ export default function SiteFooter() {
           <div className="relative grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
               <div className="mb-3 text-xs font-black uppercase tracking-[0.28em] text-cyan-300">
-                B2B contact
+                Связь для опта
               </div>
               <h2 className="max-w-3xl text-2xl font-black uppercase leading-tight md:text-3xl">
                 Получите оптовый прайс и актуальное наличие
